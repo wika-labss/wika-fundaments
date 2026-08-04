@@ -4,7 +4,7 @@
 
 Definir el ciclo de vida oficial de una aplicación dentro del ecosistema WIKA.
 
-Este workflow establece cómo una idea se transforma en una solución funcional mediante la colaboración entre documentación estructurada, agentes de inteligencia artificial y revisión arquitectónica.
+Este workflow establece cómo una idea se transforma en una solución funcional mediante documentación estructurada, auditorías arquitectónicas y agentes de inteligencia artificial.
 
 Todo proyecto desarrollado bajo WIKA debe seguir este proceso.
 
@@ -12,11 +12,13 @@ Todo proyecto desarrollado bajo WIKA debe seguir este proceso.
 
 # Filosofía
 
-WIKA se basa en tres principios fundamentales:
+WIKA se basa en cinco principios fundamentales:
 
-1. La documentación define el producto.
-2. La inteligencia artificial genera la solución.
-3. El arquitecto garantiza la calidad.
+- La documentación define el producto.
+- La Auditoría 1 asegura que el proyecto puede construirse.
+- La inteligencia artificial genera la solución.
+- La Auditoría 2 asegura que la solución funciona.
+- El arquitecto garantiza la calidad.
 
 Ninguna aplicación debe desarrollarse fuera de este flujo.
 
@@ -29,9 +31,11 @@ Idea
 ↓
 Preparación
 ↓
+Auditoría 1
+↓
 Generación IA
 ↓
-Revisión Arquitectónica
+Auditoría 2
 ↓
 Refinamiento
 ↓
@@ -50,8 +54,6 @@ Publicación
 
 Identificar una necesidad de negocio y convertirla en una iniciativa formal.
 
----
-
 ## Resultado Esperado
 
 Creación de una nueva estructura dentro del repositorio de aplicaciones.
@@ -60,8 +62,6 @@ Creación de una nueva estructura dentro del repositorio de aplicaciones.
 applications/
 └── nombre-proyecto/
 ```
-
----
 
 ## Estructura Inicial
 
@@ -85,8 +85,6 @@ La documentación creada durante esta etapa representa la fuente oficial de verd
 
 Ninguna generación debe comenzar sin que esta etapa haya sido completada.
 
----
-
 ## Estructura
 
 ```text
@@ -97,7 +95,8 @@ applications/
         ├── 02-features.md
         ├── 03-architecture.md
         ├── 04-design.md
-        └── 05-prompt-ia.md
+        ├── 05-prompt-ia.md
+        └── 06-build-environment.md
 ```
 
 ---
@@ -207,6 +206,28 @@ Instrucciones claras que permitan optimizar la generación de una primera versi�
 
 ---
 
+## 06-build-environment.md
+
+### Objetivo
+
+Definir el entorno de compilación y despliegue requerido por el proyecto.
+
+### Debe contener
+
+- Framework y versión.
+- SDK objetivo.
+- JDK objetivo.
+- Kotlin objetivo.
+- Dependencias críticas.
+- Pipeline de build.
+- Artefacto final esperado.
+
+### Resultado Esperado
+
+Entorno reproducible y completamente definido antes de generar código.
+
+---
+
 ## Resultado de la Etapa
 
 Al finalizar la preparación, el proyecto debe contener toda la información necesaria para que un agente IA pueda generar una primera versión funcional sin depender de explicaciones adicionales.
@@ -215,13 +236,93 @@ La calidad de la generación estará directamente relacionada con la calidad de 
 
 ---
 
-# Etapa 3: Generación IA
+# Etapa 3: Auditoría 1
+
+## Objetivo
+
+Validar que la documentación contiene toda la información necesaria para generar una aplicación compilable y capaz de producir un artefacto instalable.
+
+Esta auditoría ocurre antes de generar código.
+
+## Responsable
+
+Arquitecto WIKA.
+
+## Referencia
+
+```text
+docs/auditoria-1.md
+```
+
+## Entradas
+
+```text
+01-problem.md
+02-features.md
+03-architecture.md
+04-design.md
+05-prompt-ia.md
+06-build-environment.md
+```
+
+## Validaciones
+
+### Requerimientos
+
+- Objetivo definido.
+- Alcance definido.
+- Entregable definido.
+
+### Arquitectura
+
+- Stack tecnológico definido.
+- Dependencias identificadas.
+- Restricciones documentadas.
+
+### Build
+
+- SDK definido.
+- JDK definido.
+- Kotlin definido.
+- Pipeline de compilación documentado.
+
+### Entregable
+
+Debe estar definido explícitamente:
+
+- APK Release
+- AAB
+- Docker
+- Aplicación Web
+- Otro
+
+## Resultado Esperado
+
+```text
+audit-1.md
+```
+
+## Regla
+
+La Auditoría 1 debe ejecutarse siguiendo las validaciones descritas en:
+
+```text
+docs/auditoria-1.md
+```
+
+Si la Auditoría 1 es rechazada:
+
+```text
+Generación IA = NO PERMITIDA
+```
+
+---
+
+# Etapa 4: Generación IA
 
 ## Objetivo
 
 Transformar la documentación estructurada en una primera versión funcional de la aplicación.
-
----
 
 ## Entradas
 
@@ -241,19 +342,16 @@ functions/
 applications/proyecto/idea/
 ```
 
----
-
 ## Proceso
 
 El agente IA deberá:
 
-1. Leer la documentación oficial del proyecto.
-2. Aplicar las reglas definidas por WIKA.
-3. Respetar los estándares técnicos vigentes.
-4. Respetar las restricciones arquitectónicas indicadas.
-5. Generar una solución funcional inicial.
-
----
+- Leer la documentación oficial del proyecto.
+- Respetar la Auditoría 1.
+- Aplicar las reglas definidas por WIKA.
+- Aplicar los estándares técnicos vigentes.
+- Respetar las restricciones arquitectónicas indicadas.
+- Generar una solución funcional inicial.
 
 ## Resultado Esperado
 
@@ -261,8 +359,6 @@ El agente IA deberá:
 iterations/
 └── v1/
 ```
-
----
 
 ## Contenido Referencial
 
@@ -276,84 +372,108 @@ v1/
 
 ---
 
-# Etapa 4: Revisión Arquitectónica
+# Etapa 5: Auditoría 2
 
 ## Objetivo
 
-Evaluar la calidad de la solución generada y determinar las mejoras necesarias.
-
----
+Validar que la solución generada cumple los requerimientos funcionales, técnicos y operacionales.
 
 ## Responsable
 
-Arquitecto de Software.
+Arquitecto WIKA.
 
----
+## Referencia
+
+```text
+docs/auditoria-2.md
+```
+
+## Entradas
+
+- Código generado.
+- Documentación del proyecto.
+- Auditoría 1.
+- Versiones previas.
 
 ## Validaciones
 
-### Funcionales
+### Compilación
 
-- Cumplimiento de requerimientos.
-- Cumplimiento de reglas de negocio.
-- Cobertura de funcionalidades definidas.
+- TypeScript.
+- Dependencias.
+- Build.
+- APK Release.
 
-### Técnicas
+### Arquitectura
 
 - Cumplimiento de arquitectura.
 - Cumplimiento de estándares.
 - Calidad de implementación.
 
-### Experiencia de Usuario
+### Funcionalidad
 
-- Navegación.
-- Consistencia visual.
-- Usabilidad.
+- Cumplimiento de requerimientos.
+- Casos de uso.
+- Estados y flujos.
 
----
+### Runtime
+
+- Hardware.
+- Permisos.
+- Ciclo de vida.
+- Dispositivo físico.
 
 ## Resultado Esperado
-
-Documento formal de revisión.
 
 ```text
 review-v1.md
 ```
 
----
-
-## Contenido Mínimo
+## Resultado
 
 ```text
-Observaciones
-Hallazgos
-Errores
-Riesgos
-Mejoras
-Resultado Final
+APROBADO
 ```
+
+o
+
+```text
+REQUIERE V2
+```
+
+o
+
+```text
+RECHAZADO
+```
+
+## Regla
+
+La Auditoría 2 debe ejecutarse siguiendo las validaciones descritas en:
+
+```text
+docs/auditoria-2.md
+```
+
+Toda V1 debe superar la Auditoría 2 antes de avanzar a refinamiento o aprobación.
 
 ---
 
-# Etapa 5: Refinamiento
+# Etapa 6: Refinamiento
 
 ## Objetivo
 
-Mejorar progresivamente la solución a partir de la revisión arquitectónica.
-
----
+Mejorar progresivamente la solución a partir de la Auditoría 2.
 
 ## Entradas
 
 ```text
 Documentación Original
 +
-Comentarios Arquitectónicos
+Auditoría 2
 +
 Versiones Previas
 ```
-
----
 
 ## Proceso
 
@@ -361,10 +481,9 @@ El agente IA genera una nueva versión considerando:
 
 - Requerimientos originales.
 - Restricciones existentes.
-- Observaciones de revisión.
-- Problemas detectados.
-
----
+- Hallazgos detectados.
+- Problemas identificados.
+- Observaciones arquitectónicas.
 
 ## Resultado Esperado
 
@@ -376,23 +495,21 @@ iterations/
 └── vn/
 ```
 
----
-
 ## Regla de Refinamiento
 
 No existe un límite definido de versiones.
 
 El proceso continuará hasta que el arquitecto considere que la solución cumple los criterios esperados.
 
+Toda versión V2 o superior deberá corregir los hallazgos identificados durante la Auditoría 2.
+
 ---
 
-# Etapa 6: Aprobación
+# Etapa 7: Aprobación
 
 ## Objetivo
 
 Declarar que la solución cumple los requisitos funcionales, técnicos y operacionales definidos.
-
----
 
 ## Criterios de Aprobación
 
@@ -403,6 +520,7 @@ Declarar que la solución cumple los requisitos funcionales, técnicos y operaci
 
 ### Técnica
 
+- Auditoría 2 aprobada.
 - Arquitectura validada.
 - Estándares cumplidos.
 
@@ -410,17 +528,11 @@ Declarar que la solución cumple los requisitos funcionales, técnicos y operaci
 
 - Lista para demostración.
 
----
-
 ## Resultado Esperado
-
-Generación de la versión final.
 
 ```text
 final/
 ```
-
----
 
 ## Contenido
 
@@ -434,13 +546,11 @@ final/
 
 ---
 
-# Etapa 7: Demo
+# Etapa 8: Demo
 
 ## Objetivo
 
 Validar el producto con los interesados antes de su publicación.
-
----
 
 ## Actividades
 
@@ -448,8 +558,6 @@ Validar el producto con los interesados antes de su publicación.
 - Validación de alcance.
 - Validación de experiencia.
 - Confirmación de expectativas.
-
----
 
 ## Resultado Esperado
 
@@ -459,13 +567,11 @@ demo-approved.md
 
 ---
 
-# Etapa 8: Publicación
+# Etapa 9: Publicación
 
 ## Objetivo
 
 Liberar la solución para su utilización productiva.
-
----
 
 ## Requisitos
 
@@ -473,8 +579,6 @@ Liberar la solución para su utilización productiva.
 - Demo validada.
 - Documentación actualizada.
 - Versión final disponible.
-
----
 
 ## Resultado
 
@@ -497,8 +601,6 @@ VN
 
 Representan iteraciones de refinamiento.
 
----
-
 ## Versión Final
 
 ```text
@@ -517,8 +619,6 @@ Representa la versión aprobada para demostración o despliegue.
 - Define prioridades.
 - Valida el resultado final.
 
----
-
 ## Agente IA
 
 - Interpreta la documentación.
@@ -526,28 +626,27 @@ Representa la versión aprobada para demostración o despliegue.
 - Implementa mejoras.
 - Produce nuevas versiones.
 
----
-
 ## Arquitecto
 
+- Ejecuta Auditoría 1.
+- Ejecuta Auditoría 2.
 - Valida calidad.
 - Evalúa riesgos.
 - Revisa arquitectura.
 - Aprueba o rechaza versiones.
 
----
-
 ## WIKA
 
 Proporciona:
 
-- Reglas
-- Estándares
-- Arquitectura
-- Workflows
-- Templates
-- Agentes
-- Funciones
+- Reglas.
+- Estándares.
+- Arquitectura.
+- Workflows.
+- Templates.
+- Auditorías.
+- Agentes.
+- Funciones.
 
 ---
 
@@ -560,9 +659,11 @@ Toda aplicación debe seguir el siguiente principio:
 ```text
 Documentación
 ↓
+Auditoría 1
+↓
 Generación IA
 ↓
-Revisión Arquitectónica
+Auditoría 2
 ↓
 Refinamiento
 ↓
@@ -571,8 +672,14 @@ Aprobación
 
 La documentación define el producto.
 
+La Auditoría 1 (docs/auditoria-1.md) asegura que el proyecto puede construirse y generar un artefacto instalable.
+
 La IA genera la solución.
+
+La Auditoría 2 (docs/auditoria-2.md) asegura que la solución funciona correctamente y cumple los requisitos definidos.
 
 El arquitecto garantiza la calidad.
 
-La calidad del resultado dependerá directamente de la calidad de la documentación entregada al proceso.
+Ninguna aplicación podrá avanzar a Generación IA sin aprobar la Auditoría 1.
+
+Ninguna aplicación podrá avanzar a final/ sin aprobar la Auditoría 2.
