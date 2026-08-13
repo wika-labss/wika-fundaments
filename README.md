@@ -76,20 +76,23 @@ Idea
 ↓
 Preparación
 ↓
-Auditoría 1
+Auditoría de Documentación
 ↓
-Generación IA
+Descubrimiento de Módulos
 ↓
-Auditoría 2
+Auditoría de Módulos
+↓
+Diseño de Aplicación
+↓
+Auditoría de Ensamblado
+↓
+Construcción V1
+↓
+Auditoría de Release
 ↓
 Refinamiento
 ↓
-Aprobación
-↓
-Demo
-↓
 Publicación
-```
 
 ---
 
