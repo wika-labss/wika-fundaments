@@ -4,9 +4,14 @@
 
 Definir las reglas de documentación del ecosistema WIKA.
 
-Este documento establece qué documentación es obligatoria, cuál es la fuente oficial de verdad de cada proyecto y cómo debe utilizarse durante los procesos de generación, revisión y refinamiento.
+Este documento establece:
 
-La documentación es un componente fundamental de WIKA y posee el mismo nivel de importancia que el código fuente.
+- Qué documentación es obligatoria.
+- Cuál es la fuente oficial de verdad de un proyecto.
+- Cómo se utiliza la documentación durante el ciclo de vida de desarrollo.
+- Cómo la documentación guía a los agentes y arquitectos.
+
+La documentación posee el mismo nivel de importancia que el código fuente.
 
 ---
 
@@ -14,17 +19,27 @@ La documentación es un componente fundamental de WIKA y posee el mismo nivel de
 
 ## La documentación define el producto
 
-Dentro de WIKA una aplicación no se define por su código.
+Dentro de WIKA una aplicación no se define por el código generado.
 
 Una aplicación se define por la documentación que describe:
 
 - El problema.
 - Las funcionalidades.
-- La arquitectura.
-- El diseño.
-- Las instrucciones de generación.
+- Los módulos.
+- El diseño de la solución.
+- El plan de construcción.
 
-El código generado es una consecuencia de la documentación.
+El código es una consecuencia de la documentación.
+
+---
+
+## Construir capacidades antes que aplicaciones
+
+Antes de diseñar una aplicación se deben identificar las capacidades necesarias para construirla.
+
+Estas capacidades se documentan como módulos.
+
+Toda solución debe analizarse desde la perspectiva de reutilización.
 
 ---
 
@@ -32,25 +47,27 @@ El código generado es una consecuencia de la documentación.
 
 Cada información debe existir en un único lugar oficial.
 
-La duplicación de documentación aumenta el riesgo de inconsistencias y dificulta el mantenimiento de los proyectos.
+La duplicación de documentación aumenta:
 
-Toda información debe tener una ubicación oficial y claramente definida.
+- Inconsistencias.
+- Mantenimiento.
+- Ambigüedad para agentes y arquitectos.
 
 ---
 
 ## La documentación evoluciona con el proyecto
 
-La documentación no es estática.
+La documentación debe actualizarse antes de iniciar nuevas iteraciones.
 
-Cuando cambian los requisitos, restricciones o decisiones arquitectónicas, la documentación debe actualizarse antes de ejecutar nuevas generaciones.
+Los cambios en el producto deben reflejarse primero en la documentación.
 
 ---
 
 ## La IA consume documentación
 
-Los agentes IA utilizan la documentación como entrada principal para generar soluciones.
+Los agentes utilizan la documentación como entrada principal.
 
-La calidad de la documentación influye directamente en la calidad de los resultados obtenidos.
+La calidad de la documentación determina la calidad de los resultados obtenidos.
 
 ---
 
@@ -64,9 +81,9 @@ La carpeta:
 idea/
 ```
 
-representa la fuente oficial de verdad de cada proyecto.
+representa la fuente oficial de verdad del proyecto.
 
-Todos los agentes, arquitectos y participantes del proyecto deben considerar esta carpeta como la referencia principal del producto.
+Todo agente, arquitecto o proceso automatizado deberá considerar esta carpeta como la referencia principal.
 
 ---
 
@@ -80,39 +97,101 @@ applications/
 
 ---
 
-## Documentos Oficiales
+# Documentos Oficiales
 
-La documentación obligatoria para un proyecto es:
+Todo proyecto deberá contener:
 
 ```text
 01-problem.md
 02-features.md
-03-architecture.md
-04-design.md
-05-prompt-ia.md
-06-build-environment.md
+03-module-discovery.md
+04-application-design.md
+05-build-plan.md
 ```
 
 ---
 
-## Responsabilidad
+# Responsabilidad de Cada Documento
 
-La información contenida en estos documentos define oficialmente:
+## 01-problem.md
 
-- Qué problema se resuelve.
-- Qué funcionalidades deben existir.
-- Cómo debe construirse la solución.
-- Cómo debe verse la solución.
-- Cómo debe comportarse el proceso de generación.
-- Cómo debe compilarse y entregarse el artefacto.
+Define:
+
+- Problema.
+- Contexto.
+- Usuarios.
+- Objetivos.
+- Beneficios esperados.
+
+Responde:
+
+> ¿Por qué existe este proyecto?
+
+---
+
+## 02-features.md
+
+Define:
+
+- Funcionalidades obligatorias.
+- Funcionalidades opcionales.
+- Restricciones funcionales.
+- Alcance.
+
+Responde:
+
+> ¿Qué debe hacer la solución?
+
+---
+
+## 03-module-discovery.md
+
+Define:
+
+- Capacidades necesarias.
+- Responsabilidades.
+- Dependencias.
+- Entradas y salidas.
+
+Responde:
+
+> ¿Qué módulos son necesarios para construir la solución?
+
+---
+
+## 04-application-design.md
+
+Define:
+
+- Arquitectura.
+- Integración de módulos.
+- Flujos principales.
+- Navegación.
+- Interacciones.
+
+Responde:
+
+> ¿Cómo se conectan los módulos para formar una aplicación?
+
+---
+
+## 05-build-plan.md
+
+Define:
+
+- Alcance de la V1.
+- Orden de implementación.
+- Dependencias externas.
+- Riesgos.
+- Estrategia de pruebas.
+
+Responde:
+
+> ¿Cómo se construirá la solución?
 
 ---
 
 # Estructura Documental Obligatoria
-
-## Documentación del Proyecto
-
-Todo proyecto deberá contener:
 
 ```text
 applications/
@@ -120,10 +199,9 @@ applications/
     ├── idea/
     │   ├── 01-problem.md
     │   ├── 02-features.md
-    │   ├── 03-architecture.md
-    │   ├── 04-design.md
-    │   ├── 05-prompt-ia.md
-    │   └── 06-build-environment.md
+    │   ├── 03-module-discovery.md
+    │   ├── 04-application-design.md
+    │   └── 05-build-plan.md
     │
     ├── iterations/
     └── final/
@@ -131,248 +209,44 @@ applications/
 
 ---
 
-## Descripción de los Documentos
-
-### 01-problem.md
-
-Define el problema que origina el proyecto.
-
-Debe describir:
-
-- Problema.
-- Usuarios afectados.
-- Contexto.
-- Beneficios esperados.
-
----
-
-### 02-features.md
-
-Define las funcionalidades requeridas.
-
-Debe describir:
-
-- Funcionalidades principales.
-- Funcionalidades secundarias.
-- Reglas de negocio.
-- Restricciones funcionales.
-
----
-
-### 03-architecture.md
-
-Define criterios técnicos y arquitectónicos.
-
-Debe describir:
-
-- Tecnologías.
-- Integraciones.
-- Restricciones técnicas.
-- Consideraciones de seguridad.
-
----
-
-### 04-design.md
-
-Define la experiencia de usuario.
-
-Puede incluir:
-
-- Wireframes.
-- Bocetos.
-- Flujos de navegación.
-- Referencias visuales.
-
----
-
-### 05-prompt-ia.md
-
-Define instrucciones específicas para el agente IA.
-
-Puede incluir:
-
-- Prioridades.
-- Restricciones especiales.
-- Objetivos de generación.
-- Formato esperado de entrega.
-
----
-
-### 06-build-environment.md
-
-Define el entorno de compilación y despliegue requerido.
-
-Debe describir:
-
-- Framework y versiones.
-- Pipeline de build.
-- Artefacto final esperado.
-- Dependencias críticas.
-
----
-
-# Documentación de Iteraciones
-
-## Objetivo
-
-Registrar la evolución de una solución a lo largo del proceso de refinamiento.
-
----
-
-## Estructura
-
-```text
-iterations/
-├── v1/
-├── v2/
-├── v3/
-└── vn/
-```
-
----
-
-## Contenido Mínimo
-
-Cada iteración deberá contener como mínimo:
-
-```text
-review.md
-```
-
-Opcionalmente podrá incluir:
-
-```text
-source/
-apk/
-generation-report.md
-documentation/
-```
-
----
-
-## Alcance
-
-Las iteraciones contienen únicamente artefactos relacionados con una versión específica.
-
-No representan la fuente oficial de verdad del proyecto.
-
----
-
-# Documentación Final
-
-## Objetivo
-
-Registrar la versión aprobada para demostración o publicación.
-
----
-
-## Estructura
-
-```text
-final/
-├── source/
-├── documentation/
-├── apk/
-└── release-notes.md
-```
-
----
-
-## Documento Obligatorio
-
-```text
-release-notes.md
-```
-
-Debe registrar:
-
-- Funcionalidades implementadas.
-- Cambios relevantes.
-- Consideraciones de despliegue.
-- Información de la versión.
-
----
-
 # Regla de Contexto
 
-## Principio
-
-Toda nueva generación debe construirse utilizando el contexto completo del proyecto.
-
-Ninguna generación debe basarse únicamente en la última versión producida.
-
----
-
-## Contexto Obligatorio
-
-Toda nueva ejecución deberá utilizar:
+Toda nueva iteración deberá utilizar como contexto:
 
 ```text
-Documentación Original
+Documentación Oficial
 +
-Comentarios Arquitectónicos Acumulados
+Auditorías Acumuladas
 +
-Última Versión Disponible
+Última Iteración Disponible
 ```
 
 ---
 
-## Ejemplo
+# Jerarquía de Información
 
-Para generar una V2:
-
-```text
-idea/
-+
-iterations/v1/review.md
-+
-iterations/v1/source/
-```
-
----
-
-Para generar una V3:
+En caso de conflicto:
 
 ```text
-idea/
-+
-iterations/v1/review.md
-+
-iterations/v2/review.md
-+
-iterations/v2/source/
-```
-
----
-
-# Prioridad de Información
-
-## Jerarquía
-
-En caso de conflicto, la prioridad será:
-
-```text
-1. Documentación Original (idea/)
-2. Revisiones Arquitectónicas
+1. Documentación Oficial
+2. Auditorías
 3. Código Generado
 ```
 
 ---
 
-## Resolución de Conflictos
+# Resolución de Conflictos
 
-Si una revisión contradice la documentación original:
+Si una auditoría o una iteración contradice la documentación:
 
-1. Debe analizarse la causa.
-2. Debe actualizarse la documentación oficial si corresponde.
-3. Debe registrarse la decisión.
-4. Las siguientes generaciones deberán utilizar la documentación actualizada.
+1. Analizar la causa.
+2. Corregir la documentación si corresponde.
+3. Registrar la decisión.
+4. Utilizar la documentación actualizada en futuras iteraciones.
 
 ---
 
 # Regla de No Duplicación
-
-## Prohibición
 
 Los documentos contenidos en:
 
@@ -392,21 +266,6 @@ ni dentro de:
 final/
 ```
 
----
-
-## Justificación
-
-La duplicación genera:
-
-- Inconsistencias.
-- Sobrecarga de mantenimiento.
-- Ambigüedad para los agentes IA.
-- Aumento innecesario del contexto.
-
----
-
-## Regla
-
 Debe existir una única versión oficial de cada documento.
 
 ---
@@ -415,19 +274,34 @@ Debe existir una única versión oficial de cada documento.
 
 ## Negocio
 
-Es responsable de mantener actualizada la documentación funcional.
+Define:
+
+- Problema.
+- Objetivos.
+- Prioridades.
 
 ---
 
 ## Arquitecto
 
-Es responsable de validar la consistencia entre la documentación y las soluciones generadas.
+Valida:
+
+- Consistencia.
+- Cobertura funcional.
+- Arquitectura.
+- Calidad documental.
 
 ---
 
 ## Agentes IA
 
-Deben utilizar exclusivamente la documentación oficial y las revisiones disponibles para producir nuevas versiones.
+Utilizan exclusivamente:
+
+- Documentación oficial.
+- Auditorías.
+- Iteraciones previas.
+
+para generar nuevas versiones.
 
 ---
 
@@ -441,4 +315,4 @@ Si existe contradicción entre el código generado y la documentación oficial:
 La documentación prevalece.
 ```
 
-Los agentes IA deberán utilizar siempre la documentación oficial como fuente primaria para cualquier nueva generación o refinamiento.
+Ninguna iteración podrá modificar el comportamiento esperado de una aplicación sin actualizar primero la documentación oficial.
