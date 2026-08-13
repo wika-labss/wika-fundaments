@@ -1,3 +1,6 @@
+Objetivo:
+Convertir funcionalidades en módulos reutilizables.
+
 # Descubrimiento de Módulos
 
 ## Módulo
