@@ -329,11 +329,11 @@ Transformar la documentación estructurada en una primera versión funcional de 
 ### Fundamentos WIKA
 
 ```text
-rules/
+docs/
 templates/
 standards/
-architecture/
-functions/
+workflows/
+agents/
 ```
 
 ### Proyecto

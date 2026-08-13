@@ -102,15 +102,12 @@ wika-fundaments/
 ├── CONTRIBUTING.md
 ├── ROADMAP.md
 ├── agents/           # Definición de agentes IA
-├── architecture/     # Lineamientos arquitectónicos
-├── docs/             # Guías generales y auditorías
+├── docs/             # Guías, reglas y auditorías
 │   ├── auditoria-1.md
 │   ├── auditoria-2.md
-│   └── bodega.md
-├── functions/        # Capacidades disponibles para agentes
-├── rules/            # Reglas obligatorias
 │   ├── documentation.md
-│   └── repositories.md
+│   ├── repositories.md
+│   └── bodega.md
 ├── standards/        # Estándares técnicos y funcionales
 ├── templates/        # Plantillas oficiales de documentación
 │   ├── 01-problem.md

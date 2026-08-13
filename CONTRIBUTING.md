@@ -8,7 +8,7 @@ Antes de contribuir, confirma que el cambio pertenece aquí y no a `applications
 
 ## Reglas
 
-1. Seguir `rules/documentation.md` y `rules/repositories.md`.
+1. Seguir `docs/documentation.md` y `docs/repositories.md`.
 2. Usar nombres en kebab-case para archivos Markdown.
 3. Actualizar el README de la carpeta afectada cuando se agregue o mueva contenido.
 4. Registrar cambios relevantes en `CHANGELOG.md`.

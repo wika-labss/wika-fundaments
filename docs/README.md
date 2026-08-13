@@ -9,7 +9,9 @@ La documentación debe mantenerse actualizada y ser considerada fuente oficial d
 ## Contenido
 
 ```text
-auditoria-1.md   # Validación previa a la generación de código
-auditoria-2.md   # Validación de la solución generada
-bodega.md        # Notas temporales (no es fuente oficial)
+auditoria-1.md     # Validación previa a la generación de código
+auditoria-2.md     # Validación de la solución generada
+documentation.md   # Reglas de documentación y fuente de verdad
+repositories.md    # Reglas de creación y uso de repositorios
+bodega.md          # Notas temporales (no es fuente oficial)
 ```

@@ -2,8 +2,8 @@
 
 ## Ahora
 
-- Mantener alineados workflows, rules, templates y docs.
-- Completar definiciones de `agents/`, `architecture/`, `functions/` y `standards/`.
+- Mantener alineados workflows, templates, docs y standards.
+- Completar definiciones de `agents/` y `standards/`.
 
 ## Siguiente
 

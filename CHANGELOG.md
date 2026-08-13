@@ -8,7 +8,9 @@ Registro de cambios relevantes de `wika-fundaments`.
 
 - Reorganización estructural del repositorio.
 - Normalización de nombres de archivos a kebab-case.
-- Alineación de plantillas, reglas y docs con el ciclo de vida oficial.
+- Alineación de plantillas y docs con el ciclo de vida oficial.
+- Eliminación de carpetas `rules/`, `functions/` y `architecture/`.
+- Reglas movidas a `docs/documentation.md` y `docs/repositories.md`.
 
 ### Added
 

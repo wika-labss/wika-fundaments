@@ -67,15 +67,11 @@ Contiene las definiciones, reglas y conocimiento que permiten construir software
 
 ### Responsabilidades
 
-- Reglas
-- Estándares
-- Arquitectura
 - Workflows
 - Templates
+- Standards
 - Definición de agentes IA
-- Definición de funciones
-- Gobierno
-- Documentación estratégica
+- Documentación estratégica (reglas, auditorías, gobierno)
 
 ### No debe contener
 

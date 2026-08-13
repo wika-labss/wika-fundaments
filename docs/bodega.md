@@ -5,7 +5,7 @@ Espacio temporal de notas, ideas sueltas y material en tránsito que aún no tie
 ## Uso
 
 - Capturar ideas antes de convertirlas en documentación formal.
-- Guardar borradores que no pertenecen aún a `workflows/`, `rules/`, `templates/` o un proyecto en `applications`.
+- Guardar borradores que no pertenecen aún a `workflows/`, `templates/`, `docs/` o un proyecto en `applications`.
 
 ## Regla
 
