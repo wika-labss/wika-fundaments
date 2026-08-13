@@ -41,15 +41,47 @@ local-storage
 ### Responsabilidad
 
 Persistencia de datos local.
+# Descubrimiento de Módulos
+
+Objetivo:
+Identificar las capacidades necesarias para implementar las funcionalidades definidas en el proyecto.
+
+---
+
+## Módulo
+
+### Nombre
+
+[Completar]
+
+### Responsabilidad
+
+¿Qué capacidad aporta este módulo?
+
+### Funcionalidades asociadas
+
+¿Qué funcionalidades dependen de este módulo?
 
 ### Entradas
 
-- Datos
+[Completar]
 
 ### Salidas
 
-- Datos almacenados
+[Completar]
+
+### Dependencias
+
+[Completar]
 
 ### Reutilizable
 
-Sí
+Sí / No
+
+### Observaciones
+
+[Completar]
+
+---
+
+Repetir esta sección para cada módulo identificado.
