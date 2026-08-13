@@ -8,13 +8,13 @@ No es una aplicación, framework o producto específico.
 
 Es el conjunto de estándares, procesos, documentación, automatizaciones, agentes de inteligencia artificial y reglas que permiten diseñar, construir, documentar, revisar, publicar y mantener software de forma consistente.
 
-Su objetivo es transformar el desarrollo de software en un proceso repetible, escalable y asistido por IA. 【1-fc8a8b】
+Su objetivo es transformar el desarrollo de software en un proceso repetible, escalable y asistido por IA.
 
 ---
 
 # Visión
 
-Construir una fábrica de software asistida por inteligencia artificial capaz de generar soluciones de negocio de manera rápida, consistente y escalable mediante la reutilización de conocimiento, componentes y procesos. 【1-fc8a8b】
+Construir una fábrica de software asistida por inteligencia artificial capaz de generar soluciones de negocio de manera rápida, consistente y escalable mediante la reutilización de conocimiento, componentes y procesos.
 
 ---
 
@@ -39,7 +39,7 @@ Antes de crear algo nuevo se evalúa:
 - Plantillas existentes.
 - Soluciones existentes.
 
-La prioridad siempre es reutilizar conocimiento previamente validado. 【1-fc8a8b】
+La prioridad siempre es reutilizar conocimiento previamente validado.
 
 ---
 
@@ -69,17 +69,78 @@ El conocimiento generado debe quedar documentado para reutilización.
 
 # Cómo funciona WIKA
 
-El ciclo de vida de una aplicación dentro de WIKA se compone de seis etapas.
+El ciclo de vida de una aplicación dentro de WIKA se define en `workflows/application-lifecycle.md`:
 
 ```text
 Idea
 ↓
+Preparación
+↓
+Auditoría 1
+↓
 Generación IA
 ↓
-Revisión Arquitectónica
+Auditoría 2
 ↓
-Iteración
+Refinamiento
 ↓
-Aprobación Final
+Aprobación
 ↓
-Demo y Publicación
+Demo
+↓
+Publicación
+```
+
+---
+
+# Estructura del repositorio
+
+```text
+wika-fundaments/
+├── README.md
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── ROADMAP.md
+├── agents/           # Definición de agentes IA
+├── docs/             # Guías, reglas y auditorías
+│   ├── auditoria-1.md
+│   ├── auditoria-2.md
+│   ├── documentation.md
+│   ├── repositories.md
+│   └── bodega.md
+├── standards/        # Estándares técnicos y funcionales
+├── templates/        # Plantillas oficiales de documentación
+│   ├── 01-problem.md
+│   ├── 02-features.md
+│   ├── 03-architecture.md
+│   ├── 04-design.md
+│   ├── 05-prompt-ia.md
+│   └── 06-build-environment.md
+└── workflows/        # Procesos oficiales de trabajo
+    └── application-lifecycle.md
+```
+
+## Responsabilidad de este repositorio
+
+`wika-fundaments` contiene las definiciones, reglas y conocimiento que permiten construir software de manera consistente.
+
+No debe contener aplicaciones, código de negocio ni productos finales.
+
+Las aplicaciones viven en el repositorio `applications`.
+
+---
+
+# Documentación oficial de un proyecto
+
+Durante la Preparación, cada proyecto debe crear en `applications/<proyecto>/idea/`:
+
+```text
+01-problem.md
+02-features.md
+03-architecture.md
+04-design.md
+05-prompt-ia.md
+06-build-environment.md
+```
+
+Usar siempre las plantillas de `templates/`.

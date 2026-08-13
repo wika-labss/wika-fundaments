@@ -25,6 +25,7 @@ No debe duplicar información existente en:
 02-features.md
 03-architecture.md
 04-design.md
+06-build-environment.md
 ```
 
 ---
@@ -38,6 +39,7 @@ La generación deberá basarse obligatoriamente en:
 02-features.md
 03-architecture.md
 04-design.md
+06-build-environment.md
 ```
 
 Estos documentos representan la fuente oficial de verdad del proyecto.

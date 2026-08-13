@@ -90,6 +90,7 @@ La documentación obligatoria para un proyecto es:
 03-architecture.md
 04-design.md
 05-prompt-ia.md
+06-build-environment.md
 ```
 
 ---
@@ -103,6 +104,7 @@ La información contenida en estos documentos define oficialmente:
 - Cómo debe construirse la solución.
 - Cómo debe verse la solución.
 - Cómo debe comportarse el proceso de generación.
+- Cómo debe compilarse y entregarse el artefacto.
 
 ---
 
@@ -120,7 +122,8 @@ applications/
     │   ├── 02-features.md
     │   ├── 03-architecture.md
     │   ├── 04-design.md
-    │   └── 05-prompt-ia.md
+    │   ├── 05-prompt-ia.md
+    │   └── 06-build-environment.md
     │
     ├── iterations/
     └── final/
@@ -192,6 +195,19 @@ Puede incluir:
 - Restricciones especiales.
 - Objetivos de generación.
 - Formato esperado de entrega.
+
+---
+
+### 06-build-environment.md
+
+Define el entorno de compilación y despliegue requerido.
+
+Debe describir:
+
+- Framework y versiones.
+- Pipeline de build.
+- Artefacto final esperado.
+- Dependencias críticas.
 
 ---
 

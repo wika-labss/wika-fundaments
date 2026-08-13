@@ -67,15 +67,11 @@ Contiene las definiciones, reglas y conocimiento que permiten construir software
 
 ### Responsabilidades
 
-- Reglas
-- Estándares
-- Arquitectura
 - Workflows
 - Templates
+- Standards
 - Definición de agentes IA
-- Definición de funciones
-- Gobierno
-- Documentación estratégica
+- Documentación estratégica (reglas, auditorías, gobierno)
 
 ### No debe contener
 
@@ -242,13 +238,16 @@ proyecto/
 
 Contiene la documentación oficial que describe el proyecto.
 
-Ejemplos:
+Documentos oficiales:
 
-problem.md
-features.md
-architecture.md
-desing.md
-prompt-ia.md
+```text
+01-problem.md
+02-features.md
+03-architecture.md
+04-design.md
+05-prompt-ia.md
+06-build-environment.md
+```
 
 Esta documentación representa la fuente oficial de verdad para el proyecto.
 
