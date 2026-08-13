@@ -93,138 +93,40 @@ applications/
     └── idea/
         ├── 01-problem.md
         ├── 02-features.md
-        ├── 03-architecture.md
-        ├── 04-design.md
-        ├── 05-prompt-ia.md
-        └── 06-build-environment.md
+        ├── 03-module-discovery.md
+        ├── 04-application-design.md
+        └── 05-build-plan.md
 ```
 
 ---
 
 ## 01-problem.md
 
-### Objetivo
-
-Definir claramente el problema que se desea resolver.
-
-### Debe responder
-
-- ¿Qué problema existe?
-- ¿Quién tiene el problema?
-- ¿Cómo se resuelve actualmente?
-- ¿Cuál es el impacto del problema?
-- ¿Qué beneficio se espera obtener?
-
-### Resultado Esperado
-
-Comprensión clara de la necesidad de negocio.
+Documento oficial del problema a resolver.
 
 ---
 
 ## 02-features.md
 
-### Objetivo
-
-Definir las capacidades funcionales esperadas de la solución.
-
-### Debe contener
-
-- Funcionalidades principales.
-- Funcionalidades secundarias.
-- Reglas de negocio.
-- Restricciones funcionales.
-- Casos de uso relevantes.
-
-### Resultado Esperado
-
-Lista clara y priorizada de funcionalidades.
+Documento oficial de funcionalidades del proyecto.
 
 ---
 
-## 03-architecture.md
+## 03-module-discovery.md
 
-### Objetivo
-
-Definir restricciones técnicas y criterios arquitectónicos del proyecto.
-
-### Debe contener
-
-- Tecnologías requeridas.
-- Integraciones necesarias.
-- Servicios externos.
-- Requisitos de almacenamiento.
-- Consideraciones de seguridad.
-- Restricciones técnicas.
-
-### Resultado Esperado
-
-Marco técnico que deberá respetar la generación.
+Documento oficial de descubrimiento de módulos.
 
 ---
 
-## 04-design.md
+## 04-application-design.md
 
-### Objetivo
-
-Definir la experiencia esperada para el usuario.
-
-### Puede incluir
-
-- Wireframes.
-- Bocetos.
-- Flujos de navegación.
-- Referencias visuales.
-- Capturas de pantalla.
-- Comentarios de experiencia de usuario.
-
-### Resultado Esperado
-
-Visión clara de cómo debería verse y utilizarse la solución.
+Documento oficial de diseño de la aplicación.
 
 ---
 
-## 05-prompt-ia.md
+## 05-build-plan.md
 
-### Objetivo
-
-Definir instrucciones específicas para la generación realizada por IA.
-
-Este documento complementa la documentación del proyecto y proporciona contexto adicional para el agente.
-
-### Puede incluir
-
-- Prioridades de desarrollo.
-- Restricciones especiales.
-- Criterios de calidad.
-- Consideraciones de implementación.
-- Formato de entrega esperado.
-- Instrucciones adicionales.
-
-### Resultado Esperado
-
-Instrucciones claras que permitan optimizar la generación de una primera versión funcional.
-
----
-
-## 06-build-environment.md
-
-### Objetivo
-
-Definir el entorno de compilación y despliegue requerido por el proyecto.
-
-### Debe contener
-
-- Framework y versión.
-- SDK objetivo.
-- JDK objetivo.
-- Kotlin objetivo.
-- Dependencias críticas.
-- Pipeline de build.
-- Artefacto final esperado.
-
-### Resultado Esperado
-
-Entorno reproducible y completamente definido antes de generar código.
+Documento oficial del plan de build y entrega.
 
 ---
 
@@ -259,10 +161,9 @@ docs/auditoria-1.md
 ```text
 01-problem.md
 02-features.md
-03-architecture.md
-04-design.md
-05-prompt-ia.md
-06-build-environment.md
+03-module-discovery.md
+04-application-design.md
+05-build-plan.md
 ```
 
 ## Validaciones

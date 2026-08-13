@@ -207,21 +207,11 @@ Debe existir un manifiesto de dependencias.
 
 # 5. Revisión de Templates
 
-## Arquitectura
-
-- [ ] 03-architecture.md completo.
-
-## Diseño
-
-- [ ] 04-design.md completo.
-
-## Prompt
-
-- [ ] 05-prompt-ia.md completo.
-
-## Build
-
-- [ ] 06-build-environment.md completo.
+- [ ] 01-problem.md completo.
+- [ ] 02-features.md completo.
+- [ ] 03-module-discovery.md completo.
+- [ ] 04-application-design.md completo.
+- [ ] 05-build-plan.md completo.
 
 ---
 

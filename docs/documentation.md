@@ -20,9 +20,9 @@ Una aplicación se define por la documentación que describe:
 
 - El problema.
 - Las funcionalidades.
-- La arquitectura.
-- El diseño.
-- Las instrucciones de generación.
+- Los módulos.
+- El diseño de la aplicación.
+- El plan de build.
 
 El código generado es una consecuencia de la documentación.
 
@@ -87,10 +87,9 @@ La documentación obligatoria para un proyecto es:
 ```text
 01-problem.md
 02-features.md
-03-architecture.md
-04-design.md
-05-prompt-ia.md
-06-build-environment.md
+03-module-discovery.md
+04-application-design.md
+05-build-plan.md
 ```
 
 ---
@@ -101,10 +100,9 @@ La información contenida en estos documentos define oficialmente:
 
 - Qué problema se resuelve.
 - Qué funcionalidades deben existir.
-- Cómo debe construirse la solución.
-- Cómo debe verse la solución.
-- Cómo debe comportarse el proceso de generación.
-- Cómo debe compilarse y entregarse el artefacto.
+- Qué módulos componen la solución.
+- Cómo debe diseñarse la aplicación.
+- Cómo debe planificarse el build y la entrega.
 
 ---
 
@@ -120,10 +118,9 @@ applications/
     ├── idea/
     │   ├── 01-problem.md
     │   ├── 02-features.md
-    │   ├── 03-architecture.md
-    │   ├── 04-design.md
-    │   ├── 05-prompt-ia.md
-    │   └── 06-build-environment.md
+    │   ├── 03-module-discovery.md
+    │   ├── 04-application-design.md
+    │   └── 05-build-plan.md
     │
     ├── iterations/
     └── final/
@@ -137,77 +134,29 @@ applications/
 
 Define el problema que origina el proyecto.
 
-Debe describir:
-
-- Problema.
-- Usuarios afectados.
-- Contexto.
-- Beneficios esperados.
-
 ---
 
 ### 02-features.md
 
 Define las funcionalidades requeridas.
 
-Debe describir:
+---
 
-- Funcionalidades principales.
-- Funcionalidades secundarias.
-- Reglas de negocio.
-- Restricciones funcionales.
+### 03-module-discovery.md
+
+Define el descubrimiento y organización de módulos.
 
 ---
 
-### 03-architecture.md
+### 04-application-design.md
 
-Define criterios técnicos y arquitectónicos.
-
-Debe describir:
-
-- Tecnologías.
-- Integraciones.
-- Restricciones técnicas.
-- Consideraciones de seguridad.
+Define el diseño de la aplicación.
 
 ---
 
-### 04-design.md
+### 05-build-plan.md
 
-Define la experiencia de usuario.
-
-Puede incluir:
-
-- Wireframes.
-- Bocetos.
-- Flujos de navegación.
-- Referencias visuales.
-
----
-
-### 05-prompt-ia.md
-
-Define instrucciones específicas para el agente IA.
-
-Puede incluir:
-
-- Prioridades.
-- Restricciones especiales.
-- Objetivos de generación.
-- Formato esperado de entrega.
-
----
-
-### 06-build-environment.md
-
-Define el entorno de compilación y despliegue requerido.
-
-Debe describir:
-
-- Framework y versiones.
-- Pipeline de build.
-- Artefacto final esperado.
-- Dependencias críticas.
+Define el plan de build y entrega.
 
 ---
 

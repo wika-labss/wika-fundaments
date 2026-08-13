@@ -63,17 +63,15 @@ sin una Auditoría 2 aprobada.
 La auditoría debe contrastar el código contra:
 
 ```text
-01-requirements.md
+01-problem.md
 
-02-analysis.md
+02-features.md
 
-03-architecture.md
+03-module-discovery.md
 
-04-design.md
+04-application-design.md
 
-05-prompt-ia.md
-
-06-build-environment.md
+05-build-plan.md
 
 knowledge-base.md
 ```
@@ -406,7 +404,7 @@ Detectar:
 
 ## Objetivo
 
-Validar cumplimiento de 04-design.md.
+Validar cumplimiento de 04-application-design.md.
 
 ---
 

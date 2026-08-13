@@ -21,8 +21,7 @@ Las plantillas oficiales viven en `templates/` con numeración:
 ```text
 01-problem.md
 02-features.md
-03-architecture.md
-04-design.md
-05-prompt-ia.md
-06-build-environment.md
+03-module-discovery.md
+04-application-design.md
+05-build-plan.md
 ```
