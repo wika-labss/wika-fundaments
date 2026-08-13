@@ -2,11 +2,16 @@
 
 ## Objetivo
 
-Definir la estructura de repositorios del ecosistema WIKA y establecer las reglas para su creación, uso y mantenimiento.
+Definir la estructura de repositorios del ecosistema WIKA.
 
-Este documento existe para evitar duplicidad de responsabilidades, dispersión del conocimiento y crecimiento desordenado de la plataforma.
+Este documento establece:
 
-Todos los repositorios deben tener un propósito claro, una única responsabilidad principal y límites definidos.
+- Qué repositorios existen.
+- Qué responsabilidad tiene cada uno.
+- Cuándo debe crearse un nuevo repositorio.
+- Cómo evitar duplicidad y sobreingeniería.
+
+La organización de repositorios debe mantenerse tan simple como sea posible.
 
 ---
 
@@ -14,328 +19,241 @@ Todos los repositorios deben tener un propósito claro, una única responsabilid
 
 ## Una responsabilidad por repositorio
 
-Cada repositorio debe existir para resolver una necesidad específica.
+Cada repositorio debe tener una responsabilidad principal claramente definida.
 
-Un repositorio no debe convertirse en un contenedor genérico de información sin relación entre sus contenidos.
-
-Si dos repositorios cumplen la misma función, deben consolidarse o redefinirse.
-
----
-
-## La documentación es obligatoria
-
-Todo repositorio debe contener como mínimo:
-
-```text
-README.md
-CHANGELOG.md
-CONTRIBUTING.md
-```
-
-La ausencia de documentación implica que el repositorio no cumple los estándares de WIKA.
-
----
-
-## Reutilizar antes de crear
-
-Antes de crear un nuevo repositorio debe responderse:
-
-- ¿Existe un repositorio donde esta información ya podría vivir?
-- ¿Estamos resolviendo una responsabilidad nueva?
-- ¿Este contenido será reutilizado por más de un proyecto?
-- ¿La separación aporta valor real?
-
-Si la respuesta es no, no debe crearse un nuevo repositorio.
+Cuando un repositorio comienza a resolver múltiples problemas distintos debe evaluarse su división.
 
 ---
 
 ## Simplicidad sobre segmentación
 
-La creación de repositorios debe ser la excepción y no la norma.
+La creación de nuevos repositorios debe ser una excepción.
 
-Se prefiere una estructura simple y gobernable antes que una organización excesivamente fragmentada.
+Antes de separar contenido debe demostrarse que la separación aporta un beneficio real.
+
+---
+
+## Reutilizar antes de crear
+
+Antes de crear un repositorio nuevo debe responderse:
+
+- ¿Ya existe un lugar adecuado para este contenido?
+- ¿La responsabilidad es realmente nueva?
+- ¿Existirá reutilización futura?
+- ¿La separación reduce complejidad?
+
+Si la respuesta es no, el repositorio no debe crearse.
+
+---
+
+## El repositorio sigue a la responsabilidad
+
+Los repositorios no se crean por tipo de tecnología.
+
+Se crean cuando existe una responsabilidad claramente diferenciada.
 
 ---
 
 # Repositorios Oficiales
 
+Actualmente WIKA opera con una estructura mínima.
+
+---
+
 ## wika-fundaments
 
 Repositorio principal del sistema operativo WIKA.
 
-Contiene las definiciones, reglas y conocimiento que permiten construir software de manera consistente.
+Representa la fuente oficial de estándares, procesos y conocimiento.
 
 ### Responsabilidades
 
+- Gobierno
+- Standards
 - Workflows
 - Templates
-- Standards
-- Definición de agentes IA
-- Documentación estratégica (reglas, auditorías, gobierno)
+- Auditorías
+- Definición de agentes
+- Documentación estratégica
+
+### Estructura
+
+```text
+wika-fundaments/
+
+├── README.md
+├── docs/
+├── standards/
+├── templates/
+├── workflows/
+└── agents/
+```
 
 ### No debe contener
 
 - Aplicaciones
-- Código de negocio
-- Infraestructura productiva
 - Productos finales
-
----
-
-## platform
-
-Framework base utilizado por las aplicaciones construidas sobre WIKA.
-
-### Responsabilidades
-
-- Componentes compartidos
-- Librerías base
-- Utilidades comunes
-- Capacidades transversales
-
-### No debe contener
-
-- Aplicaciones de negocio
-- Reglas organizacionales
-- Infraestructura
-
----
-
-## infrastructure
-
-Infraestructura y automatización de la plataforma.
-
-### Responsabilidades
-
-- Terraform
-- Cloudflare
-- CI/CD
-- Ambientes
-- Automatizaciones de despliegue
-- Observabilidad
-
-### No debe contener
-
-- Lógica de negocio
-- Aplicaciones
-- Definiciones funcionales
-
----
-
-## mobile-template
-
-Plantilla oficial para aplicaciones móviles.
-
-### Responsabilidades
-
-- Estructura Flutter
-- Configuración inicial
-- Dependencias aprobadas
-- Buenas prácticas de desarrollo móvil
-
-### No debe contener
-
-- Funcionalidades específicas de negocio
-- Aplicaciones finales
-
----
-
-## backend-template
-
-Plantilla oficial para servicios backend.
-
-### Responsabilidades
-
-- Arquitectura inicial
-- Configuración base
-- Integraciones estándar
-- Seguridad base
-
-### No debe contener
-
-- Casos de negocio específicos
-- Aplicaciones finales
-
----
-
-## design-system
-
-Sistema visual oficial de la plataforma.
-
-### Responsabilidades
-
-- Componentes UI
-- Tokens visuales
-- Guías de diseño
-- Patrones de experiencia de usuario
-
-### No debe contener
-
-- Lógica de negocio
-- Aplicaciones
-
----
-
-## shared-packages
-
-Paquetes reutilizables compartidos por múltiples soluciones.
-
-### Responsabilidades
-
-- Utilidades comunes
-- SDK internos
-- Integraciones compartidas
-- Componentes reutilizables
-
-### No debe contener
-
-- Aplicaciones finales
-- Documentación de negocio
+- Código de negocio
+- Iteraciones de proyectos
 
 ---
 
 ## applications
 
-Portafolio oficial de productos construidos mediante WIKA.
+Portafolio oficial de soluciones construidas utilizando WIKA.
 
-Este repositorio contiene todas las iniciativas, proyectos y aplicaciones desarrolladas utilizando la plataforma.
+Contiene iniciativas, proyectos y productos.
 
 ### Responsabilidades
 
-- Aplicaciones
 - Proyectos
 - Iteraciones
 - Entregables
+- Aplicaciones
 - Versiones finales
-- APKs
 - Evidencias
 
 ### Estructura
 
 ```text
 applications/
+
 ├── proyecto-a/
 ├── proyecto-b/
-├── proyecto-c/
 └── proyecto-n/
 ```
 
 ---
 
-### Estructura de un proyecto
+# Estructura de Proyecto
+
+Todo proyecto debe seguir la siguiente estructura.
 
 ```text
 proyecto/
+
 ├── idea/
 ├── iterations/
-│   ├── v1/
-│   ├── v2/
-│   └── vn/
 └── final/
 ```
 
-#### idea
+---
 
-Contiene la documentación oficial que describe el proyecto.
+## idea
 
-Documentos oficiales:
+Representa la definición oficial del producto.
+
+Es la fuente de verdad del proyecto.
+
+### Documentación Obligatoria
 
 ```text
 01-problem.md
 02-features.md
-03-architecture.md
-04-design.md
-05-prompt-ia.md
-06-build-environment.md
+03-module-discovery.md
+04-application-design.md
+05-build-plan.md
 ```
-
-Esta documentación representa la fuente oficial de verdad para el proyecto.
 
 ---
 
-#### iterations
+### Responsabilidad
 
-Contiene las versiones generadas durante el proceso de construcción.
+Define:
 
-Cada iteración puede incluir:
+- Qué problema se resuelve.
+- Qué funcionalidades existen.
+- Qué módulos son necesarios.
+- Cómo se diseña la solución.
+- Cómo se construirá.
+
+---
+
+## iterations
+
+Contiene las versiones generadas durante el desarrollo.
+
+Ejemplo:
+
+```text
+iterations/
+├── v1/
+├── v2/
+├── v3/
+└── vn/
+```
+
+---
+
+Cada iteración puede contener:
 
 ```text
 source/
-documentation/
 review.md
-apk/
+generation-report.md
+artifacts/
 ```
+
+Las iteraciones no representan la fuente oficial de verdad.
 
 ---
 
-#### final
+## final
 
-Contiene la versión aprobada para demostración o despliegue.
+Contiene la versión aprobada para liberación o publicación.
 
 Ejemplo:
 
 ```text
 final/
+
 ├── source/
-├── documentation/
-├── apk/
+├── artifacts/
 └── release-notes.md
 ```
 
 ---
 
-### No debe contener
+# Creación de Nuevos Repositorios
 
-- Reglas globales
-- Estándares corporativos
-- Arquitectura organizacional
-- Definiciones de agentes
-- Templates oficiales
+Un nuevo repositorio sólo podrá crearse cuando cumpla al menos una de estas condiciones.
 
-Estos elementos pertenecen a wika-fundaments.
+## Responsabilidad independiente
+
+Resuelve un problema distinto al resto de repositorios existentes.
 
 ---
 
-# Creación de Nuevos Repositorios
+## Ciclo de vida independiente
 
-Un nuevo repositorio sólo debe crearse cuando cumpla uno o más de los siguientes criterios:
+Tiene versiones, mantenimiento o evolución propia.
 
-- Tiene una responsabilidad independiente.
-- Será reutilizado por múltiples soluciones.
-- Tiene un ciclo de vida propio.
-- Su gobierno requiere autonomía.
-- Su volumen o complejidad justifica la separación.
+---
+
+## Reutilización transversal
+
+Será utilizado por múltiples proyectos.
+
+---
+
+## Gobierno independiente
+
+Requiere permisos, revisiones o responsables distintos.
 
 ---
 
 # Cuándo NO Crear un Repositorio
 
-No debe crearse un repositorio cuando:
+No crear un repositorio si:
 
 - El contenido pertenece a un proyecto existente.
 - Es documentación temporal.
-- Duplica contenido existente.
-- Sólo será utilizado por una única aplicación.
+- Sólo será utilizado por una aplicación.
+- Duplica responsabilidades existentes.
 - La separación no aporta beneficios claros.
 
 ---
 
-# Resolución de Dudas
+# Evolución Futura
 
-Cuando exista duda sobre dónde ubicar un archivo, componente o documento:
-
-1. Buscar primero un repositorio existente.
-2. Priorizar reutilización.
-3. Evitar nuevas estructuras.
-4. Mantener la complejidad al mínimo.
-5. Documentar la decisión cuando sea necesario.
-
----
-
-# Regla Final
-
-La simplicidad tiene prioridad sobre la segmentación.
-
-Un repositorio debe existir porque resuelve una necesidad real y sostenida en el tiempo, no porque sea técnicamente posible crearlo.
-
-La estructura de repositorios de WIKA debe crecer únicamente cuando la plataforma lo necesite.
+WIKA podrá incorporar nuevos repositorios cuando exista evidencia de que 
