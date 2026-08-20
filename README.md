@@ -145,3 +145,13 @@ Durante la Preparación, cada proyecto debe crear en `applications/<proyecto>/id
 ```
 
 Usar siempre las plantillas de `templates/`.
+
+---
+
+# Guía para nuevos usuarios
+
+Si es tu primera vez en WIKA, lee el instructivo completo:
+
+→ [`docs/instructivo-nuevos-usuarios.md`](docs/instructivo-nuevos-usuarios.md)
+
+Resume cómo **comienza** el flujo (idea → documentación → gates) y cómo **finaliza** (release → `final/` → publicación).

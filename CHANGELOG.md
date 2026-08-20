@@ -6,6 +6,7 @@ Registro de cambios relevantes de `wika-fundaments`.
 
 ### Added
 
+- `docs/instructivo-nuevos-usuarios.md` — guía de inicio y cierre del flujo WIKA para nuevos usuarios.
 - Plantillas v2.1 con YAML frontmatter, RTM 1:1, BDD/Gherkin y gates (`audit_1_passed`, `audit_2_passed`, `visual_approval_passed`, `audit_3_passed`, `ready_for_construction`).
 - `standards/coding-standards.md` — WIKA-ARCH-01–06 y stack Expo/RN.
 - `standards/design-system.md` — tokens base V1 y relación con pipeline `design-system/` V3+.
