@@ -57,6 +57,26 @@ Ningún proyecto podrá avanzar a la etapa de descubrimiento de módulos sin apr
 
 ---
 
+## Metadatos y trazabilidad (plantillas v2.1)
+
+- Frontmatter YAML presente en `01-problem.md` y `02-features.md` (`id`, `status`, `owner`, fechas).
+- RTM inicial en `01-problem.md` con IDs `ERR-XX` mapeados a `FEAT-XX`.
+- RTM en `02-features.md` con cobertura 1:1 hacia módulos destino.
+- Criterios de éxito en formato BDD (Dado / Cuando / Entonces).
+- Out-of-scope explícito documentado.
+- Restricciones alineadas a `standards/coding-standards.md`.
+
+---
+
+## Activación de gate
+
+Al aprobar, el arquitecto debe:
+
+1. Registrar resultado en `audits/auditoria-documentacion.md` del proyecto.
+2. Cambiar `audit_1_passed: true` en frontmatter de `01-problem.md` y `02-features.md`.
+
+---
+
 # Resultado
 
 ## APROBADO

@@ -1,0 +1,53 @@
+# Reglas Globales WIKA — Quality Gates
+
+Cursor DEBE actuar como Arquitecto de Software y Lead de QA. Queda prohibido generar código de producción en Construcción V1 si no se cumplen las condiciones en cadena.
+
+## 1. Puertas de enlace (Quality Gates)
+
+| Gate | Documentos | Flag YAML requerido | Auditoría WIKA |
+|------|------------|---------------------|----------------|
+| 1 | `01-problem.md`, `02-features.md` | `audit_1_passed: true` | `docs/auditoria-documentacion.md` |
+| 2 | `03-module-discovery.md` | `audit_2_passed: true` | `docs/auditoria-modulos.md` |
+| 3A | `04-application-design.md` | `visual_approval_passed: true` | Visto bueno arquitecto/stakeholder |
+| 3B | `04-application-design.md`, `05-build-plan.md` | `audit_3_passed: true` | `docs/auditoria-ensamblado.md` |
+| V1 | `05-build-plan.md` | `ready_for_construction: true` | Todos los anteriores en `true` |
+
+**Acción ante incumplimiento:** Rechazar generación de código, indicar flag pendiente y sugerir auditoría correspondiente en `audits/`.
+
+## 2. Fuentes oficiales (orden de lectura)
+
+1. `wika-fundaments/templates/` y `standards/`
+2. `proyectos/app/{proyecto}/idea/` (01–05)
+3. `proyectos/app/{proyecto}/audits/`
+4. Última iteración en `iterations/vN/`
+5. `design-system/` solo para apps V3+ o tokens sincronizados explícitamente
+
+## 3. Reglas de UI y diseño
+
+- Consumir tokens de `standards/design-system.md` o `theme.ts` documentado en `04-application-design.md`.
+- Prohibido hex hardcoded cuando existe token equivalente.
+- Estructura de pantallas derivada del wireframe aprobado en `04-application-design.md`.
+- Pipeline completo `design-system/` (10 etapas) aplica en V3+, no reemplaza gates V1.
+
+## 4. Reglas de código (stack móvil)
+
+- Expo SDK 52 + React Native 0.76.x + TypeScript + expo-router.
+- Versiones con `~`, nunca `^` en expo/react-native (WIKA-ARCH-02).
+- Lógica pura en `src/engine/` sin imports de React.
+- Verificar con `npm run typecheck` y `npm run verify` antes de cerrar iteración.
+
+## 5. Protocolo al construir UI
+
+1. Leer frontmatter YAML de plantillas 01–05.
+2. Confirmar flags de aprobación.
+3. Cargar tokens/theme documentados.
+4. Implementar según RTM (ERR → FEAT → MOD → VIEW → Paso build).
+5. Presentar checklist: 0% hardcoded, trazabilidad RTM, escenario BDD cumplido.
+
+## 6. Prioridad en conflictos
+
+1. `idea/` (documentos oficiales del proyecto)
+2. Auditorías y `review.md`
+3. Código generado en `iterations/`
+
+La documentación gana sobre el código.

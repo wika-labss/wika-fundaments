@@ -60,6 +60,26 @@ Se evaluó si existe:
 
 ---
 
+## Metadatos y trazabilidad (plantillas v2.1)
+
+- Frontmatter YAML en `03-module-discovery.md` con `audit_1_passed: true` como pre-requisito.
+- RTM modular: cada `MOD-XX` vinculado a `FEAT-XX` y `ERR-XX`.
+- Contratos de módulo documentados (entradas, salidas, aislamiento).
+- Grafo de dependencias sin ciclos.
+- Matriz de riesgos arquitectónicos presente.
+- Evaluación de reutilización WIKA completada.
+
+---
+
+## Activación de gate
+
+Al aprobar, el arquitecto debe:
+
+1. Registrar resultado en `audits/auditoria-modulos.md` del proyecto.
+2. Cambiar `audit_2_passed: true` en frontmatter de `03-module-discovery.md`.
+
+---
+
 # Resultado
 
 ## APROBADO
