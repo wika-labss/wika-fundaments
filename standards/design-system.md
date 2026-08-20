@@ -2,7 +2,7 @@
 
 Reglas visuales mínimas para documentación pre-build (V1) y referencia para agentes IA.
 
-Para profesionalización completa (V3+), usar el repositorio `design-system/` y su pipeline de 10 etapas.
+Para profesionalización completa (V3+), usar el repositorio `design-system/` y su **pipeline de 12 etapas (v2)** — ver [`design-system/Design System.md`](../../design-system/Design%20System.md).
 
 ---
 
@@ -11,7 +11,7 @@ Para profesionalización completa (V3+), usar el repositorio `design-system/` y 
 | Nivel | Cuándo | Fuente |
 |-------|--------|--------|
 | **Base V1** | Pre-build y construcción V1 | Este documento + `04-application-design.md` |
-| **Profesional V3+** | App funcionalmente madura | Repo `design-system/` (tokens JSON, component kits, assets) |
+| **Profesional V3+** | App funcionalmente madura | Repo `design-system/` (pipeline 12 etapas v2: tokens, kits, implementación en v{N+1}, Gate 2) |
 
 ---
 
