@@ -1,0 +1,28 @@
+{
+  // Documentation QA config for wika-fundaments. Rules are relaxed to match the
+  // existing Spanish long-form docs while still catching structural mistakes
+  // (missing/duplicate top-level structure, broken list nesting, etc.).
+  "config": {
+    "default": true,
+    // Long prose lines are common in these docs; do not enforce a hard wrap.
+    "MD013": false,
+    // Allow repeated headings under different parent sections.
+    "MD024": { "siblings_only": true },
+    // Documents intentionally use multiple top-level structural headings.
+    "MD025": false,
+    // Trailing punctuation in Spanish headings is acceptable.
+    "MD026": false,
+    // Bare URLs occasionally appear in reference tables.
+    "MD034": false,
+    // The first line is not always a top-level heading (frontmatter/intro).
+    "MD041": false,
+    // Existing docs use compact/unaligned tables intentionally; do not enforce
+    // a single table-pipe style.
+    "MD060": false
+  },
+  "globs": ["**/*.md"],
+  "ignores": [
+    "**/node_modules/**",
+    ".git/**"
+  ]
+}

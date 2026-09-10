@@ -14,6 +14,16 @@ Antes de contribuir, confirma que el cambio pertenece aquí y no a `applications
 4. Registrar cambios relevantes en `CHANGELOG.md`.
 5. No introducir aplicaciones ni código de negocio en este repositorio.
 
+## Calidad de documentación (QA)
+
+El entorno de desarrollo provee `markdownlint-cli2` para verificar el Markdown.
+
+La configuración vive en `.markdownlint-cli2.jsonc`.
+
+```bash
+markdownlint-cli2 "**/*.md"
+```
+
 ## Convención de plantillas
 
 Las plantillas oficiales viven en `templates/` con numeración:
