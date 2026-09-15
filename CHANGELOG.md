@@ -8,6 +8,7 @@ Registro de cambios relevantes de `wika-fundaments`.
 
 - Catálogo nominativo en `agents/`: siete agentes IA (`wika-bootstrap` … `wika-packager`) y roles humanos (Negocio, Arquitecto).
 - Skills Cursor en `skills/<id>/SKILL.md` (orquestador + 7 agentes) según anatomía `name`/`description`; enlaces en `.cursor/skills/`.
+- `scripts/run_flow_smoke.py` y `tests/test_wika_flow.py` — prueba del flujo (gates, rechazos de builder/packager).
 - `scripts/validate_docs.py` comprueba fichas de `agents/` y `SKILL.md` 1:1.
 
 - `docs/auditoria-release-v1.md` — auditoría post-build que bloquea `final/` y publicación.

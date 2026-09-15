@@ -6,8 +6,11 @@ Herramientas de gobierno de `wika-fundaments`. Este repositorio no contiene cód
 
 ```bash
 python3 scripts/validate_docs.py
-python3 -m unittest tests.test_validate_docs
+python3 scripts/run_flow_smoke.py
+python3 -m unittest tests.test_validate_docs tests.test_wika_flow
 ```
+
+`run_flow_smoke.py` ejecuta el flujo en un sandbox `proyectos/app/` (bootstrap → scribe → auditor → bloqueos de gate → builder/packager). No genera una app Expo.
 
 Detecta:
 

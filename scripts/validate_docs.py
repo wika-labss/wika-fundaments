@@ -69,6 +69,8 @@ REQUIRED_FILES = (
     "skills/wika-builder/SKILL.md",
     "skills/wika-refiner/SKILL.md",
     "skills/wika-packager/SKILL.md",
+    "scripts/run_flow_smoke.py",
+    "tests/test_wika_flow.py",
 )
 
 MD_LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
