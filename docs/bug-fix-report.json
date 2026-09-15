@@ -1,0 +1,145 @@
+{
+  "repository": "wika-labss/wika-fundaments",
+  "base_branch": "wika-fundaments-v2",
+  "date": "2026-09-15",
+  "analyzer": "Cursor Grok 4.6",
+  "overview": {
+    "total_found": 13,
+    "total_fixed": 13,
+    "deferred": 3,
+    "test_command": "python3 -m unittest tests.test_validate_docs"
+  },
+  "bugs": [
+    {
+      "id": "BUG-001",
+      "severity": "CRITICAL",
+      "category": "Functional",
+      "files": ["workflows/application-lifecycle.md"],
+      "component": "Workflow oficial",
+      "status": "FIXED",
+      "description": "Ciclo de vida de 2 auditorías con refs a auditoria-1.md y auditoria-2.md, incompatible con gates v2.1"
+    },
+    {
+      "id": "BUG-002",
+      "severity": "HIGH",
+      "category": "Integration",
+      "files": ["README.md"],
+      "component": "Índice del repositorio",
+      "status": "FIXED",
+      "description": "Árbol de docs lista auditoria-1.md, auditoria-2.md y bodega.md, archivos inexistentes"
+    },
+    {
+      "id": "BUG-003",
+      "severity": "HIGH",
+      "category": "Integration",
+      "files": ["README.md", "docs/documentation.md", "docs/repositories.md"],
+      "component": "Ruta de proyectos",
+      "status": "FIXED",
+      "description": "Doble ruta canónica applications/ vs proyectos/app/"
+    },
+    {
+      "id": "BUG-004",
+      "severity": "HIGH",
+      "category": "Integration",
+      "files": ["docs/auditoria-release-v1.md"],
+      "component": "Auditoría de Release",
+      "status": "FIXED",
+      "description": "Gate de release citado en instructivo y build-plan sin documento oficial"
+    },
+    {
+      "id": "BUG-005",
+      "severity": "MEDIUM",
+      "category": "Functional",
+      "files": [".cursorrules"],
+      "component": "Design system pipeline",
+      "status": "FIXED",
+      "description": "Pipeline indicado como 10 etapas; vigente 12 etapas v2"
+    },
+    {
+      "id": "BUG-006",
+      "severity": "MEDIUM",
+      "category": "Functional",
+      "files": ["docs/repositories.md"],
+      "component": "mobile-template",
+      "status": "FIXED",
+      "description": "Stack Flutter vs Expo SDK 52 + React Native obligatorio"
+    },
+    {
+      "id": "BUG-007",
+      "severity": "MEDIUM",
+      "category": "Functional",
+      "files": ["docs/documentation.md", "docs/repositories.md"],
+      "component": "Estructura de proyecto",
+      "status": "FIXED",
+      "description": "Faltaba carpeta audits/ en la estructura documental obligatoria"
+    },
+    {
+      "id": "BUG-008",
+      "severity": "LOW",
+      "category": "Code Quality",
+      "files": ["templates/02-features.md"],
+      "component": "Plantilla Gate 1",
+      "status": "FIXED",
+      "description": "Frontmatter incluía audit_2_passed, flag del Gate 2"
+    },
+    {
+      "id": "BUG-009",
+      "severity": "MEDIUM",
+      "category": "Functional",
+      "files": ["templates/README.md"],
+      "component": "Orden de gates",
+      "status": "FIXED",
+      "description": "Plan de construcción colocado después de la auditoría de ensamblado"
+    },
+    {
+      "id": "BUG-010",
+      "severity": "LOW",
+      "category": "Functional",
+      "files": ["README.md"],
+      "component": "Ciclo resumido",
+      "status": "FIXED",
+      "description": "El README omitía Aprobación Visual (Gate 3A)"
+    },
+    {
+      "id": "BUG-011",
+      "severity": "HIGH",
+      "category": "Integration",
+      "files": ["docs/auditoria-release.md"],
+      "component": "Merge de main a v2",
+      "status": "FIXED",
+      "description": "auditoria-release.md existía en origin/main y no en wika-fundaments-v2"
+    },
+    {
+      "id": "BUG-012",
+      "severity": "HIGH",
+      "category": "Code Quality",
+      "files": ["README.md"],
+      "component": "Markdown",
+      "status": "FIXED",
+      "description": "Fence de código sin cerrar; el heading de estructura quedaba dentro del bloque"
+    },
+    {
+      "id": "BUG-013",
+      "severity": "LOW",
+      "category": "Functional",
+      "files": ["ROADMAP.md", "CONTRIBUTING.md"],
+      "component": "Gobierno del repo",
+      "status": "FIXED",
+      "description": "Roadmap y contributing citaban applications; no había comando de validación"
+    }
+  ],
+  "deferred": [
+    {
+      "id": "DEF-001",
+      "description": "Catálogo de agentes en agents/ pendiente (ROADMAP)"
+    },
+    {
+      "id": "DEF-002",
+      "description": "Enlace a design-system hermano no verificable en este checkout"
+    },
+    {
+      "id": "DEF-003",
+      "description": "PRs ajenos #3 #4 #5 no mergeados en esta corrección"
+    }
+  ]
+}

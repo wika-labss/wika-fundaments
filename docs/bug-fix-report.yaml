@@ -1,0 +1,112 @@
+repository: wika-labss/wika-fundaments
+base_branch: wika-fundaments-v2
+date: "2026-09-15"
+analyzer: Cursor Grok 4.6
+overview:
+  total_found: 13
+  total_fixed: 13
+  deferred: 3
+  test_command: python3 -m unittest tests.test_validate_docs
+bugs:
+  - id: BUG-001
+    severity: CRITICAL
+    category: Functional
+    status: FIXED
+    files:
+      - workflows/application-lifecycle.md
+    description: Ciclo de 2 auditorías incompatible con gates v2.1
+  - id: BUG-002
+    severity: HIGH
+    category: Integration
+    status: FIXED
+    files:
+      - README.md
+    description: Árbol con archivos de auditoría inexistentes
+  - id: BUG-003
+    severity: HIGH
+    category: Integration
+    status: FIXED
+    files:
+      - README.md
+      - docs/documentation.md
+      - docs/repositories.md
+    description: Ruta applications/ vs proyectos/app/
+  - id: BUG-004
+    severity: HIGH
+    category: Integration
+    status: FIXED
+    files:
+      - docs/auditoria-release-v1.md
+    description: Faltaba auditoría de release oficial
+  - id: BUG-005
+    severity: MEDIUM
+    category: Functional
+    status: FIXED
+    files:
+      - .cursorrules
+    description: Pipeline design-system 10 etapas vs 12
+  - id: BUG-006
+    severity: MEDIUM
+    category: Functional
+    status: FIXED
+    files:
+      - docs/repositories.md
+    description: Flutter vs Expo/RN como stack móvil V1
+  - id: BUG-007
+    severity: MEDIUM
+    category: Functional
+    status: FIXED
+    files:
+      - docs/documentation.md
+      - docs/repositories.md
+    description: Faltaba audits/ en estructura de proyecto
+  - id: BUG-008
+    severity: LOW
+    category: Code Quality
+    status: FIXED
+    files:
+      - templates/02-features.md
+    description: Flag audit_2_passed en plantilla de Gate 1
+  - id: BUG-009
+    severity: MEDIUM
+    category: Functional
+    status: FIXED
+    files:
+      - templates/README.md
+    description: Orden incorrecto plan de construcción vs ensamblado
+  - id: BUG-010
+    severity: LOW
+    category: Functional
+    status: FIXED
+    files:
+      - README.md
+    description: README omitía Gate 3A visual
+  - id: BUG-011
+    severity: HIGH
+    category: Integration
+    status: FIXED
+    files:
+      - docs/auditoria-release.md
+    description: Release audit en main no mergeada a v2
+  - id: BUG-012
+    severity: HIGH
+    category: Code Quality
+    status: FIXED
+    files:
+      - README.md
+    description: Fence Markdown sin cerrar
+  - id: BUG-013
+    severity: LOW
+    category: Functional
+    status: FIXED
+    files:
+      - ROADMAP.md
+      - CONTRIBUTING.md
+    description: Referencias a applications y sin validación local
+deferred:
+  - id: DEF-001
+    description: Catálogo de agentes pendiente
+  - id: DEF-002
+    description: Enlace a design-system hermano no verificable
+  - id: DEF-003
+    description: PRs ajenos no incluidos

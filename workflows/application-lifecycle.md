@@ -8,17 +8,19 @@ Este workflow establece cómo una idea se transforma en una solución funcional 
 
 Todo proyecto desarrollado bajo WIKA debe seguir este proceso.
 
+La fuente de gates YAML es `.cursorrules`. Las plantillas oficiales viven en `templates/`. Las auditorías oficiales viven en `docs/`.
+
 ---
 
 # Filosofía
 
-WIKA se basa en cinco principios fundamentales:
+WIKA se basa en estos principios:
 
 - La documentación define el producto.
-- La Auditoría 1 asegura que el proyecto puede construirse.
+- Los quality gates (YAML) impiden generar código sin aprobación.
 - La inteligencia artificial genera la solución.
-- La Auditoría 2 asegura que la solución funciona.
 - El arquitecto garantiza la calidad.
+- Todo el flujo debe poder repetirse.
 
 Ninguna aplicación debe desarrollarse fuera de este flujo.
 
@@ -29,17 +31,31 @@ Ninguna aplicación debe desarrollarse fuera de este flujo.
 ```text
 Idea
 ↓
-Preparación
+Preparación (01–02)
 ↓
-Auditoría 1
+Auditoría de Documentación          → audit_1_passed
 ↓
-Generación IA
+Descubrimiento de Módulos (03)
 ↓
-Auditoría 2
+Auditoría de Módulos                → audit_2_passed
+↓
+Diseño de Aplicación (04)
+↓
+Aprobación Visual                   → visual_approval_passed
+↓
+Plan de Construcción (05)
+↓
+Auditoría de Ensamblado             → audit_3_passed
+↓
+Listo para construir                → ready_for_construction
+↓
+Construcción V1
+↓
+Auditoría de Release
 ↓
 Refinamiento
 ↓
-Aprobación
+Aprobación (final/)
 ↓
 Demo
 ↓
@@ -56,22 +72,19 @@ Identificar una necesidad de negocio y convertirla en una iniciativa formal.
 
 ## Resultado Esperado
 
-Creación de una nueva estructura dentro del repositorio de aplicaciones.
+Creación de una nueva estructura dentro del repositorio de productos:
 
 ```text
-applications/
-└── nombre-proyecto/
+proyectos/
+└── app/
+    └── nombre-proyecto/
+        ├── idea/
+        ├── audits/
+        ├── iterations/
+        └── final/
 ```
 
-## Estructura Inicial
-
-```text
-applications/
-└── nombre-proyecto/
-    ├── idea/
-    ├── iterations/
-    └── final/
-```
+> **Ruta canónica:** `proyectos/app/{proyecto}/`. No usar `applications/` como raíz de proyecto.
 
 ---
 
@@ -83,68 +96,36 @@ Transformar la idea en documentación estructurada capaz de ser procesada por lo
 
 La documentación creada durante esta etapa representa la fuente oficial de verdad para el proyecto.
 
-Ninguna generación debe comenzar sin que esta etapa haya sido completada.
+Ninguna generación de código debe comenzar sin que los gates de construcción estén en `true`.
 
-## Estructura
+## Orden de documentos
+
+Completar en orden. Los documentos 03–05 no se consideran válidos para avanzar si el gate anterior está en `false`.
 
 ```text
-applications/
-└── nombre-proyecto/
-    └── idea/
-        ├── 01-problem.md
-        ├── 02-features.md
-        ├── 03-module-discovery.md
-        ├── 04-application-design.md
-        └── 05-build-plan.md
+proyectos/app/nombre-proyecto/idea/
+├── 01-problem.md
+├── 02-features.md
+├── 03-module-discovery.md
+├── 04-application-design.md
+└── 05-build-plan.md
 ```
 
----
-
-## 01-problem.md
-
-Documento oficial del problema a resolver.
-
----
-
-## 02-features.md
-
-Documento oficial de funcionalidades del proyecto.
-
----
-
-## 03-module-discovery.md
-
-Documento oficial de descubrimiento de módulos.
-
----
-
-## 04-application-design.md
-
-Documento oficial de diseño de la aplicación.
-
----
-
-## 05-build-plan.md
-
-Documento oficial del plan de build y entrega.
-
----
+Usar siempre las plantillas de `templates/`.
 
 ## Resultado de la Etapa
 
-Al finalizar la preparación, el proyecto debe contener toda la información necesaria para que un agente IA pueda generar una primera versión funcional sin depender de explicaciones adicionales.
-
-La calidad de la generación estará directamente relacionada con la calidad de la documentación proporcionada.
+Al finalizar la preparación de 01 y 02, el proyecto puede entrar a Auditoría de Documentación.
 
 ---
 
-# Etapa 3: Auditoría 1
+# Etapa 3: Auditoría de Documentación (Gate 1)
 
 ## Objetivo
 
-Validar que la documentación contiene toda la información necesaria para generar una aplicación compilable y capaz de producir un artefacto instalable.
+Validar que el problema y las funcionalidades están definidos con RTM, BDD y restricciones suficientes para descubrir módulos.
 
-Esta auditoría ocurre antes de generar código.
+Esta auditoría ocurre **antes** del descubrimiento de módulos y **antes** de generar código.
 
 ## Responsable
 
@@ -153,7 +134,7 @@ Arquitecto WIKA.
 ## Referencia
 
 ```text
-docs/auditoria-1.md
+docs/auditoria-documentacion.md
 ```
 
 ## Entradas
@@ -161,69 +142,149 @@ docs/auditoria-1.md
 ```text
 01-problem.md
 02-features.md
-03-module-discovery.md
-04-application-design.md
-05-build-plan.md
 ```
 
-## Validaciones
+## Flag
 
-### Requerimientos
+```yaml
+audit_1_passed: true
+```
 
-- Objetivo definido.
-- Alcance definido.
-- Entregable definido.
-
-### Arquitectura
-
-- Stack tecnológico definido.
-- Dependencias identificadas.
-- Restricciones documentadas.
-
-### Build
-
-- SDK definido.
-- JDK definido.
-- Kotlin definido.
-- Pipeline de compilación documentado.
-
-### Entregable
-
-Debe estar definido explícitamente:
-
-- APK Release
-- AAB
-- Docker
-- Aplicación Web
-- Otro
+en el frontmatter de `01-problem.md` y `02-features.md`.
 
 ## Resultado Esperado
 
-```text
-audit-1.md
-```
+Registro en `proyectos/app/{proyecto}/audits/auditoria-documentacion.md`.
 
 ## Regla
 
-La Auditoría 1 debe ejecutarse siguiendo las validaciones descritas en:
+Si Gate 1 es rechazado:
 
 ```text
-docs/auditoria-1.md
-```
-
-Si la Auditoría 1 es rechazada:
-
-```text
-Generación IA = NO PERMITIDA
+Descubrimiento de módulos = NO PERMITIDO
+Generación de código = NO PERMITIDA
 ```
 
 ---
 
-# Etapa 4: Generación IA
+# Etapa 4: Descubrimiento de Módulos
 
 ## Objetivo
 
-Transformar la documentación estructurada en una primera versión funcional de la aplicación.
+Descomponer la solución en módulos reutilizables con contratos, dependencias y riesgos.
+
+## Entrada
+
+`templates/03-module-discovery.md` copiado a `idea/03-module-discovery.md`, con `audit_1_passed: true` como pre-requisito.
+
+## Resultado Esperado
+
+RTM `ERR-XX → FEAT-XX → MOD-XX` y grafo de dependencias sin ciclos.
+
+---
+
+# Etapa 5: Auditoría de Módulos (Gate 2)
+
+## Objetivo
+
+Validar cobertura, unicidad de responsabilidad y reutilización WIKA.
+
+## Referencia
+
+```text
+docs/auditoria-modulos.md
+```
+
+## Flag
+
+```yaml
+audit_2_passed: true
+```
+
+en `03-module-discovery.md`.
+
+## Regla
+
+No se permite diseñar la aplicación sin aprobar esta auditoría.
+
+---
+
+# Etapa 6: Diseño de Aplicación
+
+## Objetivo
+
+Definir arquitectura, navegación (expo-router), tokens/theme y wireframe.
+
+## Documento
+
+`idea/04-application-design.md`
+
+---
+
+# Etapa 7: Aprobación Visual (Gate 3A)
+
+## Objetivo
+
+Obtener visto bueno del arquitecto o stakeholder sobre el wireframe / preview.
+
+## Flag
+
+```yaml
+visual_approval_passed: true
+```
+
+en `04-application-design.md`.
+
+No existe checklist de auditoría independiente: el visto bueno humano es el gate.
+
+---
+
+# Etapa 8: Plan de Construcción
+
+## Objetivo
+
+Definir cronograma trazable RTM (Paso N → MOD → FEAT), stack, pruebas y riesgos de V1.
+
+## Documento
+
+`idea/05-build-plan.md`
+
+Este documento es **entrada** de la Auditoría de Ensamblado; no se escribe después de ella.
+
+---
+
+# Etapa 9: Auditoría de Ensamblado (Gate 3B) y listo para construir (Gate V1)
+
+## Objetivo
+
+Validar que diseño y build plan integran los módulos sin ciclos y con estrategia de construcción.
+
+## Referencia
+
+```text
+docs/auditoria-ensamblado.md
+```
+
+## Flags
+
+```yaml
+audit_3_passed: true            # 04-application-design.md
+ready_for_construction: true    # 05-build-plan.md (solo si todos los flags previos son true)
+```
+
+## Regla
+
+```text
+Si ready_for_construction: false → Construcción V1 = NO PERMITIDA
+```
+
+---
+
+# Etapa 10: Construcción V1
+
+## Objetivo
+
+Transformar la documentación aprobada en una primera versión funcional.
 
 ## Entradas
 
@@ -235,156 +296,86 @@ templates/
 standards/
 workflows/
 agents/
+.cursorrules
 ```
 
 ### Proyecto
 
 ```text
-applications/proyecto/idea/
+proyectos/app/{proyecto}/idea/
+proyectos/app/{proyecto}/audits/
 ```
-
-## Proceso
-
-El agente IA deberá:
-
-- Leer la documentación oficial del proyecto.
-- Respetar la Auditoría 1.
-- Aplicar las reglas definidas por WIKA.
-- Aplicar los estándares técnicos vigentes.
-- Respetar las restricciones arquitectónicas indicadas.
-- Generar una solución funcional inicial.
 
 ## Resultado Esperado
 
 ```text
-iterations/
-└── v1/
+proyectos/app/{proyecto}/iterations/v1/
 ```
 
-## Contenido Referencial
+Contenido referencial (stack Expo/RN, ver `standards/coding-standards.md`):
 
 ```text
 v1/
-├── source/
-├── documentation/
-├── apk/
-└── generation-report.md
+├── app/
+├── src/
+│   ├── engine/
+│   ├── modules/
+│   └── constants/
+├── scripts/
+├── package.json
+└── review.md
+```
+
+Verificación obligatoria:
+
+```bash
+npm run typecheck
+npm run verify
 ```
 
 ---
 
-# Etapa 5: Auditoría 2
+# Etapa 11: Auditoría de Release
 
 ## Objetivo
 
-Validar que la solución generada cumple los requerimientos funcionales, técnicos y operacionales.
-
-## Responsable
-
-Arquitecto WIKA.
+Validar que la iteración cumple features obligatorias, NFRs, BDD y produce un artefacto instalable.
 
 ## Referencia
 
 ```text
-docs/auditoria-2.md
+docs/auditoria-release-v1.md
 ```
-
-## Entradas
-
-- Código generado.
-- Documentación del proyecto.
-- Auditoría 1.
-- Versiones previas.
-
-## Validaciones
-
-### Compilación
-
-- TypeScript.
-- Dependencias.
-- Build.
-- APK Release.
-
-### Arquitectura
-
-- Cumplimiento de arquitectura.
-- Cumplimiento de estándares.
-- Calidad de implementación.
-
-### Funcionalidad
-
-- Cumplimiento de requerimientos.
-- Casos de uso.
-- Estados y flujos.
-
-### Runtime
-
-- Hardware.
-- Permisos.
-- Ciclo de vida.
-- Dispositivo físico.
 
 ## Resultado Esperado
 
 ```text
-review-v1.md
-```
-
-## Resultado
-
-```text
-APROBADO
-```
-
-o
-
-```text
-REQUIERE V2
-```
-
-o
-
-```text
-RECHAZADO
+proyectos/app/{proyecto}/audits/auditoria-release-v1.md
 ```
 
 ## Regla
 
-La Auditoría 2 debe ejecutarse siguiendo las validaciones descritas en:
-
-```text
-docs/auditoria-2.md
-```
-
-Toda V1 debe superar la Auditoría 2 antes de avanzar a refinamiento o aprobación.
+Ninguna versión puede copiarse a `final/` ni publicarse sin aprobar esta auditoría.
 
 ---
 
-# Etapa 6: Refinamiento
+# Etapa 12: Refinamiento
 
 ## Objetivo
 
-Mejorar progresivamente la solución a partir de la Auditoría 2.
+Mejorar progresivamente la solución a partir de `review.md` y de la Auditoría de Release.
 
-## Entradas
+## Contexto obligatorio
 
 ```text
-Documentación Original
+idea/
 +
-Auditoría 2
+revisiones arquitectónicas acumuladas
 +
-Versiones Previas
+última iteración (source)
 ```
 
-## Proceso
-
-El agente IA genera una nueva versión considerando:
-
-- Requerimientos originales.
-- Restricciones existentes.
-- Hallazgos detectados.
-- Problemas identificados.
-- Observaciones arquitectónicas.
+No duplicar documentos de `idea/` dentro de `iterations/`.
 
 ## Resultado Esperado
 
@@ -396,49 +387,25 @@ iterations/
 └── vn/
 ```
 
-## Regla de Refinamiento
-
-No existe un límite definido de versiones.
-
-El proceso continuará hasta que el arquitecto considere que la solución cumple los criterios esperados.
-
-Toda versión V2 o superior deberá corregir los hallazgos identificados durante la Auditoría 2.
-
 ---
 
-# Etapa 7: Aprobación
+# Etapa 13: Aprobación
 
 ## Objetivo
 
-Declarar que la solución cumple los requisitos funcionales, técnicos y operacionales definidos.
+Declarar que la solución cumple los requisitos definidos y consolidarla en `final/`.
 
-## Criterios de Aprobación
+## Criterios
 
-### Negocio
-
-- Problema resuelto.
-- Funcionalidades completadas.
-
-### Técnica
-
-- Auditoría 2 aprobada.
-- Arquitectura validada.
-- Estándares cumplidos.
-
-### Operacional
-
-- Lista para demostración.
-
-## Resultado Esperado
-
-```text
-final/
-```
+- Criterios BDD de `01-problem.md` cumplidos.
+- Features obligatorias de `02-features.md` implementadas.
+- Auditoría de Release en estado **APROBADO**.
+- Arquitectura y estándares cumplidos.
 
 ## Contenido
 
 ```text
-final/
+proyectos/app/{proyecto}/final/
 ├── source/
 ├── documentation/
 ├── apk/
@@ -447,7 +414,7 @@ final/
 
 ---
 
-# Etapa 8: Demo
+# Etapa 14: Demo
 
 ## Objetivo
 
@@ -468,7 +435,7 @@ demo-approved.md
 
 ---
 
-# Etapa 9: Publicación
+# Etapa 15: Publicación
 
 ## Objetivo
 
@@ -522,32 +489,19 @@ Representa la versión aprobada para demostración o despliegue.
 
 ## Agente IA
 
-- Interpreta la documentación.
-- Genera soluciones.
-- Implementa mejoras.
-- Produce nuevas versiones.
+- Interpreta la documentación oficial.
+- Respeta los flags YAML de `.cursorrules`.
+- Genera soluciones e implementa mejoras.
 
 ## Arquitecto
 
-- Ejecuta Auditoría 1.
-- Ejecuta Auditoría 2.
-- Valida calidad.
-- Evalúa riesgos.
-- Revisa arquitectura.
-- Aprueba o rechaza versiones.
+- Ejecuta las auditorías de documentación, módulos, ensamblado y release.
+- Aprueba o rechaza gates.
+- Valida calidad, riesgos y arquitectura.
 
 ## WIKA
 
-Proporciona:
-
-- Reglas.
-- Estándares.
-- Arquitectura.
-- Workflows.
-- Templates.
-- Auditorías.
-- Agentes.
-- Funciones.
+Proporciona reglas, estándares, workflows, templates, auditorías y agentes.
 
 ---
 
@@ -555,16 +509,14 @@ Proporciona:
 
 Dentro de WIKA una aplicación nunca comienza desde código.
 
-Toda aplicación debe seguir el siguiente principio:
-
 ```text
 Documentación
 ↓
-Auditoría 1
+Gates 1 → 2 → 3A → 3B → V1
 ↓
 Generación IA
 ↓
-Auditoría 2
+Auditoría de Release
 ↓
 Refinamiento
 ↓
@@ -573,14 +525,18 @@ Aprobación
 
 La documentación define el producto.
 
-La Auditoría 1 (docs/auditoria-1.md) asegura que el proyecto puede construirse y generar un artefacto instalable.
+La Auditoría de Documentación (`docs/auditoria-documentacion.md`) asegura que el problema y las features pueden originar módulos.
+
+La Auditoría de Módulos (`docs/auditoria-modulos.md`) asegura descomposición reutilizable.
+
+La Auditoría de Ensamblado (`docs/auditoria-ensamblado.md`) asegura que diseño y build plan pueden construirse.
 
 La IA genera la solución.
 
-La Auditoría 2 (docs/auditoria-2.md) asegura que la solución funciona correctamente y cumple los requisitos definidos.
+La Auditoría de Release (`docs/auditoria-release-v1.md`) asegura que la solución funciona y puede publicarse.
 
 El arquitecto garantiza la calidad.
 
-Ninguna aplicación podrá avanzar a Generación IA sin aprobar la Auditoría 1.
+Ninguna aplicación podrá avanzar a Construcción V1 sin `ready_for_construction: true`.
 
-Ninguna aplicación podrá avanzar a final/ sin aprobar la Auditoría 2.
+Ninguna aplicación podrá avanzar a `final/` sin aprobar la Auditoría de Release.

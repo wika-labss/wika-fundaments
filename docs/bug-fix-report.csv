@@ -1,0 +1,17 @@
+BUG-ID,Severity,Category,File,Description,Status,Test Added
+BUG-001,CRITICAL,Functional,workflows/application-lifecycle.md,Ciclo de 2 auditorías vs gates v2.1,FIXED,test_canonical_path_in_lifecycle
+BUG-002,HIGH,Integration,README.md,Árbol con auditoria-1.md auditoria-2.md bodega.md,FIXED,test_repo_passes_after_fix
+BUG-003,HIGH,Integration,docs/documentation.md,Ruta applications/ vs proyectos/app/,FIXED,test_bug003_stale_applications_path
+BUG-004,HIGH,Integration,docs/auditoria-release-v1.md,Faltaba auditoría de release,FIXED,test_release_audit_exists_and_is_linked
+BUG-005,MEDIUM,Functional,.cursorrules,Pipeline DS 10 etapas vs 12,FIXED,test_cursorrules_pipeline_12
+BUG-006,MEDIUM,Functional,docs/repositories.md,Flutter vs Expo/RN,FIXED,test_bug006_flutter_default_stack
+BUG-007,MEDIUM,Functional,docs/documentation.md,Faltaba audits/ en estructura,FIXED,test_repo_passes_after_fix
+BUG-008,LOW,Code Quality,templates/02-features.md,audit_2_passed en plantilla Gate 1,FIXED,test_features_template_has_no_audit_2_flag
+BUG-009,MEDIUM,Functional,templates/README.md,Orden plan de construcción vs ensamblado,FIXED,test_repo_passes_after_fix
+BUG-010,LOW,Functional,README.md,Omitía Aprobación Visual Gate 3A,FIXED,test_repo_passes_after_fix
+BUG-011,HIGH,Integration,docs/auditoria-release.md,Release audit de main no en v2,FIXED,test_release_audit_exists_and_is_linked
+BUG-012,HIGH,Code Quality,README.md,Fence Markdown sin cerrar,FIXED,test_bug012_unclosed_readme_fence
+BUG-013,LOW,Functional,CONTRIBUTING.md,applications y sin comando de validación,FIXED,test_repo_passes_after_fix
+DEF-001,LOW,Code Quality,agents/README.md,Catálogo de agentes pendiente,DEFERRED,
+DEF-002,LOW,Integration,standards/design-system.md,Enlace a repo hermano no verificable,DEFERRED,
+DEF-003,LOW,Integration,N/A,PRs ajenos #3 #4 #5,DEFERRED,

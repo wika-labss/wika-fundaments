@@ -84,6 +84,8 @@ Auditoría de Módulos
 ↓
 Diseño de Aplicación
 ↓
+Aprobación Visual
+↓
 Auditoría de Ensamblado
 ↓
 Construcción V1
@@ -93,6 +95,7 @@ Auditoría de Release
 Refinamiento
 ↓
 Publicación
+```
 
 ---
 
@@ -104,13 +107,16 @@ wika-fundaments/
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
 ├── ROADMAP.md
+├── .cursorrules      # Quality gates para agentes IA
 ├── agents/           # Definición de agentes IA
 ├── docs/             # Guías, reglas y auditorías
-│   ├── auditoria-1.md
-│   ├── auditoria-2.md
+│   ├── instructivo-nuevos-usuarios.md
 │   ├── documentation.md
 │   ├── repositories.md
-│   └── bodega.md
+│   ├── auditoria-documentacion.md
+│   ├── auditoria-modulos.md
+│   ├── auditoria-ensamblado.md
+│   └── auditoria-release-v1.md
 ├── standards/        # Estándares técnicos y funcionales
 ├── templates/        # Plantillas oficiales de documentación
 │   ├── 01-problem.md
@@ -118,8 +124,10 @@ wika-fundaments/
 │   ├── 03-module-discovery.md
 │   ├── 04-application-design.md
 │   └── 05-build-plan.md
-└── workflows/        # Procesos oficiales de trabajo
-    └── application-lifecycle.md
+├── workflows/        # Procesos oficiales de trabajo
+│   └── application-lifecycle.md
+├── scripts/          # Validación de consistencia documental
+└── tests/            # Tests del validador de docs
 ```
 
 ## Responsabilidad de este repositorio
@@ -128,13 +136,13 @@ wika-fundaments/
 
 No debe contener aplicaciones, código de negocio ni productos finales.
 
-Las aplicaciones viven en el repositorio `applications`.
+Las aplicaciones viven en el repositorio `proyectos`, bajo `proyectos/app/{proyecto}/`.
 
 ---
 
 # Documentación oficial de un proyecto
 
-Durante la Preparación, cada proyecto debe crear en `applications/<proyecto>/idea/`:
+Durante la Preparación, cada proyecto debe crear en `proyectos/app/{proyecto}/idea/`:
 
 ```text
 01-problem.md
@@ -143,6 +151,8 @@ Durante la Preparación, cada proyecto debe crear en `applications/<proyecto>/id
 04-application-design.md
 05-build-plan.md
 ```
+
+Las auditorías del proyecto se registran en `proyectos/app/{proyecto}/audits/`.
 
 Usar siempre las plantillas de `templates/`.
 
