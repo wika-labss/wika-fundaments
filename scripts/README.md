@@ -18,3 +18,4 @@ Detecta:
 - Stack móvil distinto de Expo/RN como default V1
 - Enlaces Markdown locales rotos
 - Bloques de código sin cerrar
+- Catálogo `agents/`: fichas listadas, `future_skill`, `hands_off_to` y ruta canónica

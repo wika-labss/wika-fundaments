@@ -481,27 +481,38 @@ Representa la versión aprobada para demostración o despliegue.
 
 # Responsabilidades
 
+Catálogo nominativo: [`agents/README.md`](../agents/README.md). Fichas humanas: [`agents/roles-humanos.md`](../agents/roles-humanos.md).
+
 ## Negocio
 
 - Define el problema.
 - Define prioridades.
-- Valida el resultado final.
+- Valida el resultado final (demo / publicación).
 
-## Agente IA
+## Agentes IA (no aprueban gates)
 
-- Interpreta la documentación oficial.
-- Respeta los flags YAML de `.cursorrules`.
-- Genera soluciones e implementa mejoras.
+| Agente | Etapa |
+|--------|-------|
+| `wika-bootstrap` | Idea / scaffolding |
+| `wika-scribe` | Preparación 01–05 (en orden de gates) |
+| `wika-auditor` | Borradores Gates 1, 2, 3B y Release |
+| `wika-designer` | Diseño 04 y preparación visual 3A |
+| `wika-builder` | Construcción V1 |
+| `wika-refiner` | Refinamiento vN |
+| `wika-packager` | Consolidación `final/` |
+
+Ningún agente IA pone flags YAML en `true` ni escribe **APROBADO**.
 
 ## Arquitecto
 
 - Ejecuta las auditorías de documentación, módulos, ensamblado y release.
-- Aprueba o rechaza gates.
+- Aprueba o rechaza gates (única autoridad de firma).
 - Valida calidad, riesgos y arquitectura.
+- Escribe `review.md` para `wika-refiner`.
 
 ## WIKA
 
-Proporciona reglas, estándares, workflows, templates, auditorías y agentes.
+Proporciona reglas, estándares, workflows, templates, auditorías y el catálogo de agentes.
 
 ---
 
