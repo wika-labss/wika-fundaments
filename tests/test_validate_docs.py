@@ -100,5 +100,53 @@ class LiveRepoTests(unittest.TestCase):
         self.assertNotIn("10 etapas", text)
 
 
+class AgentCatalogTests(unittest.TestCase):
+    def test_live_catalog_ok(self) -> None:
+        errors = validate_docs.validate_agent_catalog(ROOT)
+        self.assertEqual(
+            errors,
+            [],
+            msg="\n".join(f"{e.path}: {e.message}" for e in errors),
+        )
+
+    def test_index_lists_all_required_ids(self) -> None:
+        text = (ROOT / "agents/README.md").read_text(encoding="utf-8")
+        for agent_id in validate_docs.REQUIRED_AGENT_IDS:
+            self.assertIn(f"`{agent_id}`", text)
+            self.assertTrue((ROOT / f"agents/{agent_id}.md").is_file())
+
+    def test_missing_card_is_reported(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            agents = root / "agents"
+            agents.mkdir()
+            (agents / "README.md").write_text(
+                "`wika-bootstrap` [roles-humanos.md](roles-humanos.md)\n",
+                encoding="utf-8",
+            )
+            (agents / "roles-humanos.md").write_text("humano\n", encoding="utf-8")
+            messages = [f"{e.path}: {e.message}" for e in validate_docs.validate_agent_catalog(root)]
+        self.assertTrue(any("wika-scribe" in m and "ausente" in m for m in messages))
+        self.assertTrue(any("no lista `wika-scribe`" in m for m in messages))
+
+    def test_card_without_future_skill_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            agents = root / "agents"
+            agents.mkdir()
+            ids = " ".join(f"`{aid}`" for aid in validate_docs.REQUIRED_AGENT_IDS)
+            (agents / "README.md").write_text(
+                f"{ids}\nroles-humanos.md\n",
+                encoding="utf-8",
+            )
+            for aid in validate_docs.REQUIRED_AGENT_IDS:
+                (agents / f"{aid}.md").write_text(
+                    "hands_off_to: x\nproyectos/app/\n",
+                    encoding="utf-8",
+                )
+            messages = [e.message for e in validate_docs.validate_agent_catalog(root)]
+        self.assertTrue(any("future_skill" in m for m in messages))
+
+
 if __name__ == "__main__":
     unittest.main()

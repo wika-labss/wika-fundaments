@@ -18,10 +18,11 @@ Cursor DEBE actuar como Arquitecto de Software y Lead de QA. Queda prohibido gen
 ## 2. Fuentes oficiales (orden de lectura)
 
 1. `wika-fundaments/templates/` y `standards/`
-2. `proyectos/app/{proyecto}/idea/` (01–05)
-3. `proyectos/app/{proyecto}/audits/`
-4. Última iteración en `iterations/vN/`
-5. `design-system/` solo para apps V3+ o tokens sincronizados explícitamente
+2. `wika-fundaments/agents/` — qué agente invocar por etapa (ninguno activa flags YAML)
+3. `proyectos/app/{proyecto}/idea/` (01–05)
+4. `proyectos/app/{proyecto}/audits/`
+5. Última iteración en `iterations/vN/`
+6. `design-system/` solo para apps V3+ o tokens sincronizados explícitamente
 
 ## 3. Reglas de UI y diseño
 

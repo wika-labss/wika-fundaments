@@ -51,6 +51,15 @@ REQUIRED_FILES = (
     "standards/coding-standards.md",
     "standards/design-system.md",
     ".cursorrules",
+    "agents/README.md",
+    "agents/roles-humanos.md",
+    "agents/wika-bootstrap.md",
+    "agents/wika-scribe.md",
+    "agents/wika-auditor.md",
+    "agents/wika-designer.md",
+    "agents/wika-builder.md",
+    "agents/wika-refiner.md",
+    "agents/wika-packager.md",
 )
 
 MD_LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
@@ -58,6 +67,18 @@ FENCE_RE = re.compile(r"^(`{3,})")
 PIPELINE_10_RE = re.compile(r"10 etapas")
 FLUTTER_DEFAULT_RE = re.compile(r"Estructura Flutter")
 CANONICAL_PATH = "proyectos/app/"
+
+REQUIRED_AGENT_IDS = (
+    "wika-bootstrap",
+    "wika-scribe",
+    "wika-auditor",
+    "wika-designer",
+    "wika-builder",
+    "wika-refiner",
+    "wika-packager",
+)
+
+AGENT_ID_RE = re.compile(r"`(wika-[a-z-]+)`")
 
 
 @dataclass
@@ -190,6 +211,7 @@ def validate_canonical_mentions(root: Path = REPO_ROOT) -> list[Finding]:
         "workflows/application-lifecycle.md",
         "templates/README.md",
         ".cursorrules",
+        "agents/README.md",
     )
     errors: list[Finding] = []
     for rel in must_mention:
@@ -201,10 +223,50 @@ def validate_canonical_mentions(root: Path = REPO_ROOT) -> list[Finding]:
     return errors
 
 
+def validate_agent_catalog(root: Path = REPO_ROOT) -> list[Finding]:
+    """El índice de agents/ debe listar fichas existentes con future_skill."""
+    errors: list[Finding] = []
+    readme = root / "agents/README.md"
+    if not readme.is_file():
+        errors.append(Finding("agents/README.md", "índice de agentes ausente"))
+        return errors
+
+    index_text = readme.read_text(encoding="utf-8")
+    listed = set(AGENT_ID_RE.findall(index_text))
+
+    if "roles-humanos.md" not in index_text:
+        errors.append(
+            Finding("agents/README.md", "no enlaza `roles-humanos.md`")
+        )
+
+    for agent_id in REQUIRED_AGENT_IDS:
+        rel = f"agents/{agent_id}.md"
+        path = root / rel
+        if agent_id not in listed:
+            errors.append(
+                Finding("agents/README.md", f"no lista `{agent_id}`")
+            )
+        if not path.is_file():
+            errors.append(Finding(rel, "ficha de agente ausente"))
+            continue
+        body = path.read_text(encoding="utf-8")
+        if "future_skill:" not in body:
+            errors.append(Finding(rel, "falta `future_skill` en frontmatter"))
+        if "hands_off_to:" not in body:
+            errors.append(Finding(rel, "falta `hands_off_to` en frontmatter"))
+        if CANONICAL_PATH not in body:
+            errors.append(
+                Finding(rel, f"no menciona la ruta canónica `{CANONICAL_PATH}`")
+            )
+
+    return errors
+
+
 def validate_repo(root: Path = REPO_ROOT) -> ValidationResult:
     result = ValidationResult()
     result.errors.extend(validate_required_files(root))
     result.errors.extend(validate_canonical_mentions(root))
+    result.errors.extend(validate_agent_catalog(root))
     for path in iter_doc_files(root):
         result.errors.extend(validate_file(path, root))
     return result

@@ -34,14 +34,22 @@ El arquitecto garantiza la calidad.
 
 ## 3. Roles: quién hace qué
 
-| Rol | Responsabilidad |
-|-----|-----------------|
-| **Negocio / Producto** | Define el problema, features y prioridades en `idea/` |
-| **Agente IA** | Genera documentación complementaria, código y refinamientos |
-| **Arquitecto** | Ejecuta auditorías, aprueba gates y valida calidad |
-| **WIKA (plataforma)** | Provee plantillas, estándares y procesos repetibles |
+Catálogo oficial: [`agents/README.md`](../agents/README.md). No existe un único «Agente IA».
 
-Ningún agente IA debe avanzar a código de producción sin aprobación del arquitecto en los gates correspondientes.
+| Rol | Tipo | Responsabilidad |
+|-----|------|-----------------|
+| **Negocio / Producto** | humano | Problema, prioridad y aceptación de demo |
+| **Arquitecto** | humano | Único que aprueba gates y escribe **APROBADO** |
+| **wika-bootstrap** | IA | Scaffold `proyectos/app/{proyecto}/` + plantillas |
+| **wika-scribe** | IA | Docs `idea/` 01–05 en orden de gates |
+| **wika-auditor** | IA | Borradores de auditoría (nunca flags en `true`) |
+| **wika-designer** | IA | `04-application-design.md` + wireframe Gate 3A |
+| **wika-builder** | IA | Código `iterations/v1/` si `ready_for_construction` |
+| **wika-refiner** | IA | `iterations/vN/` desde `idea/` + `review.md` + source previo |
+| **wika-packager** | IA | `final/` solo con Release APROBADO |
+| **WIKA (plataforma)** | — | Plantillas, estándares y este catálogo |
+
+Ningún agente IA debe avanzar a código de producción sin aprobación del arquitecto en los gates correspondientes. Ningún agente IA activa flags YAML.
 
 ---
 
@@ -141,7 +149,7 @@ Cada fila debe conectar un dolor (problema) con su solución (feature), su módu
 └────────────────────────────┬────────────────────────────────────┘
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  Construcción V1 — Agente IA genera código en iterations/v1/   │
+│  Construcción V1 — wika-builder genera código en iterations/v1/ │
 │  Verify + APK + review.md                                       │
 └────────────────────────────┬────────────────────────────────────┘
                              ▼
@@ -201,7 +209,7 @@ audit_1_passed: true  # solo tras aprobación formal
 
 ## 7. Construcción V1 — qué ocurre en la práctica
 
-Cuando `ready_for_construction: true`, el agente IA puede generar la primera iteración:
+Cuando `ready_for_construction: true`, **wika-builder** puede generar la primera iteración:
 
 ```text
 proyectos/app/mi-proyecto/iterations/v1/
@@ -231,7 +239,7 @@ npm run verify
 
 ## 8. Refinamiento — cuando V1 no es suficiente
 
-Si el arquitecto deja observaciones en `review.md`, el agente genera una nueva iteración:
+Si el arquitecto deja observaciones en `review.md`, **wika-refiner** genera una nueva iteración:
 
 ```text
 v1 → v2 → v3 → v3.1 → ...
@@ -354,7 +362,8 @@ El proyecto está **cerrado funcionalmente** cuando:
 | Auditorías (checklists) | `wika-fundaments/docs/auditoria-*.md` |
 | Estándares técnicos | `wika-fundaments/standards/coding-standards.md` |
 | Tokens y diseño V1 | `wika-fundaments/standards/design-system.md` |
-| Gates para agentes IA | `wika-fundaments/.cursorrules` |
+| Catálogo de agentes | `wika-fundaments/agents/` |
+| Gates YAML | `wika-fundaments/.cursorrules` |
 | Ciclo de vida completo | `wika-fundaments/workflows/application-lifecycle.md` |
 | Proyecto de referencia V1 | `proyectos/app/tower/` |
 | Integración design-system | `proyectos/app/sodoku nuevo/` + repo `design-system/` |

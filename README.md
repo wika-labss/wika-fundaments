@@ -108,7 +108,7 @@ wika-fundaments/
 ├── CONTRIBUTING.md
 ├── ROADMAP.md
 ├── .cursorrules      # Quality gates para agentes IA
-├── agents/           # Definición de agentes IA
+├── agents/           # Catálogo de agentes IA (ver agents/README.md)
 ├── docs/             # Guías, reglas y auditorías
 │   ├── instructivo-nuevos-usuarios.md
 │   ├── documentation.md

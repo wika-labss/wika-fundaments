@@ -380,7 +380,9 @@ Es responsable de validar la consistencia entre la documentación y las solucion
 
 ## Agentes IA
 
-Deben utilizar exclusivamente la documentación oficial y las revisiones disponibles para producir nuevas versiones.
+Catálogo: [`agents/README.md`](../agents/README.md).
+
+Deben utilizar exclusivamente la documentación oficial y las revisiones disponibles para producir nuevas versiones. Ningún agente IA activa flags YAML ni firma auditorías.
 
 ---
 
