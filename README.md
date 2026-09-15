@@ -109,6 +109,7 @@ wika-fundaments/
 ├── ROADMAP.md
 ├── .cursorrules      # Quality gates para agentes IA
 ├── agents/           # Catálogo de agentes IA (ver agents/README.md)
+├── skills/           # SKILL.md Cursor (orquestador + 7 agentes)
 ├── docs/             # Guías, reglas y auditorías
 │   ├── instructivo-nuevos-usuarios.md
 │   ├── documentation.md

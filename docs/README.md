@@ -33,4 +33,6 @@ La documentación debe mantenerse actualizada y ser considerada fuente oficial d
 
 Ver [`../workflows/application-lifecycle.md`](../workflows/application-lifecycle.md) para el ciclo de vida completo.
 
+Catálogo de agentes: [`../agents/README.md`](../agents/README.md). Skills Cursor: [`../skills/README.md`](../skills/README.md).
+
 La ruta canónica de un producto es `proyectos/app/{proyecto}/`.

@@ -363,6 +363,7 @@ El proyecto está **cerrado funcionalmente** cuando:
 | Estándares técnicos | `wika-fundaments/standards/coding-standards.md` |
 | Tokens y diseño V1 | `wika-fundaments/standards/design-system.md` |
 | Catálogo de agentes | `wika-fundaments/agents/` |
+| Skills Cursor | `wika-fundaments/skills/` |
 | Gates YAML | `wika-fundaments/.cursorrules` |
 | Ciclo de vida completo | `wika-fundaments/workflows/application-lifecycle.md` |
 | Proyecto de referencia V1 | `proyectos/app/tower/` |

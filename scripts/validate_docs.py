@@ -60,6 +60,15 @@ REQUIRED_FILES = (
     "agents/wika-builder.md",
     "agents/wika-refiner.md",
     "agents/wika-packager.md",
+    "skills/README.md",
+    "skills/wika-orchestrator/SKILL.md",
+    "skills/wika-bootstrap/SKILL.md",
+    "skills/wika-scribe/SKILL.md",
+    "skills/wika-auditor/SKILL.md",
+    "skills/wika-designer/SKILL.md",
+    "skills/wika-builder/SKILL.md",
+    "skills/wika-refiner/SKILL.md",
+    "skills/wika-packager/SKILL.md",
 )
 
 MD_LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
@@ -78,7 +87,10 @@ REQUIRED_AGENT_IDS = (
     "wika-packager",
 )
 
+REQUIRED_SKILL_IDS = REQUIRED_AGENT_IDS + ("wika-orchestrator",)
+
 AGENT_ID_RE = re.compile(r"`(wika-[a-z-]+)`")
+SKILL_NAME_RE = re.compile(r"^name:\s*[\"']?([a-z0-9-]+)[\"']?\s*$", re.MULTILINE)
 
 
 @dataclass
@@ -212,6 +224,7 @@ def validate_canonical_mentions(root: Path = REPO_ROOT) -> list[Finding]:
         "templates/README.md",
         ".cursorrules",
         "agents/README.md",
+        "skills/README.md",
     )
     errors: list[Finding] = []
     for rel in must_mention:
@@ -262,11 +275,36 @@ def validate_agent_catalog(root: Path = REPO_ROOT) -> list[Finding]:
     return errors
 
 
+def validate_skills(root: Path = REPO_ROOT) -> list[Finding]:
+    """Cada agente (y el orquestador) debe tener SKILL.md con name coincidente."""
+    errors: list[Finding] = []
+    for skill_id in REQUIRED_SKILL_IDS:
+        rel = f"skills/{skill_id}/SKILL.md"
+        path = root / rel
+        if not path.is_file():
+            errors.append(Finding(rel, "SKILL.md ausente"))
+            continue
+        text = path.read_text(encoding="utf-8")
+        names = SKILL_NAME_RE.findall(text)
+        if not names:
+            errors.append(Finding(rel, "falta `name` en frontmatter"))
+        elif names[0] != skill_id:
+            errors.append(
+                Finding(rel, f"`name` es `{names[0]}`; esperado `{skill_id}`")
+            )
+        if not re.search(r"^description:\s+\S", text, re.MULTILINE):
+            errors.append(Finding(rel, "falta `description` en frontmatter"))
+        if "---" not in text[:20]:
+            errors.append(Finding(rel, "falta frontmatter YAML"))
+    return errors
+
+
 def validate_repo(root: Path = REPO_ROOT) -> ValidationResult:
     result = ValidationResult()
     result.errors.extend(validate_required_files(root))
     result.errors.extend(validate_canonical_mentions(root))
     result.errors.extend(validate_agent_catalog(root))
+    result.errors.extend(validate_skills(root))
     for path in iter_doc_files(root):
         result.errors.extend(validate_file(path, root))
     return result

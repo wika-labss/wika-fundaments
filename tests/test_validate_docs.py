@@ -148,5 +148,44 @@ class AgentCatalogTests(unittest.TestCase):
         self.assertTrue(any("future_skill" in m for m in messages))
 
 
+class SkillCatalogTests(unittest.TestCase):
+    def test_live_skills_ok(self) -> None:
+        errors = validate_docs.validate_skills(ROOT)
+        self.assertEqual(
+            errors,
+            [],
+            msg="\n".join(f"{e.path}: {e.message}" for e in errors),
+        )
+
+    def test_each_agent_has_matching_skill_name(self) -> None:
+        for skill_id in validate_docs.REQUIRED_SKILL_IDS:
+            path = ROOT / "skills" / skill_id / "SKILL.md"
+            text = path.read_text(encoding="utf-8")
+            names = validate_docs.SKILL_NAME_RE.findall(text)
+            self.assertEqual(names[0], skill_id)
+            self.assertIn("description:", text)
+
+    def test_missing_skill_is_reported(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "skills").mkdir()
+            messages = [f"{e.path}: {e.message}" for e in validate_docs.validate_skills(root)]
+        self.assertTrue(any("wika-bootstrap" in m and "ausente" in m for m in messages))
+        self.assertTrue(any("wika-orchestrator" in m for m in messages))
+
+    def test_wrong_skill_name_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for skill_id in validate_docs.REQUIRED_SKILL_IDS:
+                folder = root / "skills" / skill_id
+                folder.mkdir(parents=True)
+                (folder / "SKILL.md").write_text(
+                    "---\nname: other-skill\ndescription: x\n---\n",
+                    encoding="utf-8",
+                )
+            messages = [e.message for e in validate_docs.validate_skills(root)]
+        self.assertTrue(any("esperado" in m for m in messages))
+
+
 if __name__ == "__main__":
     unittest.main()

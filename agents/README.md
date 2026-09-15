@@ -6,7 +6,7 @@ Cada agente IA tiene una ficha con inputs, outputs, prohibiciones y handoff. Nin
 
 **Ruta canónica de producto:** `proyectos/app/{proyecto}/`.
 
-Las skills Cursor (`SKILL.md`) no viven aquí todavía; cada ficha declara `future_skill` para el siguiente paso.
+Las skills Cursor viven en [`skills/`](../skills/README.md) (`SKILL.md` 1:1 + orquestador). Cada ficha declara `future_skill` con el mismo ID.
 
 ---
 

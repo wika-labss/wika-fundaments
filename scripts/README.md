@@ -19,3 +19,4 @@ Detecta:
 - Enlaces Markdown locales rotos
 - Bloques de código sin cerrar
 - Catálogo `agents/`: fichas listadas, `future_skill`, `hands_off_to` y ruta canónica
+- Skills `skills/<id>/SKILL.md`: `name` 1:1 con el agente (+ `wika-orchestrator`)
