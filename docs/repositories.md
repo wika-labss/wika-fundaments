@@ -128,10 +128,10 @@ Plantilla oficial para aplicaciones móviles.
 
 ### Responsabilidades
 
-- Estructura Flutter
-- Configuración inicial
-- Dependencias aprobadas
-- Buenas prácticas de desarrollo móvil
+- Estructura Expo SDK 52 + React Native 0.76.x (ver `standards/coding-standards.md`)
+- Configuración inicial alineada a WIKA-ARCH
+- Dependencias aprobadas con versiones `~`
+- Buenas prácticas de desarrollo móvil V1 (Android APK)
 
 ### No debe contener
 
@@ -194,11 +194,13 @@ Paquetes reutilizables compartidos por múltiples soluciones.
 
 ---
 
-## applications
+## proyectos
 
 Portafolio oficial de productos construidos mediante WIKA.
 
 Este repositorio contiene todas las iniciativas, proyectos y aplicaciones desarrolladas utilizando la plataforma.
+
+> **Nombre vigente:** `proyectos`. En documentos anteriores este portafolio se denominó `applications`. La ruta canónica de un producto es `proyectos/app/{proyecto}/`.
 
 ### Responsabilidades
 
@@ -213,11 +215,12 @@ Este repositorio contiene todas las iniciativas, proyectos y aplicaciones desarr
 ### Estructura
 
 ```text
-applications/
-├── proyecto-a/
-├── proyecto-b/
-├── proyecto-c/
-└── proyecto-n/
+proyectos/
+└── app/
+    ├── proyecto-a/
+    ├── proyecto-b/
+    ├── proyecto-c/
+    └── proyecto-n/
 ```
 
 ---
@@ -227,6 +230,7 @@ applications/
 ```text
 proyecto/
 ├── idea/
+├── audits/
 ├── iterations/
 │   ├── v1/
 │   ├── v2/
@@ -249,6 +253,19 @@ Documentos oficiales:
 ```
 
 Esta documentación representa la fuente oficial de verdad para el proyecto.
+
+---
+
+#### audits
+
+Contiene los **resultados** de las auditorías del proyecto. Las checklists oficiales del proceso viven en `wika-fundaments/docs/`; aquí solo se registra el veredicto.
+
+```text
+auditoria-documentacion.md
+auditoria-modulos.md
+auditoria-ensamblado.md
+auditoria-release-v1.md
+```
 
 ---
 

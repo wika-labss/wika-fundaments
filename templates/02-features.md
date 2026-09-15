@@ -7,13 +7,13 @@ owner: "[Nombre del Responsable / Equipo]"
 created_at: "YYYY-MM-DD"
 updated_at: "YYYY-MM-DD"
 audit_1_passed: false
-audit_2_passed: false
 ---
 
 # [02] Especificación de Características y Requerimientos Funcionales
 
-> **Pre-requisito:** `audit_1_passed: true` en `01-problem.md` y este documento.  
-> **Equivalencia:** Auditoría de Documentación → `docs/auditoria-documentacion.md`.
+> **Gate 1:** este documento se aprueba **junto con** `01-problem.md`.  
+> **Equivalencia:** Auditoría de Documentación → `docs/auditoria-documentacion.md`.  
+> El Gate 2 (Auditoría de Módulos) no se registra en este documento; vive en `03-module-discovery.md`.
 
 ## 1. Identificación y Control de Cambios
 

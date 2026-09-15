@@ -82,7 +82,7 @@ proyectos/app/mi-proyecto/idea/
 
 ### Paso 3 — Completar documentación (Preparación)
 
-Rellena los documentos **en orden**, usando placeholders `[ ... ]` como guía:
+Rellena los documentos **en orden**, usando placeholders `[ ... ]` como guía. Los documentos 03–05 no habilitan la etapa siguiente si el gate anterior está en `false`:
 
 | Orden | Documento | Qué defines |
 |-------|-----------|-------------|
@@ -177,7 +177,7 @@ Los gates son **puertas de calidad**. Sin aprobación, no se avanza.
 | **3A** | Antes de build plan final | 04 | `visual_approval_passed: true` | Visto bueno arquitecto |
 | **3B** | Antes de código | 04, 05 | `audit_3_passed: true` | `auditoria-ensamblado.md` |
 | **V1** | Antes de tocar `src/` | 05 | `ready_for_construction: true` | Todos los anteriores |
-| **Release** | Antes de `final/` | iterations/v1 | — | `auditoria-release-v1.md` |
+| **Release** | Antes de `final/` | iterations/v1 | registro en `audits/` | [`auditoria-release-v1.md`](auditoria-release-v1.md) |
 
 **Dónde se registran las auditorías del proyecto:**
 

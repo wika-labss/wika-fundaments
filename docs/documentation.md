@@ -72,10 +72,13 @@ Todos los agentes, arquitectos y participantes del proyecto deben considerar est
 
 ## Ubicación
 
+La ruta canónica de un producto es `proyectos/app/{proyecto}/`.
+
 ```text
-applications/
-└── proyecto/
-    └── idea/
+proyectos/
+└── app/
+    └── proyecto/
+        └── idea/
 ```
 
 ---
@@ -113,17 +116,18 @@ La información contenida en estos documentos define oficialmente:
 Todo proyecto deberá contener:
 
 ```text
-applications/
-└── proyecto/
-    ├── idea/
-    │   ├── 01-problem.md
-    │   ├── 02-features.md
-    │   ├── 03-module-discovery.md
-    │   ├── 04-application-design.md
-    │   └── 05-build-plan.md
-    │
-    ├── iterations/
-    └── final/
+proyectos/
+└── app/
+    └── proyecto/
+        ├── idea/
+        │   ├── 01-problem.md
+        │   ├── 02-features.md
+        │   ├── 03-module-discovery.md
+        │   ├── 04-application-design.md
+        │   └── 05-build-plan.md
+        ├── audits/
+        ├── iterations/
+        └── final/
 ```
 
 ---

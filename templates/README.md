@@ -5,31 +5,37 @@ Plantillas oficiales de documentación de proyecto. Copiar a `proyectos/app/{pro
 ## Ciclo de vida
 
 ```text
-Idea (01–05)
+Preparación (01–02)
 ↓
 Auditoría de Documentación     → audit_1_passed
 ↓
-Descubrimiento de Módulos
+Descubrimiento de Módulos (03)
 ↓
 Auditoría de Módulos           → audit_2_passed
 ↓
-Diseño de Aplicación
+Diseño de Aplicación (04)
 ↓
 Aprobación Visual              → visual_approval_passed
 ↓
+Plan de Construcción (05)
+↓
 Auditoría de Ensamblado        → audit_3_passed
 ↓
-Plan de Construcción           → ready_for_construction
+Listo para construir           → ready_for_construction
 ↓
 Construcción V1
+↓
+Auditoría de Release           → audits/auditoria-release-v1.md
 ```
+
+`05-build-plan.md` es **entrada** de la Auditoría de Ensamblado, no un paso posterior.
 
 ## Plantillas
 
 | Archivo | ID | Gate principal |
 |---------|-----|----------------|
 | `01-problem.md` | PROB-001 | RTM origen (`ERR-XX`) |
-| `02-features.md` | FEAT-001 | BDD + NFRs |
+| `02-features.md` | FEAT-001 | BDD + NFRs (Gate 1 junto con 01) |
 | `03-module-discovery.md` | MOD-001 | Contratos modulares |
 | `04-application-design.md` | DES-001 | Preview + navegación |
 | `05-build-plan.md` | BUILD-001 | Cronograma trazable |
@@ -43,7 +49,7 @@ ERR-XX (01) → FEAT-XX (02) → MOD-XX (03) → VIEW-XX (04) → Paso N (05)
 ## Estándares relacionados
 
 - `standards/coding-standards.md` — WIKA-ARCH, stack Expo/RN
-- `standards/design-system.md` — tokens base V1; pipeline V3+ en repo `design-system/`
+- `standards/design-system.md` — tokens base V1; pipeline V3+ (12 etapas) en repo `design-system/`
 - `.cursorrules` — gates automatizables para agentes IA
 
 ## Auditorías
@@ -55,3 +61,4 @@ ERR-XX (01) → FEAT-XX (02) → MOD-XX (03) → VIEW-XX (04) → Paso N (05)
 | `visual_approval_passed` | Visto bueno arquitecto (04) |
 | `audit_3_passed` | `docs/auditoria-ensamblado.md` |
 | `ready_for_construction` | Pre-requisito construcción V1 |
+| (registro en `audits/`) | `docs/auditoria-release-v1.md` |

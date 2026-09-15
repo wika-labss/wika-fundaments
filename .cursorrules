@@ -11,6 +11,7 @@ Cursor DEBE actuar como Arquitecto de Software y Lead de QA. Queda prohibido gen
 | 3A | `04-application-design.md` | `visual_approval_passed: true` | Visto bueno arquitecto/stakeholder |
 | 3B | `04-application-design.md`, `05-build-plan.md` | `audit_3_passed: true` | `docs/auditoria-ensamblado.md` |
 | V1 | `05-build-plan.md` | `ready_for_construction: true` | Todos los anteriores en `true` |
+| Release | `iterations/vN/` + `audits/` | registro en `audits/auditoria-release-v1.md` | `docs/auditoria-release-v1.md` |
 
 **Acción ante incumplimiento:** Rechazar generación de código, indicar flag pendiente y sugerir auditoría correspondiente en `audits/`.
 
@@ -27,7 +28,7 @@ Cursor DEBE actuar como Arquitecto de Software y Lead de QA. Queda prohibido gen
 - Consumir tokens de `standards/design-system.md` o `theme.ts` documentado en `04-application-design.md`.
 - Prohibido hex hardcoded cuando existe token equivalente.
 - Estructura de pantallas derivada del wireframe aprobado en `04-application-design.md`.
-- Pipeline completo `design-system/` (10 etapas) aplica en V3+, no reemplaza gates V1.
+- Pipeline completo `design-system/` (12 etapas, v2) aplica en V3+, no reemplaza gates V1.
 
 ## 4. Reglas de código (stack móvil)
 

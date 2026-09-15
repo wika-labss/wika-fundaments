@@ -8,5 +8,5 @@
 
 ## Siguiente
 
-- Formalizar el repositorio `applications` como portafolio de productos.
+- Formalizar el repositorio `proyectos` (antes referido como `applications`) como portafolio de productos.
 - Documentar catálogo inicial de agentes y funciones.

@@ -13,6 +13,7 @@ La documentación debe mantenerse actualizada y ser considerada fuente oficial d
 | [instructivo-nuevos-usuarios.md](instructivo-nuevos-usuarios.md) | Nuevos usuarios | Cómo comienza y finaliza el flujo WIKA |
 | [documentation.md](documentation.md) | Todos | Reglas de documentación y fuente de verdad |
 | [repositories.md](repositories.md) | Arquitectos | Reglas de repositorios y estructura de proyectos |
+| [bug-fix-report.md](bug-fix-report.md) | Arquitectos | Informe de consistencia documental (2026-09-15) |
 
 ## Auditorías (pre-build)
 
@@ -22,6 +23,14 @@ La documentación debe mantenerse actualizada y ser considerada fuente oficial d
 | [auditoria-modulos.md](auditoria-modulos.md) | `audit_2_passed` | Diseño de aplicación |
 | [auditoria-ensamblado.md](auditoria-ensamblado.md) | `audit_3_passed` | Construcción V1 |
 
+## Auditorías (post-build)
+
+| Documento | Gate | Bloquea |
+|-----------|------|---------|
+| [auditoria-release-v1.md](auditoria-release-v1.md) | registro en `audits/auditoria-release-v1.md` | `final/` y publicación |
+
 ## Workflows
 
-Ver `../workflows/application-lifecycle.md` para el ciclo de vida completo.
+Ver [`../workflows/application-lifecycle.md`](../workflows/application-lifecycle.md) para el ciclo de vida completo.
+
+La ruta canónica de un producto es `proyectos/app/{proyecto}/`.
