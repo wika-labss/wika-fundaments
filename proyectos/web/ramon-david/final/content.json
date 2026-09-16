@@ -1,0 +1,65 @@
+{
+  "brand": "Acolchados CD",
+  "whatsapp": "56999194045",
+  "phone": "+56 9 9919 4045",
+  "email": "contacto@acolchadoscd.cl",
+  "address": "San José 5887, San Miguel, Santiago, Chile",
+  "instagram": "https://www.instagram.com/acolchados.cd/",
+  "hero": [
+    {
+      "eyebrow": "Diseño textil para el descanso",
+      "title": "Dormitorios",
+      "em": "de ensueño",
+      "text": "La comodidad también puede ser la pieza más elegante de tu hogar.",
+      "cta": "Hablemos",
+      "image": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1800&q=80"
+    },
+    {
+      "eyebrow": "Texturas que se sienten",
+      "title": "Variedad en",
+      "em": "colchas",
+      "text": "Suavidad y estilo con textiles elegidos para acompañar tus espacios.",
+      "cta": "Ver líneas",
+      "image": "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=1800&q=80"
+    },
+    {
+      "eyebrow": "Hecho para ti",
+      "title": "Estilos",
+      "em": "únicos",
+      "text": "Diseños a medida que convierten cada dormitorio en tu lugar favorito.",
+      "cta": "Cuéntanos tu idea",
+      "image": "https://images.unsplash.com/photo-1615874694520-474822394e73?auto=format&fit=crop&w=1800&q=80"
+    }
+  ],
+  "lineas": [
+    {
+      "id": "colchas",
+      "name": "Colchas",
+      "text": "Piezas que visten la cama con peso, textura y color a tu medida."
+    },
+    {
+      "id": "pieceras",
+      "name": "Pieceras",
+      "text": "El detalle que cierra el dormitorio: borde, caída y tela elegida contigo."
+    },
+    {
+      "id": "sabanas",
+      "name": "Sábanas",
+      "text": "Algodón de hilo alto, suave al tacto y pensado para uso diario."
+    },
+    {
+      "id": "plumones",
+      "name": "Plumones",
+      "text": "Abrigo ligero para el invierno chileno, en las dimensiones de tu cama."
+    },
+    {
+      "id": "hoteleria",
+      "name": "Hotelería y bordado",
+      "text": "Mantelería, bordado y programas textiles para hoteles y restaurantes."
+    }
+  ],
+  "equipo": {
+    "title": "Una historia hecha a mano",
+    "text": "Taller chileno en San Miguel. Oficio, diseño y atención cercana para hogares y proyectos de interiorismo en todo Chile."
+  }
+}

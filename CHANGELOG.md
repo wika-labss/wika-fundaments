@@ -9,6 +9,7 @@ Registro de cambios relevantes de `web-design`.
 - Contrato operativo A/B: `standards/sku-contract.yaml` + índice `docs/plan-de-negocio-web/README.md`.
 - Plantilla `templates/05-build-plan.md` (hoja de ruta de instancia, dependencias, stack canónico).
 - `sku: A|B` y rúbrica en 01/02; Gate 1, ensamblado y release validan contra el plan de negocio.
+- Primer tenant: `proyectos/web/ramon-david/` (SKU A, salida `iterations/v3/`).
 
 ### Changed
 

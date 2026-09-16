@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Panel | Acolchados CD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html"><span class="brand-mark">CD</span><span class="brand-name">ADMIN <b>A</b></span></a>
+    <nav class="main-nav"><a href="../index.html">Ver sitio</a></nav>
+  </header>
+  <main class="admin-shell">
+    <p class="eyebrow teal">SKU A · schema fijo</p>
+    <h1>Campos del tenant</h1>
+    <p class="admin-note">Demo de `/admin`: Inicio, 5 líneas, equipo, contacto. No hay CRUD de catálogo ni Mercado Libre. Destino de plataforma: magic link + D1.</p>
+    <form class="admin-form" id="admin-form">
+      <label>Hero · título<input name="hero_title" value="Dormitorios"></label>
+      <label>Hero · énfasis<input name="hero_em" value="de ensueño"></label>
+      <label>Línea 1 · Colchas<textarea name="l1">Piezas que visten la cama con peso, textura y color a tu medida.</textarea></label>
+      <label>Línea 2 · Pieceras<textarea name="l2">El detalle que cierra el dormitorio.</textarea></label>
+      <label>Línea 3 · Sábanas<textarea name="l3">Algodón de hilo alto, suave al tacto.</textarea></label>
+      <label>Línea 4 · Plumones<textarea name="l4">Abrigo ligero para el invierno chileno.</textarea></label>
+      <label>Línea 5 · Hotelería<textarea name="l5">Bordado y programas textiles para hoteles.</textarea></label>
+      <label>Equipo<textarea name="equipo">Taller chileno en San Miguel. Oficio, diseño y atención cercana.</textarea></label>
+      <p class="form-status" id="admin-status" aria-live="polite"></p>
+      <button class="button button-dark" type="submit">Guardar en este navegador</button>
+    </form>
+  </main>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

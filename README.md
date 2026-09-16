@@ -56,6 +56,6 @@ web-design/
 
 `web-design` contiene las definiciones que permiten construir **sitios web** de manera consistente.
 
-No debe contener sitios finales ni código de negocio de un cliente. Esos viven en `proyectos/web/{proyecto}/`.
+Los tenants viven en `proyectos/web/{proyecto}/`. El primero alojado aquí: [`proyectos/web/ramon-david/`](proyectos/web/ramon-david/) (SKU A, v3).
 
 No reemplaza `wika-fundaments` ni `design-system` (apps móviles V3+).
