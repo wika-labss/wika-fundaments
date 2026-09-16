@@ -31,7 +31,6 @@ ALLOW_STALE_IN = {
     "docs/bug-fix-report.json",
     "docs/bug-fix-report.yaml",
     "docs/bug-fix-report.csv",
-    "ROADMAP.md",  # puede listar 05-build-plan.md como pendiente
 }
 
 REQUIRED_FILES = (
@@ -41,12 +40,16 @@ REQUIRED_FILES = (
     "docs/auditoria-release-v1.md",
     "docs/documentation.md",
     "docs/instructivo-nuevos-usuarios.md",
+    "docs/plan-de-negocio-web/plan-de-negocio.md",
+    "docs/plan-de-negocio-web/README.md",
     "workflows/application-lifecycle.md",
     "templates/01-problem.md",
     "templates/02-features.md",
     "templates/03-module-discovery.md",
     "templates/04-html-design.md",
+    "templates/05-build-plan.md",
     "standards/direction-matrix.yaml",
+    "standards/sku-contract.yaml",
     "skills/README.md",
     ".cursorrules",
     "agents/README.md",
@@ -198,33 +201,81 @@ def validate_gate_flags(root: Path = REPO_ROOT) -> list[Finding]:
                 "flag `audit_2_passed` no pertenece al Gate 1",
             )
         )
-    html = (root / "templates/04-html-design.md").read_text(encoding="utf-8")
-    if re.search(r"^audit_2_passed:", html, re.MULTILINE):
+    if "landing-B | sitio-A | portfolio" in feat:
         errors.append(
             Finding(
-                "templates/04-html-design.md",
-                "flag `audit_2_passed` en frontmatter; pertenece a 03 (Gate 2)",
+                "templates/02-features.md",
+                "SKU libre (`portfolio`); vigente: solo `A` o `B`",
             )
         )
-    for required in (
-        "visual_approval_passed",
-        "audit_3_passed",
-        "ready_for_construction",
-        "construction_phase_complete",
-    ):
-        if required not in html:
+    html_path = root / "templates/04-html-design.md"
+    if not html_path.is_file():
+        errors.append(Finding("templates/04-html-design.md", "plantilla ausente"))
+    else:
+        html = html_path.read_text(encoding="utf-8")
+        if re.search(r"^audit_2_passed:", html, re.MULTILINE):
             errors.append(
-                Finding("templates/04-html-design.md", f"falta flag `{required}`")
+                Finding(
+                    "templates/04-html-design.md",
+                    "flag `audit_2_passed` en frontmatter; pertenece a 03 (Gate 2)",
+                )
             )
-    mod = (root / "templates/03-module-discovery.md").read_text(encoding="utf-8")
-    if "audit_2_passed" not in mod:
-        errors.append(
-            Finding("templates/03-module-discovery.md", "falta flag `audit_2_passed`")
-        )
-    if "MOD-DIR" not in mod:
-        errors.append(
-            Finding("templates/03-module-discovery.md", "falta bloque MOD-DIR")
-        )
+        if re.search(r"^ready_for_construction:", html, re.MULTILINE):
+            errors.append(
+                Finding(
+                    "templates/04-html-design.md",
+                    "flag `ready_for_construction` en 04; vigente en 05",
+                )
+            )
+        for required in (
+            "visual_approval_passed",
+            "audit_3_passed",
+            "construction_phase_complete",
+        ):
+            if required not in html:
+                errors.append(
+                    Finding("templates/04-html-design.md", f"falta flag `{required}`")
+                )
+    build_path = root / "templates/05-build-plan.md"
+    if not build_path.is_file():
+        errors.append(Finding("templates/05-build-plan.md", "plantilla 05 ausente"))
+    else:
+        build = build_path.read_text(encoding="utf-8")
+        if "ready_for_construction" not in build:
+            errors.append(
+                Finding(
+                    "templates/05-build-plan.md",
+                    "falta flag `ready_for_construction`",
+                )
+            )
+        if "sku-contract.yaml" not in build:
+            errors.append(
+                Finding(
+                    "templates/05-build-plan.md",
+                    "no referencia `standards/sku-contract.yaml`",
+                )
+            )
+    for rel in ("templates/01-problem.md", "templates/02-features.md"):
+        path = root / rel
+        if not path.is_file():
+            errors.append(Finding(rel, "plantilla ausente"))
+            continue
+        text = path.read_text(encoding="utf-8")
+        if not re.search(r"^sku:", text, re.MULTILINE):
+            errors.append(Finding(rel, "falta frontmatter `sku`"))
+    mod_path = root / "templates/03-module-discovery.md"
+    if not mod_path.is_file():
+        errors.append(Finding("templates/03-module-discovery.md", "plantilla ausente"))
+    else:
+        mod = mod_path.read_text(encoding="utf-8")
+        if "audit_2_passed" not in mod:
+            errors.append(
+                Finding("templates/03-module-discovery.md", "falta flag `audit_2_passed`")
+            )
+        if "MOD-DIR" not in mod:
+            errors.append(
+                Finding("templates/03-module-discovery.md", "falta bloque MOD-DIR")
+            )
     return errors
 
 
@@ -244,6 +295,10 @@ def validate_cursorrules(root: Path = REPO_ROOT) -> list[Finding]:
             errors.append(Finding(".cursorrules", f"no declara gate `{flag}`"))
     if "Fase 1" not in text or "Fase 2" not in text:
         errors.append(Finding(".cursorrules", "no declara contrato Fase 1 / Fase 2"))
+    if "sku-contract.yaml" not in text:
+        errors.append(Finding(".cursorrules", "no referencia `sku-contract.yaml`"))
+    if "05-build-plan.md" not in text:
+        errors.append(Finding(".cursorrules", "Gate 3B no incluye `05-build-plan.md`"))
     return errors
 
 
@@ -258,6 +313,28 @@ def validate_direction_matrix(root: Path = REPO_ROOT) -> list[Finding]:
             errors.append(Finding(rel, f"no mapea skill `{skill}`"))
     if "image-to-code" not in text:
         errors.append(Finding(rel, "falta `image-to-code` en forbidden de fase 2"))
+    return errors
+
+
+def validate_sku_contract(root: Path = REPO_ROOT) -> list[Finding]:
+    errors: list[Finding] = []
+    rel = "standards/sku-contract.yaml"
+    path = root / rel
+    if not path.is_file():
+        errors.append(Finding(rel, "archivo obligatorio ausente"))
+        return errors
+    text = path.read_text(encoding="utf-8")
+    if "forbidden_v1:" not in text:
+        errors.append(Finding(rel, "falta `forbidden_v1`"))
+    for token in ("wordpress", "vercel", "vps", "repo-por-cliente"):
+        if token not in text:
+            errors.append(Finding(rel, f"forbidden_v1 no lista `{token}`"))
+    if not re.search(r"^\s*B:", text, re.MULTILINE):
+        errors.append(Finding(rel, "no declara SKU B"))
+    if not re.search(r"^\s*A:", text, re.MULTILINE):
+        errors.append(Finding(rel, "no declara SKU A"))
+    if "workers" not in text.lower() and "Workers" not in text:
+        errors.append(Finding(rel, "stack canónico no declara Workers"))
     return errors
 
 
@@ -285,6 +362,7 @@ def validate_repo(root: Path = REPO_ROOT) -> ValidationResult:
     result.errors.extend(validate_gate_flags(root))
     result.errors.extend(validate_cursorrules(root))
     result.errors.extend(validate_direction_matrix(root))
+    result.errors.extend(validate_sku_contract(root))
     result.errors.extend(validate_push_md(root))
     for path in iter_doc_files(root):
         result.errors.extend(validate_file(path, root))

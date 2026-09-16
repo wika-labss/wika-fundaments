@@ -6,31 +6,34 @@ Cursor DEBE actuar como Arquitecto Web WIKA y Lead de QA. Queda prohibido genera
 
 | Gate | Documentos | Flag YAML requerido | Auditoría WIKA |
 |------|------------|---------------------|----------------|
-| 1 | `01-problem.md`, `02-features.md` | `audit_1_passed: true` | `docs/auditoria-documentacion.md` |
+| 1 | `01-problem.md`, `02-features.md` | `audit_1_passed: true` | `docs/auditoria-documentacion.md` (SKU A\|B) |
 | 2 | `03-module-discovery.md` | `audit_2_passed: true` | `docs/auditoria-modulos.md` |
 | 3A | `04-html-design.md` | `visual_approval_passed: true` | Visto bueno arquitecto/stakeholder |
-| 3B | `03-module-discovery.md`, `04-html-design.md` | `audit_3_passed: true` | `docs/auditoria-ensamblado.md` |
-| Fase 1 | `04-html-design.md` | `ready_for_construction: true` | Todos los anteriores en `true` |
-| Fase 1 done | `04-html-design.md` | `construction_phase_complete: true` | HTML semántico entregado |
+| 3B | `03`, `04`, `05-build-plan.md` | `audit_3_passed: true` | `docs/auditoria-ensamblado.md` |
+| Fase 1 | `05-build-plan.md` | `ready_for_construction: true` | Todos los anteriores en `true` |
+| Fase 1 done | `04-html-design.md` | `construction_phase_complete: true` | HTML semántico entregado y alineado al SKU |
 | Fase 2 | `03` MOD-DIR + `04` | `direction_locked: true` y `construction_phase_complete: true` | taste-skill según `direction_skill` |
-| Release | `iterations/vN/` + `audits/` | registro en `audits/auditoria-release-v1.md` | `docs/auditoria-release-v1.md` |
+| Release | `iterations/vN/` + `audits/` | registro en `audits/auditoria-release-v1.md` | `docs/auditoria-release-v1.md` vs SKU |
 
 **Acción ante incumplimiento:** Rechazar generación de HTML/CSS de producción, indicar flag pendiente y sugerir la auditoría correspondiente en `audits/`.
 
 Ningún agente IA activa flags YAML ni firma **APROBADO**. Eso es exclusivo del Arquitecto.
 
+Prohibido generar HTML si el código (`cms`, `/admin`, magic link) no coincide con `sku` de `idea/` y `standards/sku-contract.yaml`. SKU B no tiene panel. Híbrido = rechazo.
+
 ## 2. Fuentes oficiales (orden de lectura)
 
 1. `wika-fundaments/templates/` y `standards/` (SCOS global; no reemplaza este repo)
-2. Este repo: `templates/`, `standards/direction-matrix.yaml`, `skills/README.md`
-3. `proyectos/web/{proyecto}/idea/` (01–04)
-4. `proyectos/web/{proyecto}/audits/`
-5. Última iteración en `iterations/vN/`
-6. `external/taste-skill/` solo en Fase 2, y solo la `direction_skill` bloqueada en MOD-DIR
+2. `docs/plan-de-negocio-web/` + `standards/sku-contract.yaml` (A/B, stack, no-gos)
+3. Este repo: `templates/`, `standards/direction-matrix.yaml`, `skills/README.md`
+4. `proyectos/web/{proyecto}/idea/` (01–05)
+5. `proyectos/web/{proyecto}/audits/`
+6. Última iteración en `iterations/vN/`
+7. `external/taste-skill/` solo en Fase 2, y solo la `direction_skill` bloqueada en MOD-DIR
 
 ## 3. Ruta canónica
 
-Los sitios viven en `proyectos/web/{proyecto}/`.
+Los sitios viven en `proyectos/web/{proyecto}/`. Cada uno es un **tenant** (SKU A o B), no un stack nuevo.
 
 ```text
 proyectos/web/{proyecto}/
@@ -44,13 +47,13 @@ Prohibido usar `applications/` como raíz. `proyectos/app/` es el portafolio **m
 
 ## 4. Contrato de dos fases
 
-- **Fase 1 — Construcción:** HTML semántico, sin look final. Skills taste-skill de dirección **prohibidas**.
+- **Fase 1 — Construcción:** HTML semántico, sin look final, **respetando SKU**. Skills taste-skill de dirección **prohibidas**.
 - **Fase 2 — Diseño:** `npx skills add ./external/taste-skill --skill "${direction_skill}"` más `design-taste-frontend` o `redesign-existing-projects`. Si `direction_locked: true`, no invocar otra skill de dirección.
 
 ## 5. Prioridad en conflictos
 
-1. `idea/` (documentos oficiales del proyecto)
+1. `idea/` (documentos oficiales del proyecto) + `sku-contract.yaml`
 2. Auditorías en `audits/`
 3. Código/HTML en `iterations/`
 
-La documentación gana sobre el código.
+La documentación gana sobre el código. El plan de negocio gana sobre un stack inventado por el agente.

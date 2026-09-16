@@ -8,18 +8,21 @@ created_at: "YYYY-MM-DD"
 updated_at: "YYYY-MM-DD"
 audit_1_passed: false
 audit_2_passed: false
+sku: ""
 ---
 
 # [03] Descubrimiento y Especificación de Módulos (Web)
 
 > **Pre-requisito:** `audit_1_passed: true` en `01-problem.md` y `02-features.md`.  
 > **Equivalencia:** Auditoría de Módulos → `docs/auditoria-modulos.md`.  
-> `audit_2_passed` se activa **solo en este documento**, no en 01/02/04.
+> `audit_2_passed` se activa **solo en este documento**, no en 01/02/04.  
+> **SKU:** copiar `sku` de 01/02. Módulo `mod-admin` **solo si `sku: A`**.
 
 ## 1. Identificación y Documentos Base
 
 - **Nombre del Proyecto:** `[Ej. Landing oficios — WIKA]`
 - **Especificaciones base:** `01-problem.md` (`WEB-PROB-001`) | `02-features.md` (`WEB-FEAT-001`)
+- **sku:** `[A \| B]`
 - **Estado de gatekeeping:** `[PENDIENTE_AUDITORIA_MODULOS]`
 
 ---
@@ -30,6 +33,7 @@ audit_2_passed: false
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `MOD-01` | `FEAT-01` | `ERR-01` | `mod-[hero]` | `sección` | `[Hero + CTA]` |
 | `MOD-02` | `FEAT-02` | `ERR-02` | `mod-[contacto]` | `formulario` | `[Form + validación]` |
+| `MOD-03` | `FEAT-03` | `ERR-…` | `mod-admin` | `cms` | `[Panel campos fijos — solo A]` |
 
 ---
 

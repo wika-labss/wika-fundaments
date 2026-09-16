@@ -6,6 +6,19 @@ Registro de cambios relevantes de `web-design`.
 
 ### Added
 
+- Contrato operativo A/B: `standards/sku-contract.yaml` + índice `docs/plan-de-negocio-web/README.md`.
+- Plantilla `templates/05-build-plan.md` (hoja de ruta de instancia, dependencias, stack canónico).
+- `sku: A|B` y rúbrica en 01/02; Gate 1, ensamblado y release validan contra el plan de negocio.
+
+### Changed
+
+- `ready_for_construction` se mueve de 04 a 05 (paridad fundaments).
+- Lifecycle y `.cursorrules`: 05 entra al Gate 3B; lectura incluye el plan de negocio.
+
+## Unreleased (auditoría de consistencia)
+
+### Added
+
 - Quality gates en `.cursorrules` (Fase 1 HTML / Fase 2 taste-skill).
 - `workflows/application-lifecycle.md` — ciclo web (no el flujo móvil de fundaments).
 - Auditorías oficiales: `docs/auditoria-documentacion.md`, `auditoria-modulos.md`, `auditoria-ensamblado.md`, `auditoria-release-v1.md`.

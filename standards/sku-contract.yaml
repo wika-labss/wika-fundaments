@@ -1,0 +1,103 @@
+# Contrato operativo A/B extraído del plan de negocio.
+# Tesis: docs/plan-de-negocio-web/plan-de-negocio.md
+# No es un segundo plan: es lo que gates y agentes deben cumplir.
+version: "0.1.0"
+source: docs/plan-de-negocio-web/plan-de-negocio.md
+thesis: una_plataforma_muchas_instancias
+
+skus:
+  B:
+    name: landing
+    cms: false
+    admin_path: null
+    client_yes:
+      - vive_de_instagram
+      - necesita_url_ya
+      - no_va_a_editar
+    client_no:
+      - despues_lo_vamos_armando
+      - que_se_pueda_cambiar_todo
+    kill_switch: pide_panel → contrato A
+    golden_rule: "esto no incluye panel. Si lo necesitas, es el plan sitio (A)."
+    onboarding_hours: [2, 4]
+    setup_floor_clp: 80000
+    monthly_floor_clp: 12000
+    allowed:
+      - hero
+      - bloques
+      - mapa
+      - whatsapp
+      - form
+      - og
+    forbidden:
+      - admin
+      - cms
+      - magic_link
+      - "/admin"
+  A:
+    name: sitio_editable
+    cms: true
+    admin_path: /admin
+    client_yes:
+      - contenido_que_cambia
+      - alguien_entra_al_panel
+      - presupuesto_cientos_de_miles
+    client_no:
+      - admin_por_si_acaso
+      - despues_manda_todo_por_whatsapp
+    kill_switch: pide_reservas_o_pagos → no
+    schema_fijo:
+      - Inicio
+      - Servicios_x5
+      - Equipo
+      - Contacto
+      - galeria
+    onboarding_hours: [6, 10]
+    setup_floor_clp: 250000
+    monthly_floor_clp: 35000
+    capacity_note: "1 A = 3 B"
+    allowed:
+      - todo_B
+      - cms_campos_fijos
+      - magic_link
+      - "/admin"
+    forbidden:
+      - wordpress_por_cliente
+      - admin_custom_infinito
+      - reservas
+      - pagos
+      - login_visitantes
+      - catalogo_grande
+
+hybrid: prohibido
+no_go_third_sku: true
+
+stack:
+  compute: workers
+  ssl_hostnames: cloudflare_for_saas
+  data: d1
+  photos: r2
+  auth_a: magic_link
+  mail: cloudflare_email_or_resend
+  dns_brand: "*.tuapp.cl"
+  dominio_cl: nic_chile_a_nombre_del_cliente
+  ci: github_wrangler
+  origin_pattern: slug.tuapp.cl
+
+forbidden_v1:
+  - wordpress
+  - vercel
+  - vps
+  - repo-por-cliente
+  - reservas
+  - pagos
+  - login-visitantes
+  - correo-hospedado
+  - hibrido
+
+instance_roadmap:
+  - contenido_listo
+  - tenant_slug
+  - dns
+  - form_whatsapp
+  - panel_solo_si_A

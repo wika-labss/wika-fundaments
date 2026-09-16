@@ -30,6 +30,8 @@ Las plantillas oficiales viven en `templates/` con numeración:
 02-features.md
 03-module-discovery.md
 04-html-design.md
+05-build-plan.md
 ```
 
-`audit_2_passed` solo en `03-module-discovery.md`. `audit_3_passed` y `ready_for_construction` en `04-html-design.md`.
+`sku` solo `A` o `B` en 01 y 02 (deben coincidir). `audit_2_passed` solo en 03. `audit_3_passed` en 04. `ready_for_construction` en **05**.
+

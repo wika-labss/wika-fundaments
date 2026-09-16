@@ -13,6 +13,8 @@ Detecta:
 
 - Archivos de auditoría obligatorios ausentes
 - Ruta de proyecto distinta de `proyectos/web/`
+- Plantilla `05-build-plan.md` ausente o 04 con `ready_for_construction`
+- Contrato `sku-contract.yaml` sin SKU A/B o `forbidden_v1`
 - Flag `audit_2_passed` fuera de la plantilla 03
 - `.cursorrules` sin gates / contrato Fase 1–2
 - `PUSH.md` con bootstrap obsoleto desde `wika-fundaments`

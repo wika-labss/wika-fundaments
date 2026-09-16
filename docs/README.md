@@ -10,16 +10,18 @@ Guías, reglas y auditorías del flujo web-design.
 |-----------|-----------|
 | [instructivo-nuevos-usuarios.md](instructivo-nuevos-usuarios.md) | Cómo empieza y termina un sitio |
 | [documentation.md](documentation.md) | Fuente de verdad `idea/` + `audits/` |
-| [auditoria-documentacion.md](auditoria-documentacion.md) | Gate 1 |
-| [auditoria-modulos.md](auditoria-modulos.md) | Gate 2 + MOD-DIR |
-| [auditoria-ensamblado.md](auditoria-ensamblado.md) | Gate 3B |
-| [auditoria-release-v1.md](auditoria-release-v1.md) | Cierre a `final/` |
+| [auditoria-documentacion.md](auditoria-documentacion.md) | Gate 1 + SKU A\|B |
+| [auditoria-modulos.md](auditoria-modulos.md) | Gate 2 + MOD-DIR; admin solo A |
+| [auditoria-ensamblado.md](auditoria-ensamblado.md) | Gate 3B (03+04+05 vs contrato) |
+| [auditoria-release-v1.md](auditoria-release-v1.md) | Cierre a `final/` vs SKU |
 
 ## Plan de negocio
 
 Sitios para pymes en Chile: dos SKUs (landing B y sitio editable A), una plataforma.
 
-- [Plan de negocio web](plan-de-negocio-web/plan-de-negocio.md)
+- [Índice plan de negocio](plan-de-negocio-web/README.md)
+- [Tesis](plan-de-negocio-web/plan-de-negocio.md)
+- Contrato: [`standards/sku-contract.yaml`](../standards/sku-contract.yaml)
 
 ## Informe de auditoría de consistencia
 

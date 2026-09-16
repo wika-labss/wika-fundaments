@@ -99,9 +99,23 @@ class LiveRepoTests(unittest.TestCase):
 
     def test_html_template_has_no_audit_2_frontmatter(self) -> None:
         text = (ROOT / "templates/04-html-design.md").read_text(encoding="utf-8")
-        self.assertNotRegex(text, r"^audit_2_passed:", msg=text.split("---")[1] if "---" in text else text)
+        self.assertNotRegex(text, r"^audit_2_passed:")
+        self.assertNotRegex(text, r"^ready_for_construction:")
         self.assertIn("audit_3_passed", text)
-        self.assertIn("ready_for_construction", text)
+        build = (ROOT / "templates/05-build-plan.md").read_text(encoding="utf-8")
+        self.assertIn("ready_for_construction", build)
+
+    def test_problem_and_features_have_sku(self) -> None:
+        for rel in ("templates/01-problem.md", "templates/02-features.md"):
+            text = (ROOT / rel).read_text(encoding="utf-8")
+            self.assertRegex(text, r"(?m)^sku:", msg=rel)
+        feat = (ROOT / "templates/02-features.md").read_text(encoding="utf-8")
+        self.assertNotIn("landing-B | sitio-A | portfolio", feat)
+
+    def test_lifecycle_includes_05_before_assembly(self) -> None:
+        text = (ROOT / "workflows/application-lifecycle.md").read_text(encoding="utf-8")
+        self.assertIn("05-build-plan.md", text)
+        self.assertIn("sku-contract.yaml", text)
 
     def test_cursorrules_has_gates(self) -> None:
         text = (ROOT / ".cursorrules").read_text(encoding="utf-8")
@@ -133,6 +147,28 @@ class DirectionMatrixTests(unittest.TestCase):
             [],
             msg="\n".join(f"{e.path}: {e.message}" for e in errors),
         )
+
+
+class SkuContractTests(unittest.TestCase):
+    def test_live_contract_ok(self) -> None:
+        errors = validate_docs.validate_sku_contract(ROOT)
+        self.assertEqual(
+            errors,
+            [],
+            msg="\n".join(f"{e.path}: {e.message}" for e in errors),
+        )
+
+    def test_missing_forbidden_is_reported(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            standards = root / "standards"
+            standards.mkdir()
+            (standards / "sku-contract.yaml").write_text(
+                "skus:\n  A:\n  B:\n",
+                encoding="utf-8",
+            )
+            messages = [e.message for e in validate_docs.validate_sku_contract(root)]
+        self.assertTrue(any("forbidden_v1" in m for m in messages))
 
 
 if __name__ == "__main__":

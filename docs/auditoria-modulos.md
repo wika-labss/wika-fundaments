@@ -11,10 +11,17 @@ Validar que el sitio fue descompuesto en módulos reutilizables (secciones, nave
 - 01-problem.md
 - 02-features.md
 - 03-module-discovery.md
+- `standards/sku-contract.yaml`
 
 ---
 
 # Validaciones
+
+## SKU
+
+- `sku` de 03 coincide con 01 y 02 (`A` o `B`).
+- Módulo de admin / CMS (`mod-admin`, `/admin`, magic link) **solo si `sku: A`**.
+- Si `sku: B` y existe módulo de panel → `REQUIERE REVISIÓN`.
 
 ## Cobertura
 
@@ -43,7 +50,7 @@ Cada módulo debe cumplir:
 ## Dependencias
 
 - Dependencias identificadas.
-- Integraciones identificadas (WhatsApp, forms, Maps, CMS).
+- Integraciones identificadas (WhatsApp, forms, Maps; CMS **solo A**).
 - Riesgos identificados.
 
 ---
