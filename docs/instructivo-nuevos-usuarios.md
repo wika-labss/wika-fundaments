@@ -20,15 +20,16 @@ El arquitecto garantiza la calidad.
 
 ---
 
-## 2. Los tres repositorios que debes conocer
+## 2. Los repositorios que debes conocer
 
 | Repositorio | Para qué sirve | Qué contiene |
 |-------------|----------------|--------------|
 | **wika-fundaments** | Reglas y plantillas | Templates, auditorías, estándares, workflows |
-| **proyectos** | Aplicaciones | Tu app en `app/{nombre}/idea/`, `iterations/`, `final/` |
-| **design-system** | Profesionalización visual (V3+) | Tokens, mockups, component kits — solo apps maduras |
+| **proyectos** | Productos | Móvil: `app/{nombre}/`. Web: `web/{nombre}/` |
+| **web-design** | Sitios web | Plantillas 01–04, MOD-DIR, taste-skill — no el HTML final |
+| **design-system** | Profesionalización visual (apps V3+) | Tokens, mockups, component kits — solo apps maduras |
 
-**Regla simple:** las reglas viven en `wika-fundaments`; tu producto vive en `proyectos`; el diseño avanzado llega después en `design-system`.
+**Regla simple:** las reglas viven en `wika-fundaments`; tu producto vive en `proyectos` (`app/` móvil o `web/` sitios); `web-design` gobierna landings; el diseño avanzado de apps llega después en `design-system`.
 
 ---
 

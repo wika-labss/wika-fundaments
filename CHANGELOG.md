@@ -6,6 +6,8 @@ Registro de cambios relevantes de `wika-fundaments`.
 
 ### Added
 
+- `docs/repositories.md`: registro oficial de `web-design` con ruta canónica `proyectos/web/{proyecto}/` (no `applications/`).
+- Instructivo: mapa de repos incluye `web-design` junto a móvil `proyectos/app/`.
 - Catálogo nominativo en `agents/`: siete agentes IA (`wika-bootstrap` … `wika-packager`) y roles humanos (Negocio, Arquitecto). Skills Cursor quedan para un siguiente paso (`future_skill`).
 - `scripts/validate_docs.py` comprueba que el índice de `agents/` lista fichas con `future_skill` y `hands_off_to`.
 
