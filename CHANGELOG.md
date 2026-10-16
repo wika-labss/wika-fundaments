@@ -6,7 +6,7 @@ Registro de cambios relevantes de `wika-fundaments`.
 
 ### Added
 
-- Stack web (Next.js + Supabase) documentado en `standards/coding-standards.md` para sitios y e-commerce cuando el build plan no es APK.
+- Stack web (Next.js + Supabase) documentado en `standards/coding-standards.md` para el ecommerce MEMIN Clothes cuando el build plan no es APK.
 
 ### Added (previo)
 
