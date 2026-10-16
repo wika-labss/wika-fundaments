@@ -6,6 +6,10 @@ Registro de cambios relevantes de `wika-fundaments`.
 
 ### Added
 
+- Stack web (Next.js + Supabase) documentado en `standards/coding-standards.md` para el ecommerce MEMIN Clothes cuando el build plan no es APK.
+
+### Added (previo)
+
 - Catálogo nominativo en `agents/`: siete agentes IA (`wika-bootstrap` … `wika-packager`) y roles humanos (Negocio, Arquitecto). Skills Cursor quedan para un siguiente paso (`future_skill`).
 - `scripts/validate_docs.py` comprueba que el índice de `agents/` lista fichas con `future_skill` y `hands_off_to`.
 
