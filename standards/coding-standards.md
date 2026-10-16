@@ -31,6 +31,20 @@ Referencia canónica de principios: WIKA-ARCH-01 a WIKA-ARCH-06.
 | Target V1 | Android, APK release sin Metro |
 | Package ID | `com.wika.<proyecto>` |
 
+## Stack web (páginas / e-commerce)
+
+Cuando `05-build-plan.md` declara sitio web (no APK):
+
+| Capa | Tecnología |
+|------|------------|
+| Framework | Next.js App Router + TypeScript |
+| Persistencia | Supabase (Postgres + Storage) |
+| Estilos | Tokens documentados en `04-application-design.md` |
+| Engine | `src/engine/` sin imports de React |
+| Target V1 | Build web (`npm run build`) |
+
+Versiones pinneadas con `~`. Pagos u otras pasarelas solo si el build plan las incluye; de lo contrario quedan como `pending_integration`.
+
 ---
 
 ## Estructura de código por iteración
