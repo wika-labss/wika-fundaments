@@ -19,7 +19,12 @@ if gh repo view "${ORG}/${REPO_NAME}" >/dev/null 2>&1; then
   echo "Repo ${ORG}/${REPO_NAME} ya existe; configurando remote y push."
   git remote remove origin 2>/dev/null || true
   git remote add origin "https://github.com/${ORG}/${REPO_NAME}.git"
-  git push -u origin main
+  if ! git push -u origin main; then
+    echo "Push falló. Si el repo es privado, usa tu cuenta:" >&2
+    echo "  gh auth login && git push -u origin main" >&2
+    echo "Ver también wika-studio/docs/PUSH-TO-GITHUB.md" >&2
+    exit 1
+  fi
   exit 0
 fi
 
