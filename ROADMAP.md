@@ -12,7 +12,7 @@ ready_for_studio_implementation: true
 
 ## Siguiente
 
-- Crear repositorio **`wika-studio`** e implementar UI-A (consola operativa) según [`docs/studio-product-spec.md`](docs/studio-product-spec.md).
+- Publicar bootstrap en **`wika-labss/wika-studio`** (workflow `seed-wika-studio` o push manual desde `bootstrap/wika-studio/`) e implementar UI-A según [`docs/studio-product-spec.md`](docs/studio-product-spec.md).
 - Formalizar el repositorio `proyectos` en remoto (`proyectos/app/{proyecto}/`) y proyecto referencia ([`docs/proyecto-referencia.md`](docs/proyecto-referencia.md)).
 - Generar skills Cursor (`SKILL.md`) 1:1 con cada ficha de `agents/` (`future_skill`).
 

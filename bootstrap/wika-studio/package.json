@@ -1,0 +1,21 @@
+{
+  "name": "wika-studio",
+  "private": true,
+  "version": "0.1.0",
+  "description": "WIKA Studio — consola web y BFF",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "prepare": "npm run build -w @wika-studio/wika-client",
+    "dev": "npm run dev:bff & npm run dev:web",
+    "dev:web": "npm run dev -w @wika-studio/web",
+    "dev:bff": "npm run dev -w @wika-studio/bff",
+    "build": "npm run build -w @wika-studio/wika-client && npm run build -w @wika-studio/bff && npm run build -w @wika-studio/web",
+    "typecheck": "npm run typecheck -w @wika-studio/wika-client && npm run typecheck -w @wika-studio/bff && npm run typecheck -w @wika-studio/web"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

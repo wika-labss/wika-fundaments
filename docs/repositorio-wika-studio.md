@@ -96,27 +96,37 @@ wika-studio/
 
 ---
 
-# Creación del repositorio remoto
+# Estado del repositorio remoto
 
-El scaffold v0.1 vive en el entorno de desarrollo en `wika-studio/` (git independiente, ignorado en este repo).
+| Elemento | Ubicación |
+|----------|-----------|
+| Especificación SCOS (PRD, API, gates) | **`wika-fundaments`** rama `wika-fundaments-v2` (PR #10 mergeado) |
+| Código UI/BFF (monorepo) | **`wika-labss/wika-studio`** rama `main` |
+| Copia de publicación (bootstrap) | `bootstrap/wika-studio/` en **wika-fundaments** |
 
-Desde una máquina con `gh` autenticado en la org **wika-labss**:
+## Publicar en wika-studio
+
+### Opción A — GitHub Actions (recomendado)
+
+1. Crear PAT con acceso `contents:write` a `wika-studio`.
+2. Añadir secret **`WIKA_STUDIO_PUSH_TOKEN`** en el repo `wika-fundaments`.
+3. Ejecutar workflow **seed-wika-studio** (manual dispatch).
+
+### Opción B — Push local
+
+```bash
+git clone https://github.com/wika-labss/wika-studio.git
+rsync -av --delete bootstrap/wika-studio/ wika-studio/
+cd wika-studio && git add -A && git commit -m "chore: import bootstrap UI-A" && git push
+```
+
+### Opción C — Script local con monorepo
 
 ```bash
 bash scripts/bootstrap-wika-studio-github.sh
 ```
 
-URL esperada: **https://github.com/wika-labss/wika-studio**
-
-Alternativa (import bundle sin carpeta local):
-
-```bash
-gh repo create wika-labss/wika-studio --public
-git clone https://github.com/wika-labss/wika-studio.git
-cd wika-studio
-git pull /path/to/wika-studio-main.bundle main
-git push origin main
-```
+URL: **https://github.com/wika-labss/wika-studio**
 
 ---
 
