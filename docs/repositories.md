@@ -98,6 +98,27 @@ Framework base utilizado por las aplicaciones construidas sobre WIKA.
 - Aplicaciones de negocio
 - Reglas organizacionales
 - Infraestructura
+- Interfaz WIKA Studio (consola web)
+
+---
+
+## wika-studio
+
+Plataforma web (frontend + BFF) para operar el SCOS WIKA: proyectos, gates, agentes, preview e iteraciones.
+
+Charter: [`docs/repositorio-wika-studio.md`](repositorio-wika-studio.md).
+
+### Responsabilidades
+
+- Consola operativa y workspace de iteración
+- Orquestación de jobs de agentes (sin activar flags YAML)
+- Integración Git con el repositorio `proyectos`
+
+### No debe contener
+
+- Reglas SCOS ni plantillas oficiales (`wika-fundaments`)
+- Código de negocio de productos en `proyectos/app/`
+- Definición de agentes (fichas en `wika-fundaments/agents/`)
 
 ---
 

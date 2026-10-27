@@ -29,8 +29,32 @@ La documentación debe mantenerse actualizada y ser considerada fuente oficial d
 |-----------|------|---------|
 | [auditoria-release-v1.md](auditoria-release-v1.md) | registro en `audits/auditoria-release-v1.md` | `final/` y publicación |
 
+## WIKA Studio (especificación UI)
+
+| Documento | Contenido |
+|-----------|-----------|
+| [vision-wika-studio.md](vision-wika-studio.md) | North star y personas |
+| [studio-product-spec.md](studio-product-spec.md) | PRD consola y workspace |
+| [studio-readiness-checklist.md](studio-readiness-checklist.md) | Gate `ready_for_studio_implementation` |
+| [process-engine.md](../workflows/process-engine.md) | Máquina de estados |
+| [exploration-vs-construction.md](../workflows/exploration-vs-construction.md) | Modos de proyecto |
+| [agent-orchestration.md](agent-orchestration.md) | Jobs ↔ agentes |
+| [studio-api-contract.md](studio-api-contract.md) | API lógica BFF |
+| [audit-event-schema.md](audit-event-schema.md) | Timeline de eventos |
+| [iteration-environment-spec.md](iteration-environment-spec.md) | Preview por iteración |
+| [validate-project-spec.md](validate-project-spec.md) | Validador de proyectos |
+| [repositorio-proyectos.md](repositorio-proyectos.md) | Charter portafolio |
+| [repositorio-wika-studio.md](repositorio-wika-studio.md) | Charter UI |
+| [proyecto-referencia.md](proyecto-referencia.md) | Gold path QA |
+
+## Schemas
+
+Ver [`../schemas/README.md`](../schemas/README.md).
+
 ## Workflows
 
 Ver [`../workflows/application-lifecycle.md`](../workflows/application-lifecycle.md) para el ciclo de vida completo.
+
+Ver también [`../workflows/process-engine.md`](../workflows/process-engine.md).
 
 La ruta canónica de un producto es `proyectos/app/{proyecto}/`.

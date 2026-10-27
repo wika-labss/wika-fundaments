@@ -13,6 +13,8 @@ Todos los proyectos deben respetar los estándares definidos en esta carpeta.
 |---------|-----------|
 | `coding-standards.md` | WIKA-ARCH-01–06, stack Expo/RN, estructura de código, librerías prohibidas |
 | `design-system.md` | Tokens base V1, reglas UI mobile, referencia al repo `design-system/` para V3+ |
+| `coding-standards-web.md` | Stack y verify web V1 |
+| `solution-types.md` | Taxonomía mobile / game / web / hybrid |
 
 ## Relación con design-system
 

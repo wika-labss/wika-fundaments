@@ -60,6 +60,28 @@ REQUIRED_FILES = (
     "agents/wika-builder.md",
     "agents/wika-refiner.md",
     "agents/wika-packager.md",
+    "docs/vision-wika-studio.md",
+    "docs/studio-product-spec.md",
+    "docs/studio-readiness-checklist.md",
+    "docs/audit-event-schema.md",
+    "docs/agent-orchestration.md",
+    "docs/studio-api-contract.md",
+    "docs/iteration-environment-spec.md",
+    "docs/validate-project-spec.md",
+    "docs/repositorio-proyectos.md",
+    "docs/repositorio-wika-studio.md",
+    "docs/proyecto-referencia.md",
+    "workflows/process-engine.md",
+    "workflows/exploration-vs-construction.md",
+    "standards/solution-types.md",
+    "standards/coding-standards-web.md",
+    "schemas/README.md",
+    "schemas/01-problem.schema.json",
+    "schemas/02-features.schema.json",
+    "schemas/03-module-discovery.schema.json",
+    "schemas/04-application-design.schema.json",
+    "schemas/05-build-plan.schema.json",
+    "scripts/validate_project.py",
 )
 
 MD_LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
@@ -212,6 +234,8 @@ def validate_canonical_mentions(root: Path = REPO_ROOT) -> list[Finding]:
         "templates/README.md",
         ".cursorrules",
         "agents/README.md",
+        "docs/repositorio-wika-studio.md",
+        "ROADMAP.md",
     )
     errors: list[Finding] = []
     for rel in must_mention:

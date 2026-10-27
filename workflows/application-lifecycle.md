@@ -10,6 +10,10 @@ Todo proyecto desarrollado bajo WIKA debe seguir este proceso.
 
 La fuente de gates YAML es `.cursorrules`. Las plantillas oficiales viven en `templates/`. Las auditorías oficiales viven en `docs/`.
 
+**Motor computable (WIKA Studio):** estados y transiciones en [`process-engine.md`](process-engine.md).  
+**Modos:** exploración vs construcción en [`exploration-vs-construction.md`](exploration-vs-construction.md).  
+**Gate 3A:** puede incluir evidencia de preview (URL/capturas) en `04-application-design.md`.
+
 ---
 
 # Filosofía

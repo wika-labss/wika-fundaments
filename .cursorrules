@@ -53,3 +53,10 @@ Cursor DEBE actuar como Arquitecto de Software y Lead de QA. Queda prohibido gen
 3. Código generado en `iterations/`
 
 La documentación gana sobre el código.
+
+## 7. Modo Exploración vs Construcción
+
+- Leer `project_mode` en `01-problem.md` (`exploration` | `construction`).
+- **Exploración:** generación de código solo en `iterations/prototype/`. Prohibido escribir en `final/` y prohibido `ready_for_construction: true`.
+- **Construcción:** aplicar gates completos; código productivo en `iterations/vN/` solo con `ready_for_construction: true`.
+- Referencia: `workflows/exploration-vs-construction.md`.

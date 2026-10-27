@@ -4,7 +4,7 @@
 
 Este repositorio define el sistema operativo de desarrollo WIKA.
 
-Antes de contribuir, confirma que el cambio pertenece aquí y no a `proyectos`, `platform` u otro repositorio oficial.
+Antes de contribuir, confirma que el cambio pertenece aquí y no a `proyectos`, `wika-studio`, `platform` u otro repositorio oficial.
 
 ## Reglas
 
@@ -17,8 +17,10 @@ Antes de contribuir, confirma que el cambio pertenece aquí y no a `proyectos`, 
 
 ```bash
 python3 scripts/validate_docs.py
-python3 -m unittest tests.test_validate_docs
+python3 -m unittest discover -s tests -p 'test_*.py'
 ```
+
+Documentación WIKA Studio y esquemas en `docs/` y `schemas/` deben mantenerse alineados con [`docs/studio-readiness-checklist.md`](docs/studio-readiness-checklist.md).
 
 ## Convención de plantillas
 

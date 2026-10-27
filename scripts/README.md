@@ -19,3 +19,11 @@ Detecta:
 - Enlaces Markdown locales rotos
 - Bloques de código sin cerrar
 - Catálogo `agents/`: fichas listadas, `future_skill`, `hands_off_to` y ruta canónica
+
+## Validación de proyectos
+
+```bash
+python3 scripts/validate_project.py --project tests/fixtures/sample-project/gold
+```
+
+Ver [`docs/validate-project-spec.md`](../docs/validate-project-spec.md).

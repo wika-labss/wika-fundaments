@@ -20,15 +20,21 @@ El arquitecto garantiza la calidad.
 
 ---
 
-## 2. Los tres repositorios que debes conocer
+## 2. Repositorios que debes conocer
 
 | Repositorio | Para qué sirve | Qué contiene |
 |-------------|----------------|--------------|
-| **wika-fundaments** | Reglas y plantillas | Templates, auditorías, estándares, workflows |
-| **proyectos** | Aplicaciones | Tu app en `app/{nombre}/idea/`, `iterations/`, `final/` |
+| **wika-fundaments** | Reglas y plantillas | Templates, auditorías, estándares, workflows, specs Studio |
+| **proyectos** | Aplicaciones | Tu app en `proyectos/app/{nombre}/idea/`, `iterations/`, `final/` |
+| **wika-studio** | Consola web (futuro/incremental) | UI + BFF; charter en [`repositorio-wika-studio.md`](repositorio-wika-studio.md) |
 | **design-system** | Profesionalización visual (V3+) | Tokens, mockups, component kits — solo apps maduras |
 
-**Regla simple:** las reglas viven en `wika-fundaments`; tu producto vive en `proyectos`; el diseño avanzado llega después en `design-system`.
+**Regla simple:** las reglas viven en `wika-fundaments`; tu producto vive en `proyectos`; la consola gráfica vive en `wika-studio`; el diseño avanzado llega después en `design-system`.
+
+### Modos de proyecto
+
+- **Construcción** (`project_mode: construction`): lifecycle completo hacia `final/`.
+- **Exploración** (`project_mode: exploration`): prototipo en `iterations/prototype/` — ver [`exploration-vs-construction.md`](../workflows/exploration-vs-construction.md).
 
 ---
 

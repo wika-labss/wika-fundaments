@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wika.local/schemas/02-features.schema.json",
+  "title": "WIKA 02-features frontmatter",
+  "type": "object",
+  "required": ["id", "title", "status", "version", "owner", "audit_1_passed"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^FEAT-" },
+    "title": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["BORRADOR", "REVISION", "APROBADO"] },
+    "version": { "type": "string" },
+    "owner": { "type": "string" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "audit_1_passed": { "type": "boolean" }
+  },
+  "additionalProperties": true
+}
