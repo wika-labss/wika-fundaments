@@ -1,21 +1,26 @@
 {
   "name": "wika-studio",
   "private": true,
-  "version": "0.1.0",
-  "description": "WIKA Studio — consola web y BFF",
+  "version": "0.2.0",
+  "description": "WIKA Studio — consola web, workspace de iteración en vivo y BFF",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "scripts": {
     "prepare": "npm run build -w @wika-studio/wika-client",
-    "dev": "npm run dev:bff & npm run dev:web",
+    "dev": "concurrently -k -n bff,web -c blue,magenta \"npm run dev:bff\" \"npm run dev:web\"",
     "dev:web": "npm run dev -w @wika-studio/web",
     "dev:bff": "npm run dev -w @wika-studio/bff",
     "build": "npm run build -w @wika-studio/wika-client && npm run build -w @wika-studio/bff && npm run build -w @wika-studio/web",
-    "typecheck": "npm run typecheck -w @wika-studio/wika-client && npm run typecheck -w @wika-studio/bff && npm run typecheck -w @wika-studio/web"
+    "typecheck": "npm run typecheck -w @wika-studio/wika-client && npm run typecheck -w @wika-studio/bff && npm run typecheck -w @wika-studio/web",
+    "test": "npm run test -w @wika-studio/bff",
+    "hash-password": "node scripts/hash-password.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "~9.1.0"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.13"
   }
 }
