@@ -68,3 +68,9 @@ Negocio acepta el resultado.
 ```
 
 Prohibido: `audit_*_passed: true`, `visual_approval_passed: true`, `ready_for_construction: true`, o veredicto **APROBADO** escritos por un agente IA.
+
+---
+
+## Orquestación (WIKA Studio)
+
+Jobs invocables desde la consola web: [`docs/agent-orchestration.md`](../docs/agent-orchestration.md).

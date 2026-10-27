@@ -35,6 +35,25 @@ ready_for_construction: false
 
 ---
 
+## 2b. Prototipo (modo `exploration`)
+
+Si `project_mode: exploration` en `01-problem.md`:
+
+- Código solo bajo `iterations/prototype/`.
+- Scripts según [`iteration-environment-spec.md`](../docs/iteration-environment-spec.md).
+- **Prohibido** `ready_for_construction: true` y `final/` hasta promoción a construcción.
+
+---
+
+## 2c. Canales de entrega
+
+| Canal | Verify / artefacto | Estándar |
+| :--- | :--- | :--- |
+| `android` | APK vía `wika-build-artifact.sh` | [`coding-standards.md`](../standards/coding-standards.md) |
+| `web` | `dist/` static | [`coding-standards-web.md`](../standards/coding-standards-web.md) |
+
+---
+
 ## 3. Cronograma de Ejecución (Build Schedule)
 
 | Paso | Módulo | ID Feature | Archivos a crear / modificar | Tokens / estándares | Estado |

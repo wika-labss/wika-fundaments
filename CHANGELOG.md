@@ -6,6 +6,15 @@ Registro de cambios relevantes de `wika-fundaments`.
 
 ### Added
 
+- Especificación **WIKA Studio**: visión, PRD, API lógica, orquestación de agentes, entorno de iteración, eventos de auditoría.
+- Workflows `process-engine.md` y `exploration-vs-construction.md`.
+- Charters `repositorio-proyectos.md`, `repositorio-wika-studio.md`, `proyecto-referencia.md`.
+- `schemas/01–05` JSON Schema, `standards/solution-types.md`, `standards/coding-standards-web.md`.
+- `scripts/validate_project.py`, spec, fixtures y tests.
+- Gate organizacional `ready_for_studio_implementation` en `ROADMAP.md` y [`docs/studio-readiness-checklist.md`](docs/studio-readiness-checklist.md).
+- Plantillas 01/04/05: `solution_type`, canales, modos, web y prototype.
+- Sección modos en `.cursorrules`; repo `wika-studio` en `docs/repositories.md`.
+
 - Catálogo nominativo en `agents/`: siete agentes IA (`wika-bootstrap` … `wika-packager`) y roles humanos (Negocio, Arquitecto). Skills Cursor quedan para un siguiente paso (`future_skill`).
 - `scripts/validate_docs.py` comprueba que el índice de `agents/` lista fichas con `future_skill` y `hands_off_to`.
 

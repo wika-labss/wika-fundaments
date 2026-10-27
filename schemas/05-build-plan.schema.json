@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wika.local/schemas/05-build-plan.schema.json",
+  "title": "WIKA 05-build-plan frontmatter",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "status",
+    "version",
+    "owner",
+    "audit_1_passed",
+    "audit_2_passed",
+    "visual_approval_passed",
+    "audit_3_passed",
+    "ready_for_construction"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^BUILD-" },
+    "title": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["BORRADOR", "REVISION", "APROBADO"] },
+    "version": { "type": "string" },
+    "owner": { "type": "string" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "audit_1_passed": { "type": "boolean" },
+    "audit_2_passed": { "type": "boolean" },
+    "visual_approval_passed": { "type": "boolean" },
+    "audit_3_passed": { "type": "boolean" },
+    "ready_for_construction": { "type": "boolean" }
+  },
+  "additionalProperties": true
+}

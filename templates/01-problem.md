@@ -7,6 +7,10 @@ owner: "[Nombre del Responsable / Equipo]"
 created_at: "YYYY-MM-DD"
 updated_at: "YYYY-MM-DD"
 audit_1_passed: false
+solution_type: "mobile_app"
+delivery_channels:
+  - android
+project_mode: "construction"
 ---
 
 # [01] Definición del Problema, Alcance y Metas

@@ -66,6 +66,26 @@ Estados a documentar: loading, success, error, empty (si aplica).
 
 ---
 
+## 6b. Navegación web (si `delivery_channels` incluye `web`)
+
+> Ver [`standards/coding-standards-web.md`](../standards/coding-standards-web.md) y [`solution-types.md`](../standards/solution-types.md).
+
+| Ruta | Pantalla | Módulos | Feature |
+| :--- | :--- | :--- | :--- |
+| `/` | `[Landing]` | `MOD-02` | `FEAT-01` |
+
+---
+
+## 6c. Evidencia Gate 3A (preview)
+
+| Campo | Valor |
+| :--- | :--- |
+| `preview_evidence_url` (frontmatter opcional) | `[URL dev/preview o N/A]` |
+| Capturas | `[paths bajo assets/previews/]` |
+| Modo exploration | Preview en `iterations/prototype/` — ver [`exploration-vs-construction.md`](../workflows/exploration-vs-construction.md) |
+
+---
+
 ## 7. Consumo de Tokens y Theme
 
 > **Regla:** Estilos derivados de `standards/design-system.md` o `theme.ts` documentado aquí. Profesionalización V3+ vía repo `design-system/`.

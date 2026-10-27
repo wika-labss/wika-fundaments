@@ -125,9 +125,9 @@ wika-fundaments/
 │   ├── 04-application-design.md
 │   └── 05-build-plan.md
 ├── workflows/        # Procesos oficiales de trabajo
-│   └── application-lifecycle.md
-├── scripts/          # Validación de consistencia documental
-└── tests/            # Tests del validador de docs
+├── schemas/          # JSON Schema frontmatter idea/01–05
+├── scripts/          # validate_docs, validate_project
+└── tests/            # Tests de validadores + fixtures
 ```
 
 ## Responsabilidad de este repositorio
@@ -165,3 +165,12 @@ Si es tu primera vez en WIKA, lee el instructivo completo:
 → [`docs/instructivo-nuevos-usuarios.md`](docs/instructivo-nuevos-usuarios.md)
 
 Resume cómo **comienza** el flujo (idea → documentación → gates) y cómo **finaliza** (release → `final/` → publicación).
+
+---
+
+# WIKA Studio (especificación)
+
+Contrato para la plataforma web de creación de soluciones (apps, juegos, web):
+
+→ [`docs/vision-wika-studio.md`](docs/vision-wika-studio.md)  
+→ [`docs/studio-readiness-checklist.md`](docs/studio-readiness-checklist.md) (gate `ready_for_studio_implementation` en [`ROADMAP.md`](ROADMAP.md))

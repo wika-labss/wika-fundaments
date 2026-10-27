@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wika.local/schemas/01-problem.schema.json",
+  "title": "WIKA 01-problem frontmatter",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "status",
+    "version",
+    "owner",
+    "audit_1_passed",
+    "solution_type",
+    "delivery_channels",
+    "project_mode"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^PROB-" },
+    "title": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["BORRADOR", "REVISION", "APROBADO"] },
+    "version": { "type": "string" },
+    "owner": { "type": "string" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "audit_1_passed": { "type": "boolean" },
+    "solution_type": {
+      "enum": ["mobile_app", "game", "web_app", "hybrid"]
+    },
+    "delivery_channels": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "enum": ["android", "web", "ios"] },
+      "uniqueItems": true
+    },
+    "project_mode": { "enum": ["exploration", "construction"] }
+  },
+  "additionalProperties": true
+}

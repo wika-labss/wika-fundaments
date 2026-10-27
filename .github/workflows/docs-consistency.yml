@@ -16,4 +16,6 @@ jobs:
       - name: Validate documentation consistency
         run: python3 scripts/validate_docs.py
       - name: Unit tests
-        run: python3 -m unittest tests.test_validate_docs
+        run: python3 -m unittest discover -s tests -p 'test_*.py'
+      - name: Validate project fixture (gold)
+        run: python3 scripts/validate_project.py --project tests/fixtures/sample-project/gold

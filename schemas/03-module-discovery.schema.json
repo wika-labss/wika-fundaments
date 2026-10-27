@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wika.local/schemas/03-module-discovery.schema.json",
+  "title": "WIKA 03-module-discovery frontmatter",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "status",
+    "version",
+    "owner",
+    "audit_1_passed",
+    "audit_2_passed"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^MOD-" },
+    "title": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["BORRADOR", "REVISION", "APROBADO"] },
+    "version": { "type": "string" },
+    "owner": { "type": "string" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "audit_1_passed": { "type": "boolean" },
+    "audit_2_passed": { "type": "boolean" }
+  },
+  "additionalProperties": true
+}
