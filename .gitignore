@@ -5,3 +5,6 @@ __pycache__/
 .mypy_cache/
 .venv/
 venv/
+
+# Repo wika-studio (git independiente en /workspace/wika-studio)
+/wika-studio/

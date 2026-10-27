@@ -96,6 +96,30 @@ wika-studio/
 
 ---
 
+# Creación del repositorio remoto
+
+El scaffold v0.1 vive en el entorno de desarrollo en `wika-studio/` (git independiente, ignorado en este repo).
+
+Desde una máquina con `gh` autenticado en la org **wika-labss**:
+
+```bash
+bash scripts/bootstrap-wika-studio-github.sh
+```
+
+URL esperada: **https://github.com/wika-labss/wika-studio**
+
+Alternativa (import bundle sin carpeta local):
+
+```bash
+gh repo create wika-labss/wika-studio --public
+git clone https://github.com/wika-labss/wika-studio.git
+cd wika-studio
+git pull /path/to/wika-studio-main.bundle main
+git push origin main
+```
+
+---
+
 # Documentos relacionados
 
 - [`vision-wika-studio.md`](vision-wika-studio.md)
