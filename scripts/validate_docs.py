@@ -133,9 +133,14 @@ def _is_allowlisted(path: Path) -> bool:
 
 
 def iter_doc_files(root: Path = REPO_ROOT) -> list[Path]:
+    skip_dirs = {".git", "node_modules", "wika-studio"}
     files: list[Path] = []
     for pattern in ("*.md", ".cursorrules"):
-        files.extend(p for p in root.rglob(pattern) if ".git" not in p.parts)
+        files.extend(
+            p
+            for p in root.rglob(pattern)
+            if not skip_dirs.intersection(p.parts)
+        )
     return sorted(files)
 
 

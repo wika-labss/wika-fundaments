@@ -27,3 +27,11 @@ python3 scripts/validate_project.py --project tests/fixtures/sample-project/gold
 ```
 
 Ver [`docs/validate-project-spec.md`](../docs/validate-project-spec.md).
+
+## Publicar repo wika-studio (GitHub)
+
+```bash
+bash scripts/bootstrap-wika-studio-github.sh
+```
+
+Ver [`docs/repositorio-wika-studio.md`](../docs/repositorio-wika-studio.md).
