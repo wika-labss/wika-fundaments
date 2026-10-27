@@ -49,7 +49,7 @@ Si `project_mode: exploration` en `01-problem.md`:
 
 | Canal | Verify / artefacto | Estándar |
 | :--- | :--- | :--- |
-| `android` | APK vía `wika-build-artifact.sh` | [`coding-standards.md`](../standards/coding-standards.md) |
+| `android` | APK vía `wika-build-artifact.mjs` | [`coding-standards.md`](../standards/coding-standards.md) |
 | `web` | `dist/` static | [`coding-standards-web.md`](../standards/coding-standards-web.md) |
 
 ---

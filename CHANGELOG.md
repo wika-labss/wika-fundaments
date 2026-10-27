@@ -6,6 +6,12 @@ Registro de cambios relevantes de `wika-fundaments`.
 
 ### Added
 
+- Contratos UI-B en `docs/studio-api-contract.md` (v1.1.0): autenticación de dueños, catálogo de modelos, sesiones de chat con agentes (SSE), previews en vivo, assets y checkpoints.
+- `docs/agent-orchestration.md` (v1.1.0): runtime de IA (Cursor Agent SDK local / cloud / mock), composición del prompt (PromptBuilder), guarda de gates antes y después del run (GateGuard) y `allowed_paths` por agente y modo.
+- `docs/iteration-environment-spec.md` (v1.1.0): scripts de iteración en Node ESM (`wika-dev.mjs`, `wika-verify.mjs`, `wika-build-artifact.mjs`) multiplataforma; contrato de `PREVIEW_URL` y marco de dispositivo.
+- `workflows/exploration-vs-construction.md` (v1.1.0): reglas del chat en vivo por modo.
+- `bootstrap/wika-studio/`: UI-B (workspace con chat de agentes, preview en vivo con simulador de dispositivo, assets, checkpoints) y BFF con auth de dueños, `@cursor/sdk`, PreviewManager, GateGuard y plantillas `expo-prototype` / `web-prototype`.
+
 - Especificación **WIKA Studio**: visión, PRD, API lógica, orquestación de agentes, entorno de iteración, eventos de auditoría.
 - Workflows `process-engine.md` y `exploration-vs-construction.md`.
 - Charters `repositorio-proyectos.md`, `repositorio-wika-studio.md`, `proyecto-referencia.md`.

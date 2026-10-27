@@ -49,11 +49,12 @@ Contenido de reglas WIKA (PRs van a fundaments).
 
 | Capa | Sugerencia | Notas |
 |------|------------|-------|
-| Frontend | React + TypeScript + Vite | UI-A consola |
-| BFF | Node 20 + TypeScript | Implementa contrato REST |
-| Auth | RBAC simple (v1) | Roles: negocio, arquitecto, operador |
-| Git | libgit2 / isomorphic-git / CLI git | Source of truth en `proyectos/app/{proyecto}/` |
-| Agentes | Cursor API / subprocess skills | Según infra disponible |
+| Frontend | React + TypeScript + Vite | UI-A consola + UI-B workspace (chat, preview, marco de dispositivo) |
+| BFF | Node 22.13+ + TypeScript | Implementa contrato REST; exige Node 22 por `@cursor/sdk` |
+| Auth | Allowlist de dueños (v1) | `STUDIO_OWNERS`; roles negocio/arquitecto en v2 |
+| Git | CLI git | Source of truth y checkpoints en `proyectos/app/{proyecto}/` |
+| Agentes | Cursor Agent SDK (`@cursor/sdk`) local; Cloud Agents API para `build_v1` | Ver [`agent-orchestration.md`](agent-orchestration.md) sección Runtime |
+| Plantillas de iteración | `templates/expo-prototype`, `templates/web-prototype` | Copiadas por bootstrap a `iterations/prototype/` |
 
 Ajustable en ADR dentro de `wika-studio/docs/` al iniciar código.
 

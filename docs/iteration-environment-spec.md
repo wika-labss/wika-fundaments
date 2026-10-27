@@ -2,7 +2,7 @@
 id: "WIKA-ITER-ENV"
 title: "Especificación de entorno por iteración"
 status: "ACTIVO"
-version: "1.0.0"
+version: "1.1.0"
 owner: "Arquitectura WIKA"
 created_at: "2026-10-27"
 updated_at: "2026-10-27"
@@ -40,10 +40,12 @@ Provisionamiento cloud de runners.
 iterations/{name}/
 ├── package.json
 ├── scripts/
-│   ├── wika-dev.sh
-│   ├── wika-verify.sh
-│   └── wika-build-artifact.sh
+│   ├── wika-dev.mjs
+│   ├── wika-verify.mjs
+│   └── wika-build-artifact.mjs
 ├── app/                    # expo-router (mobile/game)
+├── assets/                 # imágenes aportadas por el dueño o generadas
+├── .wika/logs/             # dev.log (ignorado en git)
 └── review.md
 ```
 
@@ -52,10 +54,13 @@ Web app (canal web):
 ```text
 iterations/{name}/
 ├── package.json
-├── scripts/wika-dev.sh
-├── scripts/wika-verify.sh
-└── scripts/wika-build-artifact.sh
+├── scripts/wika-dev.mjs
+├── scripts/wika-verify.mjs
+├── scripts/wika-build-artifact.mjs
+└── assets/
 ```
+
+Los scripts son **Node ESM** (`.mjs`) para que corran igual en Windows, macOS y Linux sin depender de `bash`. Las plantillas oficiales (`expo-prototype`, `web-prototype`) viven en el repo `wika-studio` bajo `templates/` y las copia `wika-bootstrap` al crear `iterations/prototype/`.
 
 ---
 
@@ -63,18 +68,26 @@ iterations/{name}/
 
 | Script | Propósito | Éxito |
 |--------|-----------|-------|
-| `wika-dev.sh` | Servidor desarrollo / preview | Exit 0 + imprime `PREVIEW_URL=...` |
-| `wika-verify.sh` | typecheck + pruebas WIKA | Exit 0 |
-| `wika-build-artifact.sh` | APK o static web | Exit 0 + `ARTIFACT_PATH=...` |
+| `wika-dev.mjs` | Servidor desarrollo / preview con hot reload | Mantiene el proceso vivo e imprime `PREVIEW_URL=...` en stdout cuando el servidor está listo |
+| `wika-verify.mjs` | typecheck + pruebas WIKA | Exit 0 |
+| `wika-build-artifact.mjs` | APK o static web | Exit 0 + `ARTIFACT_PATH=...` |
 
-Aliases npm recomendados en `package.json`:
+Contrato de `wika-dev.mjs`:
+
+- Lee `PORT` del entorno (lo asigna Studio); si falta, usa el puerto por defecto del canal.
+- Lanza el dev server de la plantilla (`expo start --web --port $PORT` o `vite --port $PORT --strictPort`).
+- Imprime exactamente una línea `PREVIEW_URL=http://...` cuando el servidor responde.
+- Reenvía stdout/stderr del dev server (Studio los guarda en `.wika/logs/dev.log`).
+- Termina con el proceso hijo cuando recibe `SIGTERM`/`SIGINT`.
+
+Aliases npm en `package.json`:
 
 ```json
 {
   "scripts": {
-    "dev": "bash scripts/wika-dev.sh",
-    "verify": "bash scripts/wika-verify.sh",
-    "build:artifact": "bash scripts/wika-build-artifact.sh"
+    "dev": "node scripts/wika-dev.mjs",
+    "verify": "node scripts/wika-verify.mjs",
+    "build:artifact": "node scripts/wika-build-artifact.mjs"
   }
 }
 ```
@@ -85,11 +98,11 @@ Aliases npm recomendados en `package.json`:
 
 | Canal | PREVIEW_URL típico | Notas |
 |-------|-------------------|-------|
-| `android` / Expo | `exp://` o tunnel URL | Expo dev client |
-| `web` (Expo) | `http://localhost:8081` | Expo web |
-| `web_app` (Vite/Next) | `http://localhost:5173` o `3000` | Ver coding-standards-web |
+| `android` / Expo | `exp://` o tunnel URL | Expo Go / dev client; Studio puede mostrar QR |
+| `web` (Expo) | `http://localhost:{PORT}` | Expo web dentro del marco de dispositivo |
+| `web_app` (Vite/Next) | `http://localhost:{PORT}` | Ver coding-standards-web |
 
-Studio iframe usa `PREVIEW_URL` reportado al terminar `wika-dev.sh`.
+Studio carga `PREVIEW_URL` en un iframe dentro de un **marco de dispositivo** (teléfono, tablet o escritorio) con rotación y zoom. El marco es visual: el ancho/alto del iframe simula el viewport; no sustituye pruebas en dispositivo real.
 
 ---
 
@@ -113,7 +126,7 @@ Studio iframe usa `PREVIEW_URL` reportado al terminar `wika-dev.sh`.
 
 # Logs
 
-Convención: `iterations/{name}/.wika/logs/dev.log` — Studio tail vía API.
+Convención: `iterations/{name}/.wika/logs/dev.log` — Studio tail vía API. `.wika/logs/` y `node_modules/` deben estar en el `.gitignore` de la iteración.
 
 ---
 

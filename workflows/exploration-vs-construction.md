@@ -2,7 +2,7 @@
 id: "WIKA-MODES-EXP-CON"
 title: "Modos Exploración vs Construcción"
 status: "ACTIVO"
-version: "1.0.0"
+version: "1.1.0"
 owner: "Arquitectura WIKA"
 created_at: "2026-10-27"
 updated_at: "2026-10-27"
@@ -97,6 +97,19 @@ Transición E05 → S01 construction: Arquitecto confirma y resetea path a flujo
 - Badge visible: **Exploración** vs **Construcción**.
 - Botón “Promover a construcción” dispara checklist de gates faltantes.
 - Preview (UI-B) prioriza `iterations/prototype/` en modo exploration.
+
+## Chat en vivo con agentes (UI-B)
+
+| Modo | Iteración donde edita la IA | Condición |
+|------|-----------------------------|-----------|
+| exploration | `iterations/prototype/` | Siempre disponible; sin gates previos |
+| construction | `iterations/vN/` | Solo si `ready_for_construction: true`; de lo contrario Studio ofrece abrir la sesión sobre `prototype/` o completar gates |
+
+Reglas fijas del chat en vivo:
+
+- La guarda de gates ([`agent-orchestration.md`](../docs/agent-orchestration.md)) bloquea antes de invocar la IA y revierte después cualquier archivo fuera de la ruta permitida.
+- Un prototipo nunca se promueve a `final/` ni se publica; promover exige el flujo de gates completo.
+- Cada run deja un checkpoint git para poder volver atrás sin perder trazabilidad.
 
 ---
 
