@@ -33,6 +33,28 @@ Variables principales (ver `.env.example`):
 | `WIKA_FUNDAMENTS_ROOT` | Clon de `wika-fundaments` |
 | `HOST` | Default `127.0.0.1` |
 
+## Si ya tienes el repo `wika-studio` en 0.1.0 (Windows)
+
+Esa carpeta **es** Studio; no tiene `bootstrap/`. El código UI-B está en `wika-fundaments` hasta que se publique en `wika-labss/wika-studio`.
+
+```powershell
+cd C:\Users\jleiva
+git clone https://github.com/wika-labss/wika-fundaments.git
+cd wika-fundaments
+git fetch origin cursor/wika-studio-bootstrap-ba99
+git checkout cursor/wika-studio-bootstrap-ba99
+.\scripts\sync-wika-studio.ps1 -Destination C:\Users\jleiva\wika-studio-app
+
+cd C:\Users\jleiva\wika-studio-app
+npm install
+Copy-Item .env.example .env
+node scripts\hash-password.mjs
+# pega STUDIO_PASSWORD_HASH y pon STUDIO_OWNERS=tu@email en .env
+npm run dev
+```
+
+`package.json` debe decir `"version": "0.2.0"` y el script `dev` debe usar `concurrently`. Si sigue en `0.1.0`, la copia no se aplicó.
+
 ## Inicio rápido
 
 ```bash
