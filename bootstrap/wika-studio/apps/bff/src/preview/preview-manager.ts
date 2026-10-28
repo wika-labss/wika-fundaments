@@ -1,14 +1,13 @@
-import { type ChildProcess, spawn } from "node:child_process";
+import { type ChildProcess, type SpawnOptions, spawn } from "node:child_process";
 import fs from "node:fs";
-import net from "node:net";
+import http from "node:http";
+import { createServer as netCreateServer } from "node:net";
 import path from "node:path";
 import type { PreviewState, PreviewStatus } from "@wika-studio/wika-client";
 
 export interface PreviewManagerOptions {
   portRange: [number, number];
-  /** Comando usado para instalar dependencias y correr scripts. */
-  npmCommand?: string;
-  /** Tiempo máximo de espera por `PREVIEW_URL=` antes de marcar error. */
+  /** Tiempo máximo de espera por HTTP / `PREVIEW_URL=` antes de marcar error. */
   readyTimeoutMs?: number;
   /** Para pruebas: comando alternativo que arranca el dev server. */
   devCommand?: (iterationDir: string, port: number) => { command: string; args: string[] };
@@ -33,19 +32,47 @@ interface PreviewEntry {
 
 const MAX_RECENT = 400;
 
+/** npm embebido en Node (`node npm-cli.js`) — evita `npm.cmd` + `shell:true` en Windows (DEP0190). */
+export function resolveNpmInvocation(): { command: string; prefix: string[] } {
+  const bundled = path.join(path.dirname(process.execPath), "node_modules", "npm", "bin", "npm-cli.js");
+  if (fs.existsSync(bundled)) return { command: process.execPath, prefix: [bundled] };
+  return { command: process.platform === "win32" ? "npm.cmd" : "npm", prefix: [] };
+}
+
+export function resolvePackageCli(projectDir: string, rels: string[]): string | null {
+  for (const rel of rels) {
+    const abs = path.join(projectDir, "node_modules", ...rel.split("/"));
+    if (fs.existsSync(abs)) return abs;
+  }
+  return null;
+}
+
+/** Expo/Vite locales; no usa npx ni cmd.exe. */
+export function defaultDevCommand(projectDir: string, port: number): { command: string; args: string[] } {
+  const expo = resolvePackageCli(projectDir, ["expo/bin/cli", "expo/bin/cli.js"]);
+  if (expo) {
+    return { command: process.execPath, args: [expo, "start", "--web", "--port", String(port)] };
+  }
+  const vite = resolvePackageCli(projectDir, ["vite/bin/vite.js"]);
+  if (vite) {
+    return { command: process.execPath, args: [vite, "--host", "127.0.0.1", "--port", String(port), "--strictPort"] };
+  }
+  return { command: process.execPath, args: [path.join(projectDir, "scripts", "wika-dev.mjs")] };
+}
+
+function spawnProcess(command: string, args: string[], opts: SpawnOptions): ChildProcess {
+  return spawn(command, args, { ...opts, shell: false, windowsHide: true });
+}
+
 /**
  * Levanta y supervisa el dev server de una iteración según
- * docs/iteration-environment-spec.md: `node scripts/wika-dev.mjs` con PORT
- * asignado; captura stdout/stderr en `.wika/logs/dev.log` y detecta la línea
- * `PREVIEW_URL=`.
+ * docs/iteration-environment-spec.md. Marca ready por `PREVIEW_URL=` o por HTTP.
  */
 export class PreviewManager {
   private readonly entries = new Map<string, PreviewEntry>();
-  private readonly npm: string;
   private readonly readyTimeoutMs: number;
 
   constructor(private readonly options: PreviewManagerOptions) {
-    this.npm = options.npmCommand ?? (process.platform === "win32" ? "npm.cmd" : "npm");
     this.readyTimeoutMs = options.readyTimeoutMs ?? 240_000;
   }
 
@@ -112,19 +139,20 @@ export class PreviewManager {
   private async run(entry: PreviewEntry): Promise<void> {
     if (!fs.existsSync(path.join(entry.dir, "node_modules"))) {
       this.appendLine(entry, "[studio] instalando dependencias (npm install)…");
-      await this.exec(entry, this.npm, ["install", "--no-audit", "--no-fund"]);
+      const npm = resolveNpmInvocation();
+      await this.exec(entry, npm.command, [...npm.prefix, "install", "--no-audit", "--no-fund"]);
     }
     const port = await this.allocatePort();
     entry.port = port;
     entry.status = "starting";
     entry.startedAt = new Date().toISOString();
     this.appendLine(entry, `[studio] iniciando dev server en puerto ${port}`);
+    this.appendLine(entry, "[studio] Expo/Vite tarda 1–3 min la primera vez; esperando HTTP…");
 
-    const cmd = this.options.devCommand
-      ? this.options.devCommand(entry.dir, port)
-      : { command: process.execPath, args: [path.join("scripts", "wika-dev.mjs")] };
+    const cmd = this.options.devCommand ? this.options.devCommand(entry.dir, port) : defaultDevCommand(entry.dir, port);
+    this.appendLine(entry, `[studio] ${path.basename(cmd.command)} ${cmd.args.map((a) => path.basename(a)).join(" ")}`);
 
-    const child = spawn(cmd.command, cmd.args, {
+    const child = spawnProcess(cmd.command, cmd.args, {
       cwd: entry.dir,
       env: {
         ...process.env,
@@ -135,7 +163,6 @@ export class PreviewManager {
         FORCE_COLOR: "0",
       },
       stdio: ["ignore", "pipe", "pipe"],
-      shell: process.platform === "win32" && cmd.command.endsWith(".cmd"),
     });
     entry.child = child;
 
@@ -144,12 +171,7 @@ export class PreviewManager {
         if (!line) continue;
         this.appendLine(entry, line);
         const m = line.match(/PREVIEW_URL=(\S+)/);
-        if (m && entry.status === "starting") {
-          entry.previewUrl = m[1];
-          entry.status = "ready";
-          if (entry.readyTimer) clearTimeout(entry.readyTimer);
-          this.appendLine(entry, `[studio] preview listo: ${entry.previewUrl}`);
-        }
+        if (m) this.markReady(entry, m[1]);
       }
     };
     child.stdout?.on("data", onData);
@@ -163,21 +185,52 @@ export class PreviewManager {
     });
     child.on("error", (err) => this.fail(entry, err.message));
 
+    this.probeUntilReady(entry, port);
     entry.readyTimer = setTimeout(() => {
       if (entry.status === "starting") {
-        this.fail(entry, "el dev server no reportó PREVIEW_URL a tiempo");
+        this.fail(entry, "el dev server no respondió HTTP a tiempo");
         void this.kill(entry);
       }
     }, this.readyTimeoutMs);
   }
 
+  private probeUntilReady(entry: PreviewEntry, port: number): void {
+    const tick = (): void => {
+      if (entry.status !== "starting") return;
+      const req = http.get({ host: "127.0.0.1", port, path: "/", timeout: 2000 }, (res) => {
+        res.resume();
+        if (entry.status !== "starting") return;
+        if (res.statusCode && res.statusCode < 500) {
+          this.markReady(entry, `http://127.0.0.1:${port}/`);
+        } else {
+          setTimeout(tick, 800);
+        }
+      });
+      req.on("error", () => {
+        if (entry.status === "starting") setTimeout(tick, 800);
+      });
+      req.on("timeout", () => {
+        req.destroy();
+        if (entry.status === "starting") setTimeout(tick, 800);
+      });
+    };
+    setTimeout(tick, 1200);
+  }
+
+  private markReady(entry: PreviewEntry, url: string): void {
+    if (entry.status !== "starting") return;
+    entry.previewUrl = url;
+    entry.status = "ready";
+    if (entry.readyTimer) clearTimeout(entry.readyTimer);
+    this.appendLine(entry, `[studio] preview listo: ${url}`);
+  }
+
   private exec(entry: PreviewEntry, command: string, args: string[]): Promise<void> {
     return new Promise((resolve, reject) => {
-      const child = spawn(command, args, {
+      const child = spawnProcess(command, args, {
         cwd: entry.dir,
         env: { ...process.env, CI: "1", FORCE_COLOR: "0" },
         stdio: ["ignore", "pipe", "pipe"],
-        shell: process.platform === "win32",
       });
       entry.child = child;
       const onData = (buf: Buffer) => {
@@ -189,12 +242,13 @@ export class PreviewManager {
       child.on("exit", (code) => {
         entry.child = undefined;
         if (code === 0) resolve();
-        else reject(new Error(`${command} ${args.join(" ")} falló con código ${code}`));
+        else reject(new Error(`${path.basename(command)} ${args.map((a) => path.basename(a)).join(" ")} falló con código ${code}`));
       });
     });
   }
 
   private fail(entry: PreviewEntry, message: string): void {
+    if (entry.status === "stopped") return;
     entry.status = "error";
     entry.lastError = message;
     entry.previewUrl = undefined;
@@ -219,7 +273,7 @@ export class PreviewManager {
         resolve();
       });
       if (process.platform === "win32" && child.pid) {
-        spawn("taskkill", ["/pid", String(child.pid), "/T", "/F"], { stdio: "ignore" });
+        spawnProcess("taskkill", ["/pid", String(child.pid), "/T", "/F"], { stdio: "ignore" });
       } else {
         child.kill("SIGTERM");
       }
@@ -272,7 +326,7 @@ export class PreviewManager {
 
 export function isPortFree(port: number, host = "127.0.0.1"): Promise<boolean> {
   return new Promise((resolve) => {
-    const server = net.createServer();
+    const server = netCreateServer();
     server.unref();
     server.once("error", () => resolve(false));
     server.listen({ port, host }, () => {

@@ -1,19 +1,37 @@
 #!/usr/bin/env node
 // Contrato: docs/iteration-environment-spec.md (wika-fundaments).
 // Lanza Vite en PORT y emite exactamente una línea PREVIEW_URL= cuando responde.
-import { spawn } from "node:child_process";
+import fs from "node:fs";
 import http from "node:http";
+import path from "node:path";
+import { spawn } from "node:child_process";
 
 const port = Number(process.env.PORT ?? 5173);
 const host = "127.0.0.1";
-const url = `http://localhost:${port}/`;
+const url = `http://${host}:${port}/`;
 
-const bin = process.platform === "win32" ? "npx.cmd" : "npx";
-const child = spawn(bin, ["vite", "--host", host, "--port", String(port), "--strictPort", "--clearScreen", "false"], {
-  stdio: "inherit",
-  shell: process.platform === "win32",
+function findCli(rels) {
+  for (const rel of rels) {
+    const p = path.join(process.cwd(), "node_modules", ...rel.split("/"));
+    if (fs.existsSync(p)) return p;
+  }
+  return null;
+}
+
+const cli = findCli(["vite/bin/vite.js"]);
+if (!cli) {
+  console.error("No se encontró vite en node_modules. Corre npm install en esta carpeta.");
+  process.exit(1);
+}
+
+console.log(`[wika-dev] node vite --host ${host} --port ${port}`);
+const child = spawn(process.execPath, [cli, "--host", host, "--port", String(port), "--strictPort"], {
+  stdio: ["ignore", "pipe", "pipe"],
+  windowsHide: true,
   env: { ...process.env, BROWSER: "none" },
 });
+child.stdout?.on("data", (buf) => process.stdout.write(buf));
+child.stderr?.on("data", (buf) => process.stderr.write(buf));
 
 let announced = false;
 function probe() {

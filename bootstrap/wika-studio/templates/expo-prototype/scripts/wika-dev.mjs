@@ -1,23 +1,40 @@
 #!/usr/bin/env node
 // Contrato: docs/iteration-environment-spec.md (wika-fundaments).
 // Lanza Expo web en PORT y emite exactamente una línea PREVIEW_URL= cuando responde.
-// Con WIKA_EXPO_TUNNEL=1 agrega --tunnel para probar en un celular real (Expo Go).
-import { spawn } from "node:child_process";
+import fs from "node:fs";
 import http from "node:http";
+import path from "node:path";
+import { spawn } from "node:child_process";
 
 const port = Number(process.env.PORT ?? 8081);
 const host = "127.0.0.1";
-const url = `http://localhost:${port}/`;
+const url = `http://${host}:${port}/`;
 
-const args = ["expo", "start", "--web", "--port", String(port)];
+function findCli(rels) {
+  for (const rel of rels) {
+    const p = path.join(process.cwd(), "node_modules", ...rel.split("/"));
+    if (fs.existsSync(p)) return p;
+  }
+  return null;
+}
+
+const cli = findCli(["expo/bin/cli", "expo/bin/cli.js"]);
+if (!cli) {
+  console.error("No se encontró expo en node_modules. Corre npm install en esta carpeta.");
+  process.exit(1);
+}
+
+const args = [cli, "start", "--web", "--port", String(port)];
 if (process.env.WIKA_EXPO_TUNNEL === "1") args.push("--tunnel");
 
-const bin = process.platform === "win32" ? "npx.cmd" : "npx";
-const child = spawn(bin, args, {
-  stdio: ["ignore", "inherit", "inherit"],
-  shell: process.platform === "win32",
+console.log(`[wika-dev] node expo start --web --port ${port}`);
+const child = spawn(process.execPath, args, {
+  stdio: ["ignore", "pipe", "pipe"],
+  windowsHide: true,
   env: { ...process.env, BROWSER: "none", CI: "1", EXPO_NO_TELEMETRY: "1" },
 });
+child.stdout?.on("data", (buf) => process.stdout.write(buf));
+child.stderr?.on("data", (buf) => process.stderr.write(buf));
 
 let announced = false;
 function probe() {

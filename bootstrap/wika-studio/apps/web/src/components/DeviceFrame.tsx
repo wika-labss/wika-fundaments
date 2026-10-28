@@ -96,7 +96,7 @@ export function DeviceFrame({
               {preview?.status === "error" ? (
                 <p className="error">{preview.last_error ?? "Error al levantar el preview"}</p>
               ) : preview?.status === "installing" || preview?.status === "starting" ? (
-                <p>Levantando demo…</p>
+                <p>Levantando demo… Expo web tarda 1–3 min la primera vez. Espera el estado ready.</p>
               ) : (
                 <p>El preview está detenido. Pulsa «Levantar preview».</p>
               )}
