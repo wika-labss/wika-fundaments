@@ -34,26 +34,30 @@ Variables principales (ver `.env.example`):
 
 ## Si ya tienes el repo `wika-studio` en 0.1.0 (Windows)
 
-Esa carpeta **es** Studio; no tiene `bootstrap/`. El código UI-B está en `wika-fundaments` hasta que se publique en `wika-labss/wika-studio`.
+`C:\Users\jleiva\wika-studio-app` es el Studio **viejo** (0.1.0). Ahí **no existen** `sync-wika-studio.ps1` ni `write-owner-env.mjs`. Esos archivos viven en `wika-fundaments`.
+
+Corre el bloque **desde `wika-fundaments`**, no desde `wika-studio-app`:
 
 ```powershell
 cd C:\Users\jleiva
-git clone https://github.com/wika-labss/wika-fundaments.git
-cd wika-fundaments
+if (-not (Test-Path .\wika-fundaments)) {
+  git clone https://github.com/wika-labss/wika-fundaments.git
+}
+cd C:\Users\jleiva\wika-fundaments
+git remote get-url origin 2>$null
+if (-not $?) { git remote add origin https://github.com/wika-labss/wika-fundaments.git }
 git fetch origin cursor/wika-studio-bootstrap-ba99
 git checkout cursor/wika-studio-bootstrap-ba99
-.\scripts\sync-wika-studio.ps1 -Destination C:\Users\jleiva\wika-studio-app
+git pull origin cursor/wika-studio-bootstrap-ba99
+
+.\scripts\sync-wika-studio.ps1 -Destination C:\Users\jleiva\wika-studio-app -Email tu@correo -Password "tu-clave"
 
 cd C:\Users\jleiva\wika-studio-app
 npm install
-cd C:\Users\jleiva\wika-studio-app
-npm install
-node scripts\write-owner-env.mjs --email tu@correo --password "tu-clave"
-# opcional IA real: añade CURSOR_API_KEY=... al .env (Notepad: Guardar como UTF-8)
 npm run dev
 ```
 
-`package.json` debe decir `"version": "0.2.0"` y el script `dev` debe usar `concurrently`. Si sigue en `0.1.0`, la copia no se aplicó.
+`package.json` debe decir `"version": "0.2.0"` y debe existir `scripts\write-owner-env.mjs`. Si no, la copia no se aplicó.
 
 ## Inicio rápido
 
@@ -71,7 +75,7 @@ En PowerShell es el mismo comando (`concurrently`); no uses `npm run dev:bff &`.
 
 El 500 al entrar casi siempre es un `.env` mal guardado en Windows (UTF-16 de Notepad/`Set-Content`) o un `STUDIO_PASSWORD_HASH` incompleto (el prompt de `hash-password.mjs` se cuelga sin TTY).
 
-1. En `C:\Users\jleiva\wika-studio-app` corre:
+1. Si `write-owner-env.mjs` no existe, primero sincroniza **desde** `wika-fundaments` (bloque de arriba). Luego, en `wika-studio-app`:
 
 ```powershell
 node scripts\write-owner-env.mjs --email tu@correo --password "tu-clave"
