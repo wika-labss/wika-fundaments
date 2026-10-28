@@ -1,8 +1,30 @@
-import { createApp } from "./app.js";
-import { getConfig } from "./config.js";
+console.log(`[bff] node ${process.version} cwd=${process.cwd()}`);
 
+process.on("uncaughtException", (err) => {
+  console.error("[bff] uncaughtException", err);
+});
+process.on("unhandledRejection", (err) => {
+  console.error("[bff] unhandledRejection", err);
+});
+
+const { getConfig } = await import("./config.js");
 const config = getConfig();
-const studio = createApp({ config });
+console.log(
+  `[bff] config host=${config.host} port=${config.port} runtime=${config.runtime} key=${config.cursorApiKey ? "sí" : "no"}`,
+);
+
+let runtime;
+if (config.runtime === "cursor-sdk" && config.cursorApiKey) {
+  console.log("[bff] cargando @cursor/sdk…");
+  const { CursorSdkRuntime } = await import("./agents/cursor-sdk-runtime.js");
+  runtime = new CursorSdkRuntime(config.cursorApiKey);
+} else {
+  const { MockRuntime } = await import("./agents/mock-runtime.js");
+  runtime = new MockRuntime();
+}
+
+const { createApp } = await import("./app.js");
+const studio = createApp({ config, runtime });
 
 const server = studio.app.listen(config.port, config.host, () => {
   const where = `http://${config.host}:${config.port}/api/v1`;
@@ -15,6 +37,11 @@ const server = studio.app.listen(config.port, config.host, () => {
   if (config.owners.length === 0 || !config.passwordHash) {
     console.warn("  auth: STUDIO_OWNERS / STUDIO_PASSWORD_HASH no configurados — el login devolverá 503");
   }
+});
+
+server.on("error", (err) => {
+  console.error(`[bff] no pudo escuchar en ${config.host}:${config.port}`, err);
+  process.exit(1);
 });
 
 async function shutdown(signal: string): Promise<void> {

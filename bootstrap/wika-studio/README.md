@@ -71,6 +71,15 @@ npm run dev
 
 En PowerShell es el mismo comando (`concurrently`); no uses `npm run dev:bff &`.
 
+Si Vite dice `ECONNREFUSED 127.0.0.1:3001`, el BFF no arrancó. Ctrl+C y:
+
+```powershell
+cd C:\Users\jleiva\wika-studio-app
+npm run dev:bff
+```
+
+Tiene que imprimir `wika-studio BFF http://127.0.0.1:3001/api/v1`. Si se queda en `tsx watch` sin más líneas, actualiza desde `wika-fundaments` (el `dev` del BFF ya no usa `watch` en Windows). En otra ventana: `npm run dev:web`.
+
 ## Login: Internal Server Error
 
 El 500 al entrar casi siempre es un `.env` mal guardado en Windows (UTF-16 de Notepad/`Set-Content`) o un `STUDIO_PASSWORD_HASH` incompleto (el prompt de `hash-password.mjs` se cuelga sin TTY).

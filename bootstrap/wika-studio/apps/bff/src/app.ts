@@ -12,7 +12,6 @@ import type {
   UploadAssetRequest,
 } from "@wika-studio/wika-client";
 import { AgentService } from "./agents/agent-service.js";
-import { CursorSdkRuntime } from "./agents/cursor-sdk-runtime.js";
 import { GateGuard } from "./agents/gate-guard.js";
 import { MockRuntime } from "./agents/mock-runtime.js";
 import { PromptBuilder } from "./agents/prompt-builder.js";
@@ -60,8 +59,7 @@ export interface CreateAppOptions {
 export function createApp(options: CreateAppOptions): StudioApp {
   const { config } = options;
   const log = options.log ?? ((m: string) => console.log(m));
-  const runtime: AgentRuntime =
-    options.runtime ?? (config.runtime === "cursor-sdk" && config.cursorApiKey ? new CursorSdkRuntime(config.cursorApiKey) : new MockRuntime());
+  const runtime: AgentRuntime = options.runtime ?? new MockRuntime();
   const checkpoints = new CheckpointService(config.proyectosRoot);
   const events = new EventLog();
   const settings = new SettingsStore(config.dataDir);
