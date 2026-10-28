@@ -12,6 +12,15 @@
 - Checkpoints git y eventos `.wika/events.jsonl`.
 - Flujo «Nuevo proyecto» (bootstrap de idea/ + prototype).
 - Node 22.13+, `concurrently` para `npm run dev` en Windows.
+- `scripts/write-owner-env.mjs` y `scripts/sync-wika-studio.ps1 -Email -Password` (UTF-8, sin TTY).
+- Runbook Windows: `docs/windows-runbook.md`.
+
+### Fixed
+
+- Login 500 en Windows: `.env` UTF-16/BOM y hash scrypt mal pegado (401, no 500).
+- BFF mudo: `tsx watch` y carga eager de `@cursor/sdk`. `dev` es `tsx src/index.ts`; boot lazy.
+- Preview Expo mudo o `code=1`: se lanza el CLI local (sin `npx.cmd`/`shell:true`); listo por HTTP; `expo-asset` se instala si falta.
+- `GET /models` con key Cursor inválida → 502, no tumba la sesión.
 
 ## 0.1.0 — 2026-10-27
 

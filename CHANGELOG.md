@@ -11,6 +11,7 @@ Registro de cambios relevantes de `wika-fundaments`.
 - `docs/iteration-environment-spec.md` (v1.1.0): scripts de iteración en Node ESM (`wika-dev.mjs`, `wika-verify.mjs`, `wika-build-artifact.mjs`) multiplataforma; contrato de `PREVIEW_URL` y marco de dispositivo.
 - `workflows/exploration-vs-construction.md` (v1.1.0): reglas del chat en vivo por modo.
 - `bootstrap/wika-studio/`: UI-B (workspace con chat de agentes, preview en vivo con simulador de dispositivo, assets, checkpoints) y BFF con auth de dueños, `@cursor/sdk`, PreviewManager, GateGuard y plantillas `expo-prototype` / `web-prototype`.
+- Runbook Windows de Studio: `bootstrap/wika-studio/docs/windows-runbook.md` (sync desde fundaments, `.env` UTF-8, BFF sin `tsx watch`, preview Expo + `expo-asset`).
 
 - Especificación **WIKA Studio**: visión, PRD, API lógica, orquestación de agentes, entorno de iteración, eventos de auditoría.
 - Workflows `process-engine.md` y `exploration-vs-construction.md`.

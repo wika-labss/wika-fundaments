@@ -2,7 +2,7 @@
 id: "WIKA-REPO-STUDIO"
 title: "Charter — repositorio wika-studio"
 status: "ACTIVO"
-version: "1.0.0"
+version: "1.1.0"
 owner: "Arquitectura WIKA"
 created_at: "2026-10-27"
 updated_at: "2026-10-27"
@@ -57,6 +57,8 @@ Contenido de reglas WIKA (PRs van a fundaments).
 | Plantillas de iteración | `templates/expo-prototype`, `templates/web-prototype` | Copiadas por bootstrap a `iterations/prototype/` |
 
 Ajustable en ADR dentro de `wika-studio/docs/` al iniciar código.
+
+Semilla actual (hasta publicar `wika-labss/wika-studio`): [`bootstrap/wika-studio/`](../bootstrap/wika-studio/). Arranque en Windows: [`bootstrap/wika-studio/docs/windows-runbook.md`](../bootstrap/wika-studio/docs/windows-runbook.md). Copiar con `scripts/sync-wika-studio.ps1` **desde este repo**, no desde un clon 0.1.0 de Studio.
 
 ---
 

@@ -32,32 +32,11 @@ Variables principales (ver `.env.example`):
 | `WIKA_FUNDAMENTS_ROOT` | Clon de `wika-fundaments` |
 | `HOST` | Default `127.0.0.1` |
 
-## Si ya tienes el repo `wika-studio` en 0.1.0 (Windows)
+## Windows
 
-`C:\Users\jleiva\wika-studio-app` es el Studio **viejo** (0.1.0). Ahí **no existen** `sync-wika-studio.ps1` ni `write-owner-env.mjs`. Esos archivos viven en `wika-fundaments`.
+Runbook (arranque, sync, login, preview Expo): [`docs/windows-runbook.md`](docs/windows-runbook.md).
 
-Corre el bloque **desde `wika-fundaments`**, no desde `wika-studio-app`:
-
-```powershell
-cd C:\Users\jleiva
-if (-not (Test-Path .\wika-fundaments)) {
-  git clone https://github.com/wika-labss/wika-fundaments.git
-}
-cd C:\Users\jleiva\wika-fundaments
-git remote get-url origin 2>$null
-if (-not $?) { git remote add origin https://github.com/wika-labss/wika-fundaments.git }
-git fetch origin cursor/wika-studio-bootstrap-ba99
-git checkout cursor/wika-studio-bootstrap-ba99
-git pull origin cursor/wika-studio-bootstrap-ba99
-
-.\scripts\sync-wika-studio.ps1 -Destination C:\Users\jleiva\wika-studio-app -Email tu@correo -Password "tu-clave"
-
-cd C:\Users\jleiva\wika-studio-app
-npm install
-npm run dev
-```
-
-`package.json` debe decir `"version": "0.2.0"` y debe existir `scripts\write-owner-env.mjs`. Si no, la copia no se aplicó.
+`sync-wika-studio.ps1` se corre **desde `wika-fundaments`**, no desde `wika-studio-app` (el 0.1.0 no tiene esos scripts).
 
 ## Inicio rápido
 
@@ -71,36 +50,7 @@ npm run dev
 
 En PowerShell es el mismo comando (`concurrently`); no uses `npm run dev:bff &`.
 
-Si Vite dice `ECONNREFUSED 127.0.0.1:3001`, el BFF no arrancó. Ctrl+C y:
-
-```powershell
-cd C:\Users\jleiva\wika-studio-app
-npm run dev:bff
-```
-
-Tiene que imprimir `wika-studio BFF http://127.0.0.1:3001/api/v1`. Si se queda en `tsx watch` sin más líneas, actualiza desde `wika-fundaments` (el `dev` del BFF ya no usa `watch` en Windows). En otra ventana: `npm run dev:web`.
-
-Tras «Levantar preview», `npm warn deprecated` y `DEP0190` no son errores. Expo web tarda 1–3 min la primera vez. El preview está listo cuando el BFF imprime `preview listo: http://127.0.0.1:4300/`.
-
-Si ves `dev server terminó (code=1)` y `expo-asset cannot be found`, actualiza fundaments, sincroniza y vuelve a pulsar Levantar preview: Studio instala `expo-asset` solo.
-
-## Login: Internal Server Error
-
-El 500 al entrar casi siempre es un `.env` mal guardado en Windows (UTF-16 de Notepad/`Set-Content`) o un `STUDIO_PASSWORD_HASH` incompleto (el prompt de `hash-password.mjs` se cuelga sin TTY).
-
-1. Si `write-owner-env.mjs` no existe, primero sincroniza **desde** `wika-fundaments` (bloque de arriba). Luego, en `wika-studio-app`:
-
-```powershell
-node scripts\write-owner-env.mjs --email tu@correo --password "tu-clave"
-```
-
-Eso reescribe `.env` en UTF-8. El correo y la clave son los que acabas de pasar, **no** la de Windows.
-
-2. Cierra `npm run dev` (Ctrl+C) y vuelve a arrancarlo. En la consola del BFF debe verse `owners: 1  hash: sí`.
-3. Entra en http://localhost:5173 con **ese** correo y **esa** clave.
-4. Si quieres IA real, edita `.env` en VS Code (no Notepad) y pon `CURSOR_API_KEY=...`. Si la key falla, el login ya no debe caerse: verás aviso de modelos.
-
-No uses `STUDIO_OWNERS=...` como sintaxis bash en PowerShell. No pegues el hash a mano si puedes usar `write-owner-env.mjs`.
+Fallos Windows (500 al login, BFF mudo, Expo `code=1`): [`docs/windows-runbook.md`](docs/windows-runbook.md).
 
 ## Uso (criterio de hecho del MVP)
 
@@ -121,6 +71,7 @@ templates/expo-prototype  Expo SDK 52 / RN 0.76 (versiones ~)
 templates/web-prototype   Vite + React
 scripts/hash-password.mjs     Genera STUDIO_PASSWORD_HASH
 scripts/write-owner-env.mjs   Reescribe .env UTF-8 (Windows)
+docs/windows-runbook.md       Arranque y fallos en Windows
 ```
 
 ## Scripts

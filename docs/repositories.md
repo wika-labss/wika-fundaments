@@ -106,7 +106,9 @@ Framework base utilizado por las aplicaciones construidas sobre WIKA.
 
 Plataforma web (frontend + BFF) para operar el SCOS WIKA: proyectos, gates, agentes, preview e iteraciones.
 
-Charter: [`docs/repositorio-wika-studio.md`](repositorio-wika-studio.md).
+Charter: [`docs/repositorio-wika-studio.md`](repositorio-wika-studio.md).  
+Semilla UI-B: [`bootstrap/wika-studio/`](../bootstrap/wika-studio/).  
+Windows: [`bootstrap/wika-studio/docs/windows-runbook.md`](../bootstrap/wika-studio/docs/windows-runbook.md).
 
 ### Responsabilidades
 
