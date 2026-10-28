@@ -24,7 +24,7 @@ if (!cli) {
   process.exit(1);
 }
 
-const args = [cli, "start", "--web", "--port", String(port)];
+const args = [cli, "start", "--web", "--localhost", "--port", String(port)];
 if (process.env.WIKA_EXPO_TUNNEL === "1") args.push("--tunnel");
 
 console.log(`[wika-dev] node expo start --web --port ${port}`);

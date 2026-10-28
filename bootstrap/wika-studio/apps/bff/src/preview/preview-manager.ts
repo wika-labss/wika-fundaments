@@ -47,11 +47,18 @@ export function resolvePackageCli(projectDir: string, rels: string[]): string | 
   return null;
 }
 
+/** Paquetes que Metro de Expo 52 exige para `start --web` y que a veces no vienen en el template viejo. */
+export function missingExpoWebPackages(projectDir: string): string[] {
+  if (!resolvePackageCli(projectDir, ["expo/package.json"])) return [];
+  const required = [{ id: "expo-asset", spec: "expo-asset@~11.0.5" }];
+  return required.filter((p) => !resolvePackageCli(projectDir, [`${p.id}/package.json`])).map((p) => p.spec);
+}
+
 /** Expo/Vite locales; no usa npx ni cmd.exe. */
 export function defaultDevCommand(projectDir: string, port: number): { command: string; args: string[] } {
   const expo = resolvePackageCli(projectDir, ["expo/bin/cli", "expo/bin/cli.js"]);
   if (expo) {
-    return { command: process.execPath, args: [expo, "start", "--web", "--port", String(port)] };
+    return { command: process.execPath, args: [expo, "start", "--web", "--localhost", "--port", String(port)] };
   }
   const vite = resolvePackageCli(projectDir, ["vite/bin/vite.js"]);
   if (vite) {
@@ -142,6 +149,12 @@ export class PreviewManager {
       const npm = resolveNpmInvocation();
       await this.exec(entry, npm.command, [...npm.prefix, "install", "--no-audit", "--no-fund"]);
     }
+    const extra = missingExpoWebPackages(entry.dir);
+    if (extra.length) {
+      this.appendLine(entry, `[studio] instalando ${extra.join(", ")} (requerido por Expo web)…`);
+      const npm = resolveNpmInvocation();
+      await this.exec(entry, npm.command, [...npm.prefix, "install", "--no-audit", "--no-fund", "--save", ...extra]);
+    }
     const port = await this.allocatePort();
     entry.port = port;
     entry.status = "starting";
@@ -152,16 +165,17 @@ export class PreviewManager {
     const cmd = this.options.devCommand ? this.options.devCommand(entry.dir, port) : defaultDevCommand(entry.dir, port);
     this.appendLine(entry, `[studio] ${path.basename(cmd.command)} ${cmd.args.map((a) => path.basename(a)).join(" ")}`);
 
+    const childEnv: NodeJS.ProcessEnv = {
+      ...process.env,
+      PORT: String(port),
+      BROWSER: "none",
+      EXPO_NO_TELEMETRY: "1",
+      FORCE_COLOR: "0",
+    };
+    delete childEnv.CI;
     const child = spawnProcess(cmd.command, cmd.args, {
       cwd: entry.dir,
-      env: {
-        ...process.env,
-        PORT: String(port),
-        BROWSER: "none",
-        CI: "1",
-        EXPO_NO_TELEMETRY: "1",
-        FORCE_COLOR: "0",
-      },
+      env: childEnv,
       stdio: ["ignore", "pipe", "pipe"],
     });
     entry.child = child;
@@ -179,7 +193,11 @@ export class PreviewManager {
     child.on("exit", (code, signal) => {
       if (entry.readyTimer) clearTimeout(entry.readyTimer);
       if (entry.status !== "stopped") {
-        this.fail(entry, `dev server terminó (code=${code ?? "null"}, signal=${signal ?? "none"})`);
+        const tail = entry.recentLines.slice(-8).join(" | ");
+        this.fail(
+          entry,
+          `dev server terminó (code=${code ?? "null"}, signal=${signal ?? "none"})${tail ? `: ${tail}` : ""}`,
+        );
       }
       entry.child = undefined;
     });
@@ -324,13 +342,18 @@ export class PreviewManager {
   }
 }
 
-export function isPortFree(port: number, host = "127.0.0.1"): Promise<boolean> {
-  return new Promise((resolve) => {
-    const server = netCreateServer();
-    server.unref();
-    server.once("error", () => resolve(false));
-    server.listen({ port, host }, () => {
-      server.close(() => resolve(true));
+export async function isPortFree(port: number): Promise<boolean> {
+  const hosts = ["127.0.0.1", "0.0.0.0"];
+  for (const host of hosts) {
+    const free = await new Promise<boolean>((resolve) => {
+      const server = netCreateServer();
+      server.unref();
+      server.once("error", () => resolve(false));
+      server.listen({ port, host }, () => {
+        server.close(() => resolve(true));
+      });
     });
-  });
+    if (!free) return false;
+  }
+  return true;
 }

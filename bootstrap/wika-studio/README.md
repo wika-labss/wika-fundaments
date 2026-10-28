@@ -80,7 +80,9 @@ npm run dev:bff
 
 Tiene que imprimir `wika-studio BFF http://127.0.0.1:3001/api/v1`. Si se queda en `tsx watch` sin más líneas, actualiza desde `wika-fundaments` (el `dev` del BFF ya no usa `watch` en Windows). En otra ventana: `npm run dev:web`.
 
-Tras «Levantar preview», `npm warn deprecated` y `DEP0190` no son errores. Expo web tarda 1–3 min la primera vez. El preview está listo cuando el BFF imprime `preview listo: http://127.0.0.1:4300/`. Si se queda en «iniciando dev server» sin más, actualiza fundaments, sincroniza y vuelve a pulsar Levantar preview.
+Tras «Levantar preview», `npm warn deprecated` y `DEP0190` no son errores. Expo web tarda 1–3 min la primera vez. El preview está listo cuando el BFF imprime `preview listo: http://127.0.0.1:4300/`.
+
+Si ves `dev server terminó (code=1)` y `expo-asset cannot be found`, actualiza fundaments, sincroniza y vuelve a pulsar Levantar preview: Studio instala `expo-asset` solo.
 
 ## Login: Internal Server Error
 
