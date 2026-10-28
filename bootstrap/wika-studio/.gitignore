@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.local
+*.log
+.DS_Store
+.data/
+fixtures/proyectos/app/*/iterations/*/node_modules/
+fixtures/proyectos/app/*/iterations/*/.wika/
+fixtures/proyectos/app/*/iterations/*/.expo/
+fixtures/proyectos/.git/

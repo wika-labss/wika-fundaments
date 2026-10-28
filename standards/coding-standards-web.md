@@ -57,9 +57,9 @@ iterations/vN/
 │   └── routes/
 ├── public/
 ├── scripts/
-│   ├── wika-dev.sh
-│   ├── wika-verify.sh
-│   └── wika-build-artifact.sh
+│   ├── wika-dev.mjs
+│   ├── wika-verify.mjs
+│   └── wika-build-artifact.mjs
 └── package.json
 ```
 
@@ -67,7 +67,7 @@ iterations/vN/
 
 # Verify
 
-`wika-verify.sh` debe ejecutar como mínimo:
+`wika-verify.mjs` debe ejecutar como mínimo:
 
 ```bash
 npm run typecheck

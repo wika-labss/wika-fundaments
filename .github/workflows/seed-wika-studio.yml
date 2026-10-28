@@ -1,0 +1,37 @@
+name: seed-wika-studio
+
+# Publica bootstrap/wika-studio/ → repo wika-labss/wika-studio (main).
+# Requiere org secret: WIKA_STUDIO_PUSH_TOKEN (PAT con contents:write en wika-studio).
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate bootstrap present
+        run: test -f bootstrap/wika-studio/package.json
+
+      - name: Push to wika-studio
+        env:
+          TOKEN: ${{ secrets.WIKA_STUDIO_PUSH_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "Configure secret WIKA_STUDIO_PUSH_TOKEN en wika-fundaments" >&2
+            exit 1
+          fi
+          git clone "https://x-access-token:${TOKEN}@github.com/wika-labss/wika-studio.git" /tmp/wika-studio
+          rsync -av --delete --exclude .git bootstrap/wika-studio/ /tmp/wika-studio/
+          cd /tmp/wika-studio
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "Sin cambios"
+            exit 0
+          fi
+          git commit -m "chore: sync bootstrap from wika-fundaments"
+          git push origin main
