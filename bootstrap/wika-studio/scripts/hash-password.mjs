@@ -27,6 +27,12 @@ async function readHidden(prompt) {
 }
 
 const fromArg = process.argv[2];
+if (!fromArg && !process.stdin.isTTY) {
+  console.error("En PowerShell el prompt oculto se cuelga. Usa:");
+  console.error('  node scripts/write-owner-env.mjs --email tu@correo --password "tu-clave"');
+  console.error('  node scripts/hash-password.mjs "tu-clave"');
+  process.exit(1);
+}
 const password = fromArg ?? (await readHidden("Contraseña de dueño: "));
 if (!password || password.length < 8) {
   console.error("La contraseña debe tener al menos 8 caracteres.");

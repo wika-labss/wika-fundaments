@@ -15,7 +15,8 @@
     "build": "npm run build -w @wika-studio/wika-client && npm run build -w @wika-studio/bff && npm run build -w @wika-studio/web",
     "typecheck": "npm run typecheck -w @wika-studio/wika-client && npm run typecheck -w @wika-studio/bff && npm run typecheck -w @wika-studio/web",
     "test": "npm run test -w @wika-studio/bff",
-    "hash-password": "node scripts/hash-password.mjs"
+    "hash-password": "node scripts/hash-password.mjs",
+    "write-owner-env": "node scripts/write-owner-env.mjs"
   },
   "devDependencies": {
     "concurrently": "~9.1.0"

@@ -14,13 +14,31 @@ export function hashPassword(password: string): string {
   return `scrypt$${salt.toString("hex")}$${hash.toString("hex")}`;
 }
 
+export function sanitizePasswordHash(raw: string): string {
+  let value = raw.trim().replace(/^\uFEFF/, "").replace(/\r/g, "");
+  if (
+    (value.startsWith('"') && value.endsWith('"')) ||
+    (value.startsWith("'") && value.endsWith("'"))
+  ) {
+    value = value.slice(1, -1);
+  }
+  if (value.startsWith("STUDIO_PASSWORD_HASH=")) value = value.slice("STUDIO_PASSWORD_HASH=".length);
+  return value.trim();
+}
+
 export function verifyPassword(password: string, stored: string): boolean {
-  const parts = stored.split("$");
-  if (parts.length !== 3 || parts[0] !== "scrypt") return false;
-  const salt = Buffer.from(parts[1], "hex");
-  const expected = Buffer.from(parts[2], "hex");
-  const actual = crypto.scryptSync(password, salt, expected.length);
-  return expected.length === actual.length && crypto.timingSafeEqual(expected, actual);
+  try {
+    const parts = sanitizePasswordHash(stored).split("$");
+    if (parts.length !== 3 || parts[0] !== "scrypt") return false;
+    const salt = Buffer.from(parts[1], "hex");
+    const expected = Buffer.from(parts[2], "hex");
+    if (!salt.length || expected.length < 16) return false;
+    const actual = crypto.scryptSync(password, salt, expected.length);
+    if (expected.length !== actual.length) return false;
+    return crypto.timingSafeEqual(expected, actual);
+  } catch {
+    return false;
+  }
 }
 
 // ---------------------------------------------------------------------------

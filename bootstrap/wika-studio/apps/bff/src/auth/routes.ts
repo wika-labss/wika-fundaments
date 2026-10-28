@@ -14,15 +14,25 @@ export function authRouter(config: StudioConfig): Router {
   const router = Router();
 
   router.post("/login", (req, res) => {
-    const body = (req.body ?? {}) as { email?: unknown; password?: unknown };
-    const outcome = attemptLogin(body.email, body.password, config);
-    if (!outcome.ok) {
-      res.status(outcome.status).json({ error: { code: outcome.code, message: outcome.message } });
-      return;
+    try {
+      const body = (req.body ?? {}) as { email?: unknown; password?: unknown };
+      const outcome = attemptLogin(body.email, body.password, config);
+      if (!outcome.ok) {
+        res.status(outcome.status).json({ error: { code: outcome.code, message: outcome.message } });
+        return;
+      }
+      const token = createSessionToken(outcome.owner.email, config);
+      res.setHeader("Set-Cookie", sessionCookieHeader(token, config));
+      res.json({ owner: outcome.owner });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      res.status(500).json({
+        error: {
+          code: "LOGIN_FAILED",
+          message: `Error al iniciar sesión: ${message}. Revisa que STUDIO_PASSWORD_HASH sea una sola línea scrypt$... (UTF-8).`,
+        },
+      });
     }
-    const token = createSessionToken(outcome.owner.email, config);
-    res.setHeader("Set-Cookie", sessionCookieHeader(token, config));
-    res.json({ owner: outcome.owner });
   });
 
   router.post("/logout", (_req, res) => {

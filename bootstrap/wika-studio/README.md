@@ -18,8 +18,7 @@ Sin API key el BFF arranca en runtime **mock**: sirve para probar la UI, el prev
 
 ```bash
 cp .env.example .env
-node scripts/hash-password.mjs
-# pega STUDIO_PASSWORD_HASH y STUDIO_OWNERS en .env
+node scripts/write-owner-env.mjs --email tu@correo --password "tu-clave"
 ```
 
 Variables principales (ver `.env.example`):
@@ -47,9 +46,10 @@ git checkout cursor/wika-studio-bootstrap-ba99
 
 cd C:\Users\jleiva\wika-studio-app
 npm install
-Copy-Item .env.example .env
-node scripts\hash-password.mjs
-# pega STUDIO_PASSWORD_HASH y pon STUDIO_OWNERS=tu@email en .env
+cd C:\Users\jleiva\wika-studio-app
+npm install
+node scripts\write-owner-env.mjs --email tu@correo --password "tu-clave"
+# opcional IA real: añade CURSOR_API_KEY=... al .env (Notepad: Guardar como UTF-8)
 npm run dev
 ```
 
@@ -66,6 +66,24 @@ npm run dev
 - BFF: http://127.0.0.1:3001/api/v1/health
 
 En PowerShell es el mismo comando (`concurrently`); no uses `npm run dev:bff &`.
+
+## Login: Internal Server Error
+
+El 500 al entrar casi siempre es un `.env` mal guardado en Windows (UTF-16 de Notepad/`Set-Content`) o un `STUDIO_PASSWORD_HASH` incompleto (el prompt de `hash-password.mjs` se cuelga sin TTY).
+
+1. En `C:\Users\jleiva\wika-studio-app` corre:
+
+```powershell
+node scripts\write-owner-env.mjs --email tu@correo --password "tu-clave"
+```
+
+Eso reescribe `.env` en UTF-8. El correo y la clave son los que acabas de pasar, **no** la de Windows.
+
+2. Cierra `npm run dev` (Ctrl+C) y vuelve a arrancarlo. En la consola del BFF debe verse `owners: 1  hash: sí`.
+3. Entra en http://localhost:5173 con **ese** correo y **esa** clave.
+4. Si quieres IA real, edita `.env` en VS Code (no Notepad) y pon `CURSOR_API_KEY=...`. Si la key falla, el login ya no debe caerse: verás aviso de modelos.
+
+No uses `STUDIO_OWNERS=...` como sintaxis bash en PowerShell. No pegues el hash a mano si puedes usar `write-owner-env.mjs`.
 
 ## Uso (criterio de hecho del MVP)
 
@@ -84,7 +102,8 @@ apps/bff/                 API v1 + agentes + preview + checkpoints
 packages/wika-client/     Tipos del contrato
 templates/expo-prototype  Expo SDK 52 / RN 0.76 (versiones ~)
 templates/web-prototype   Vite + React
-scripts/hash-password.mjs Genera STUDIO_PASSWORD_HASH
+scripts/hash-password.mjs     Genera STUDIO_PASSWORD_HASH
+scripts/write-owner-env.mjs   Reescribe .env UTF-8 (Windows)
 ```
 
 ## Scripts
@@ -94,7 +113,8 @@ scripts/hash-password.mjs Genera STUDIO_PASSWORD_HASH
 | `npm run dev` | BFF + web |
 | `npm run typecheck` | TypeScript de los tres paquetes |
 | `npm test` | Tests del BFF (auth, gates, flujo mock) |
-| `npm run hash-password` | Hash para `.env` |
+| `npm run hash-password` | Hash para `.env` (mejor `write-owner-env`) |
+| `npm run write-owner-env` | Reescribe `.env` UTF-8 con dueño + hash |
 
 ## Licencia
 

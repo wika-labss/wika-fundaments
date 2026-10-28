@@ -66,9 +66,19 @@ export class AgentService {
 
   async listModels(): Promise<ModelInfo[]> {
     if (this.modelCache && Date.now() - this.modelCache.at < 5 * 60_000) return this.modelCache.models;
-    const models = await this.deps.runtime.listModels();
-    this.modelCache = { at: Date.now(), models };
-    return models;
+    try {
+      const models = await this.deps.runtime.listModels();
+      this.modelCache = { at: Date.now(), models };
+      return models;
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      this.deps.log?.(`[agents] no se pudo listar modelos: ${message}`);
+      throw new HttpError(
+        502,
+        "MODELS_UNAVAILABLE",
+        `Cursor no listó modelos (${message}). Revisa CURSOR_API_KEY o usa STUDIO_AGENT_RUNTIME=mock.`,
+      );
+    }
   }
 
   async resolveModel(owner: Owner, requested?: string | null): Promise<string> {

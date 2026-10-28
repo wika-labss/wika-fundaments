@@ -36,9 +36,16 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   const res = await fetch(`${api}${path}`, { credentials: "include", ...init, headers });
   if (res.status === 204) return undefined as T;
   const text = await res.text();
-  const data = text ? (JSON.parse(text) as { error?: { code: string; message: string; details?: unknown } } & T) : ({} as T);
+  let data: ({ error?: { code: string; message: string; details?: unknown } } & T) | null = null;
+  if (text) {
+    try {
+      data = JSON.parse(text) as { error?: { code: string; message: string; details?: unknown } } & T;
+    } catch {
+      throw new ApiError(res.status, "BAD_RESPONSE", text.slice(0, 180) || res.statusText);
+    }
+  }
   if (!res.ok) {
-    const err = (data as { error?: { code: string; message: string; details?: unknown } }).error;
+    const err = data?.error;
     throw new ApiError(res.status, err?.code ?? "ERROR", err?.message ?? res.statusText, err?.details);
   }
   return data as T;

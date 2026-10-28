@@ -37,7 +37,10 @@ export function Workspace({ owner, onLogout }: { owner: Owner; onLogout: () => v
         if (m.default_model_id) setModelId(m.default_model_id);
         else if (m.models[0]) setModelId(m.models[0].id);
       })
-      .catch((e: Error) => setError(e.message));
+      .catch((e: Error) => {
+        setRuntime("error");
+        setError(e.message);
+      });
   }, [loadProjects]);
 
   useEffect(() => {

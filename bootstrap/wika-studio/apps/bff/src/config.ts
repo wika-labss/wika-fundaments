@@ -32,10 +32,20 @@ export interface StudioConfig {
   maxPromptDocChars: number;
 }
 
+function sanitizeEnvValue(raw: string | undefined, key: string): string | null {
+  if (!raw) return null;
+  let value = raw.trim().replace(/^\uFEFF/, "").replace(/\r/g, "");
+  if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+    value = value.slice(1, -1);
+  }
+  if (value.startsWith(`${key}=`)) value = value.slice(key.length + 1);
+  return value.trim() || null;
+}
+
 function parseList(value: string | undefined): string[] {
   return (value ?? "")
     .split(",")
-    .map((s) => s.trim().toLowerCase())
+    .map((s) => s.trim().toLowerCase().replace(/^["']|["']$/g, ""))
     .filter(Boolean);
 }
 
@@ -52,9 +62,10 @@ function parseRange(value: string | undefined, fallback: [number, number]): [num
 export function loadDotEnv(root = getStudioRoot()): void {
   const file = path.join(root, ".env");
   if (!fs.existsSync(file)) return;
-  for (const raw of fs.readFileSync(file, "utf8").split(/\r?\n/)) {
-    const line = raw.trim();
+  for (const raw of readEnvText(file).split(/\r?\n/)) {
+    let line = raw.trim();
     if (!line || line.startsWith("#")) continue;
+    if (line.startsWith("export ")) line = line.slice(7).trim();
     const eq = line.indexOf("=");
     if (eq === -1) continue;
     const key = line.slice(0, eq).trim();
@@ -64,6 +75,19 @@ export function loadDotEnv(root = getStudioRoot()): void {
     }
     if (process.env[key] === undefined) process.env[key] = value;
   }
+}
+
+/** Notepad/PowerShell en Windows a menudo guardan UTF-16 o UTF-8 con BOM. */
+export function readEnvText(file: string): string {
+  const buf = fs.readFileSync(file);
+  if (buf.length >= 2 && buf[0] === 0xff && buf[1] === 0xfe) return buf.toString("utf16le");
+  if (buf.length >= 2 && buf[0] === 0xfe && buf[1] === 0xff) {
+    return Buffer.from(buf.swap16()).toString("utf16le");
+  }
+  if (buf.length >= 3 && buf[0] === 0xef && buf[1] === 0xbb && buf[2] === 0xbf) {
+    return buf.toString("utf8").slice(1);
+  }
+  return buf.toString("utf8");
 }
 
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): StudioConfig {
@@ -99,7 +123,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): StudioConfig {
     dataDir,
     templatesDir: path.join(studioRoot, "templates"),
     owners: parseList(env.STUDIO_OWNERS),
-    passwordHash: env.STUDIO_PASSWORD_HASH?.trim() || null,
+    passwordHash: sanitizeEnvValue(env.STUDIO_PASSWORD_HASH, "STUDIO_PASSWORD_HASH"),
     sessionSecret,
     sessionTtlMs: Number(env.STUDIO_SESSION_TTL_HOURS ?? 12) * 3600 * 1000,
     cursorApiKey,
