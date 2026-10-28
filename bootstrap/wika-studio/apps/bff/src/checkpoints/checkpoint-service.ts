@@ -61,7 +61,7 @@ export class CheckpointService {
       if (status.startsWith("R") || status.startsWith("C")) i++; // la siguiente entrada es el origen del rename
       if (file.startsWith(prefix)) files.push(file.slice(prefix.length));
     }
-    return files.filter((f) => !f.startsWith(".wika/logs/"));
+    return files.filter((f) => !f.startsWith(".wika/"));
   }
 
   /** Contenido actual de los documentos que vigila GateGuard (idea/, audits/). */

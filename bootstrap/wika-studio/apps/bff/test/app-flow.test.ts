@@ -12,19 +12,26 @@ afterEach(() => {
   env = makeTestEnv();
 });
 
-async function waitForRun(url: string, cookie: string, projectId: string, sessionId: string, timeoutMs = 8000): Promise<void> {
+async function waitForRun(
+  url: string,
+  cookie: string,
+  projectId: string,
+  sessionId: string,
+  runId: string,
+  timeoutMs = 8000,
+): Promise<void> {
   const started = Date.now();
   while (Date.now() - started < timeoutMs) {
     const res = await fetch(`${url}/api/v1/projects/${projectId}/sessions/${sessionId}`, { headers: authHeaders(cookie) });
-    const body = (await res.json()) as { history: Array<{ event: string; data?: { status?: string } }>; active_run_id: string | null };
-    const finished = body.history.find((e) => e.event === "run.finished");
+    const body = (await res.json()) as { history: Array<{ event: string; data?: { status?: string; run_id?: string } }> };
+    const finished = body.history.find((e) => e.event === "run.finished" && e.data?.run_id === runId);
     if (finished) {
       if (finished.data?.status === "failed") throw new Error(`run failed: ${JSON.stringify(finished)}`);
       return;
     }
     await new Promise((r) => setTimeout(r, 50));
   }
-  throw new Error("timeout esperando run.finished");
+  throw new Error(`timeout esperando run.finished ${runId}`);
 }
 
 test("flujo MVP: crear proyecto exploration, chat builder, checkpoint y guarda", async () => {
@@ -65,7 +72,8 @@ test("flujo MVP: crear proyecto exploration, chat builder, checkpoint y guarda",
     });
     const msgBody = await msg.text();
     assert.equal(msg.status, 202, msgBody);
-    await waitForRun(url, cookie, "demo-cliente", session.session_id);
+    const firstRun = (JSON.parse(msgBody) as { run_id: string }).run_id;
+    await waitForRun(url, cookie, "demo-cliente", session.session_id, firstRun);
 
     const after = fs.readFileSync(screen, "utf8");
     assert.match(after, /Comprar/);
@@ -81,7 +89,8 @@ test("flujo MVP: crear proyecto exploration, chat builder, checkpoint y guarda",
       body: JSON.stringify({ text: "[[violar]] intenta activar flags" }),
     });
     assert.equal(violate.status, 202);
-    await waitForRun(url, cookie, "demo-cliente", session.session_id);
+    const secondRun = ((await violate.json()) as { run_id: string }).run_id;
+    await waitForRun(url, cookie, "demo-cliente", session.session_id, secondRun);
 
     const detail = await fetch(`${url}/api/v1/projects/demo-cliente/sessions/${session.session_id}`, {
       headers: authHeaders(cookie),
