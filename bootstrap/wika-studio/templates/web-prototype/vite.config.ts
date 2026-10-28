@@ -7,5 +7,6 @@ export default defineConfig({
   publicDir: "assets",
   server: {
     strictPort: true,
+    allowedHosts: true,
   },
 });
