@@ -6,6 +6,7 @@ Registro de cambios relevantes de `wika-fundaments`.
 
 ### Added
 
+- **Bóveda de diseños** `bodega-disenos/`: catálogo de skills visuales y lote trabajamos.com (looks LinkedIn · Elegante · Colorido) con capturas y mapa skill→look.
 - Contratos UI-B en `docs/studio-api-contract.md` (v1.1.0): autenticación de dueños, catálogo de modelos, sesiones de chat con agentes (SSE), previews en vivo, assets y checkpoints.
 - `docs/agent-orchestration.md` (v1.1.0): runtime de IA (Cursor Agent SDK local / cloud / mock), composición del prompt (PromptBuilder), guarda de gates antes y después del run (GateGuard) y `allowed_paths` por agente y modo.
 - `docs/iteration-environment-spec.md` (v1.1.0): scripts de iteración en Node ESM (`wika-dev.mjs`, `wika-verify.mjs`, `wika-build-artifact.mjs`) multiplataforma; contrato de `PREVIEW_URL` y marco de dispositivo.

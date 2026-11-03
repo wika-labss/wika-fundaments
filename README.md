@@ -127,14 +127,22 @@ wika-fundaments/
 ├── workflows/        # Procesos oficiales de trabajo
 ├── schemas/          # JSON Schema frontmatter idea/01–05
 ├── scripts/          # validate_docs, validate_project
-└── tests/            # Tests de validadores + fixtures
+├── tests/            # Tests de validadores + fixtures
+└── bodega-disenos/   # Bóveda de experimentos visuales + catálogo de skills
 ```
+
+## Bóveda de diseños
+
+Experimentos de look y mapa de skills reutilizables (sin código de producto):
+
+→ [`bodega-disenos/README.md`](bodega-disenos/README.md)  
+→ [`bodega-disenos/catalogo-skills.md`](bodega-disenos/catalogo-skills.md)
 
 ## Responsabilidad de este repositorio
 
 `wika-fundaments` contiene las definiciones, reglas y conocimiento que permiten construir software de manera consistente.
 
-No debe contener aplicaciones, código de negocio ni productos finales.
+No debe contener aplicaciones, código de negocio ni productos finales. La bóveda de diseños solo guarda **conocimiento visual** (notas, capturas, skills), no SSR ni apps.
 
 Las aplicaciones viven en el repositorio `proyectos`, bajo `proyectos/app/{proyecto}/`.
 

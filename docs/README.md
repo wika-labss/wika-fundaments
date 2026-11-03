@@ -14,6 +14,7 @@ La documentación debe mantenerse actualizada y ser considerada fuente oficial d
 | [documentation.md](documentation.md) | Todos | Reglas de documentación y fuente de verdad |
 | [repositories.md](repositories.md) | Arquitectos | Reglas de repositorios y estructura de proyectos |
 | [bug-fix-report.md](bug-fix-report.md) | Arquitectos | Informe de consistencia documental (2026-09-15) |
+| [../bodega-disenos/README.md](../bodega-disenos/README.md) | Diseño / Arquitectos | Bóveda de looks + [catálogo de skills](../bodega-disenos/catalogo-skills.md) |
 
 ## Auditorías (pre-build)
 
