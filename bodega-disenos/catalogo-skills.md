@@ -21,8 +21,8 @@ Rutas relativas al monorepo de trabajo del agente (siblings de `wika-fundaments`
 | Skill (install name) | Carpeta | Rol | Usada en |
 | :--- | :--- | :--- | :--- |
 | `high-end-visual-design` | `web-design/external/taste-skill/skills/soft-skill/` | Agencia / Soft Structuralism: aire, tipografía fuerte, un acento, motion suave | Look B (principios; expresión **Pearl**, no prueba 3); prueba 3 (rechazada) |
-| `design-taste-frontend` | `web-design/external/taste-skill/skills/taste-skill/` | Dials VARIANCE / MOTION / DENSITY + anti-slop | Look B (dials bajos); Look C (dials altos); forks tipo C1–C3 (mismos dials, solo tipo) |
-| `redesign-existing-projects` | `web-design/external/taste-skill/skills/redesign-skill/` | Audit tipografía/color/espacio sobre UI existente | Looks A/B/C; forks tipo C1–C3 (eje tipo); polish orgánico 4b |
+| `design-taste-frontend` | `web-design/external/taste-skill/skills/taste-skill/` | Dials VARIANCE / MOTION / DENSITY + anti-slop | Look B (dials bajos); Look C (dials altos); forks tipo C1–C3 (mismos dials, solo tipo); Coral / Lima / Cobalto (eje color sobre C3) |
+| `redesign-existing-projects` | `web-design/external/taste-skill/skills/redesign-skill/` | Audit tipografía/color/espacio sobre UI existente | Looks A/B/C; forks tipo C1–C3 (eje tipo); Coral / Lima / Cobalto (contraste sobre C3); polish orgánico 4b |
 | `minimalist-ui` | `web-design/external/taste-skill/skills/minimalist-skill/` | Editorial warm monochrome | Prueba 1 (**rechazada**) |
 | `industrial-brutalist-ui` | `web-design/external/taste-skill/skills/brutalist-skill/` | Swiss print / industrial | Prueba 2 (**rechazada**) |
 
@@ -74,6 +74,18 @@ Forks **solo de tipo** de Look C. Paleta sunflower `#f5c400` + navy `#0c1b33`, l
 | **C3 Jakarta** | `cursor/look-c-tipo-jakarta-aa58` @ `0d3578ce` | Syne solo en el logo; Plus Jakarta Sans en títulos y UI (escala 14/16/20/28) | **Candado tipográfico** |
 
 **C3 es el candado.** C1 y C2 quedan archivados. Índice: [proyectos/trabajamos-com/look-c-tipo/](proyectos/trabajamos-com/look-c-tipo/README.md).
+
+### Color y banner sobre C3 (agentes en curso)
+
+Mismo set en los tres. Base: candado **C3 Jakarta**. No hay skill nueva de tipo ni de IA. El cambio pedido es paleta (`design-taste-frontend`, eje color) + jerarquía (`redesign-existing-projects` / `redesign-skill`) y el banner **estático → móvil (CSS)**.
+
+| Agente | Rama | Paleta | Skills |
+| :--- | :--- | :--- | :--- |
+| **Coral** | `cursor/look-c-color-coral-aa58` | coral `#e85d4c` + ink `#1c1412` | `design-taste-frontend` (color) + `redesign-skill`; banner CSS animado |
+| **Lima** | `cursor/look-c-color-lima-aa58` | lime `#c6f135` + charcoal `#121417` | mismo set, otra paleta |
+| **Cobalto** | `cursor/look-c-color-cobalto-aa58` | cobalt `#2f5bff` + apricot `#ffb085` | mismo set, otra paleta |
+
+Capturas: **pendiente** (ramas aún en curso; sin NOTES ni png al registrar). Índice: [proyectos/trabajamos-com/look-c-colores/](proyectos/trabajamos-com/look-c-colores/README.md).
 
 ---
 

@@ -8,7 +8,7 @@
 | Veredicto | **Seleccionado** como candado de tipo sobre Look C |
 | Tests | 64/64 |
 
-Los experimentos de color (Coral, Lima, Cobalto) parten de este fork. C1 y C2 quedan archivados.
+Los experimentos de color (Coral, Lima, Cobalto) parten de este fork: skills y paletas en [look-c-colores/](../../look-c-colores/README.md). C1 y C2 quedan archivados.
 
 ## Skills
 

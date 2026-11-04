@@ -13,7 +13,8 @@ bodega-disenos/
         ├── look-linkedin/    ← Look A
         ├── look-elegante/    ← Look B
         ├── look-colorido/    ← Look C (dirección elegida)
-        └── look-c-tipo/      ← C1 / C2 archivados · C3 Jakarta candado
+        ├── look-c-tipo/      ← C1 / C2 archivados · C3 Jakarta candado
+        └── look-c-colores/   ← Coral · Lima · Cobalto (skills; capturas pendientes)
 ```
 
 ## Cómo usar
@@ -26,7 +27,7 @@ bodega-disenos/
 
 | Proyecto | Looks catalogados | Dirección |
 | :--- | :--- | :--- |
-| [trabajamos.com](proyectos/trabajamos-com/README.md) | A LinkedIn · B Elegante · C Colorido + forks tipo C1/C2/C3 (+ historial 1–4b) | Look **C** elegido. Candado tipográfico **C3 Jakarta**. Firma visual del Arquitecto pendiente |
+| [trabajamos.com](proyectos/trabajamos-com/README.md) | A LinkedIn · B Elegante · C Colorido + forks tipo C1/C2/C3 + color Coral/Lima/Cobalto (+ historial 1–4b) | Look **C** elegido. Candado tipográfico **C3 Jakarta**. Color y banner en curso (capturas pendientes). Firma visual del Arquitecto pendiente |
 
 ## Relación con otros repos
 
