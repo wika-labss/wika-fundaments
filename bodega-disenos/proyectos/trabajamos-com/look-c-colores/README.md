@@ -19,8 +19,8 @@ El banner pasa de **estático → móvil (CSS)**. La animación es CSS (sin libr
 
 | Agente | Rama (`proyectos`) | Paleta | Ficha | Capturas |
 | :--- | :--- | :--- | :--- | :--- |
-| **Coral** | `cursor/look-c-color-coral-aa58` | coral `#e85d4c` + ink `#1c1412` | [coral/](coral/README.md) | pendiente |
+| **Coral** | `cursor/look-c-color-coral-aa58` @ `47da9ba5` | coral `#e85d4c` + ink `#1c1412` + paper `#fff6f3` | [coral/](coral/README.md) | inicio, perfil, mobile |
 | **Lima** | `cursor/look-c-color-lima-aa58` | lime `#c6f135` + charcoal `#121417` | [lima/](lima/README.md) | pendiente |
 | **Cobalto** | `cursor/look-c-color-cobalto-aa58` | cobalt `#2f5bff` + apricot `#ffb085` | [cobalto/](cobalto/README.md) | pendiente |
 
-Registro de skills hecho mientras las ramas siguen en curso. Al cierre, sustituir «pendiente» por los png de inicio / resultados / perfil / mobile si aparecen en la rama o en artefactos de captura. No copiar código de producto a esta bóveda.
+Coral está archivado (tests 64/64, banner stripe drift con `translate3d` y freeze en reduced-motion). Lima y Cobalto siguen **pendiente**: sus png no están listos para la bóveda. No copiar código de producto aquí.

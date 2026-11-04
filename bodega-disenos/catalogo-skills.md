@@ -81,11 +81,11 @@ Mismo set en los tres. Base: candado **C3 Jakarta**. No hay skill nueva de tipo 
 
 | Agente | Rama | Paleta | Skills |
 | :--- | :--- | :--- | :--- |
-| **Coral** | `cursor/look-c-color-coral-aa58` | coral `#e85d4c` + ink `#1c1412` | `design-taste-frontend` (color) + `redesign-skill`; banner CSS animado |
+| **Coral** | `cursor/look-c-color-coral-aa58` @ `47da9ba5` | coral `#e85d4c` + ink `#1c1412` + paper `#fff6f3` | `design-taste-frontend` (color) + `redesign-skill`; banner stripe drift (`translate3d`, reduced-motion freeze). Capturas en bóveda. Tests 64/64 |
 | **Lima** | `cursor/look-c-color-lima-aa58` | lime `#c6f135` + charcoal `#121417` | mismo set, otra paleta |
 | **Cobalto** | `cursor/look-c-color-cobalto-aa58` | cobalt `#2f5bff` + apricot `#ffb085` | mismo set, otra paleta |
 
-Capturas: **pendiente** (ramas aún en curso; sin NOTES ni png al registrar). Índice: [proyectos/trabajamos-com/look-c-colores/](proyectos/trabajamos-com/look-c-colores/README.md).
+Capturas: Coral archivado (inicio, perfil, mobile). Lima y Cobalto **pendiente**. Índice: [proyectos/trabajamos-com/look-c-colores/](proyectos/trabajamos-com/look-c-colores/README.md).
 
 ---
 
