@@ -22,7 +22,8 @@
 | Navy | `#0c1b33` / mid `#16325a` |
 | Sunflower | `#f5c400` (CTAs, badges, riel) |
 | Paper | `#eef3fb` |
-| Tipo | Syne · Plus Jakarta Sans |
+| Tipo (base de este commit) | Syne display · Plus Jakarta Sans cuerpo |
+| Candado de tipo | **C3 Jakarta** — ver [look-c-tipo/](../look-c-tipo/README.md). C1 Syne denso y C2 Newsreader archivados |
 
 ## Capturas
 

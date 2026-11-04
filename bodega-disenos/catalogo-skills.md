@@ -11,8 +11,8 @@ Rutas relativas al monorepo de trabajo del agente (siblings de `wika-fundaments`
 
 | Skill (carpeta) | Ruta | Rol | Usada en |
 | :--- | :--- | :--- | :--- |
-| `indeed-cl-inspired` | `proyectos/web/trabajamos-com/skills/indeed-cl-inspired/SKILL.md` | Anatomía search-first (qué/dónde, chips, cards densas). **No** marca Indeed en UI. | Look A (flujo home); Look C (solo orden de contenido); prueba 4 / 4b |
-| `linkedin-profile-inspired` | `proyectos/web/trabajamos-com/skills/linkedin-profile-inspired/SKILL.md` | Anatomía perfil profesional (hero, Contactar, secciones). **No** marca LinkedIn en UI. | Look A (primaria); Look C (orden de secciones); prueba 4 / 4b |
+| `indeed-cl-inspired` | `proyectos/web/trabajamos-com/skills/indeed-cl-inspired/SKILL.md` | Anatomía search-first (qué/dónde, chips, cards densas). **No** marca Indeed en UI. | Look A (flujo home); Look C y forks tipo C1–C3 (solo orden de contenido); prueba 4 / 4b |
+| `linkedin-profile-inspired` | `proyectos/web/trabajamos-com/skills/linkedin-profile-inspired/SKILL.md` | Anatomía perfil profesional (hero, Contactar, secciones). **No** marca LinkedIn en UI. | Look A (primaria); Look C y forks tipo C1–C3 (orden de secciones); prueba 4 / 4b |
 
 ---
 
@@ -21,8 +21,8 @@ Rutas relativas al monorepo de trabajo del agente (siblings de `wika-fundaments`
 | Skill (install name) | Carpeta | Rol | Usada en |
 | :--- | :--- | :--- | :--- |
 | `high-end-visual-design` | `web-design/external/taste-skill/skills/soft-skill/` | Agencia / Soft Structuralism: aire, tipografía fuerte, un acento, motion suave | Look B (principios; expresión **Pearl**, no prueba 3); prueba 3 (rechazada) |
-| `design-taste-frontend` | `web-design/external/taste-skill/skills/taste-skill/` | Dials VARIANCE / MOTION / DENSITY + anti-slop | Look B (dials bajos); Look C (dials altos) |
-| `redesign-existing-projects` | `web-design/external/taste-skill/skills/redesign-skill/` | Audit tipografía/color/espacio sobre UI existente | Looks A/B/C; polish orgánico 4b |
+| `design-taste-frontend` | `web-design/external/taste-skill/skills/taste-skill/` | Dials VARIANCE / MOTION / DENSITY + anti-slop | Look B (dials bajos); Look C (dials altos); forks tipo C1–C3 (mismos dials, solo tipo) |
+| `redesign-existing-projects` | `web-design/external/taste-skill/skills/redesign-skill/` | Audit tipografía/color/espacio sobre UI existente | Looks A/B/C; forks tipo C1–C3 (eje tipo); polish orgánico 4b |
 | `minimalist-ui` | `web-design/external/taste-skill/skills/minimalist-skill/` | Editorial warm monochrome | Prueba 1 (**rechazada**) |
 | `industrial-brutalist-ui` | `web-design/external/taste-skill/skills/brutalist-skill/` | Swiss print / industrial | Prueba 2 (**rechazada**) |
 
@@ -62,6 +62,18 @@ Rutas relativas al monorepo de trabajo del agente (siblings de `wika-fundaments`
 
 **Rama código:** `cursor/look-colorido-aa58`  
 **Ficha:** [proyectos/trabajamos-com/look-colorido/](proyectos/trabajamos-com/look-colorido/README.md)
+
+### Tipografía sobre Look C
+
+Forks **solo de tipo** de Look C. Paleta sunflower `#f5c400` + navy `#0c1b33`, layout de concepto, ids y Contactar intactos. No entra skill nueva: se reutilizan `design-taste-frontend`, `redesign-existing-projects` (`redesign-skill`) y la IA de Indeed/LinkedIn (orden de contenido, no piel).
+
+| Fork | Rama @ SHA | Qué cambió | Estado |
+| :--- | :--- | :--- | :--- |
+| **C1 Syne denso** | `cursor/look-c-tipo-syne-aa58` @ `8542b742` | Syne display con tracking −0.055/−0.06 y clamps más bajos; Jakarta cuerpo 15.5px / meta 13px | Alternativa archivada |
+| **C2 Editorial Newsreader** | `cursor/look-c-tipo-editorial-aa58` @ `e9a803dc` | Syne solo en la marca; Newsreader en títulos y lead; Jakarta en cuerpo y meta | Alternativa archivada |
+| **C3 Jakarta** | `cursor/look-c-tipo-jakarta-aa58` @ `0d3578ce` | Syne solo en el logo; Plus Jakarta Sans en títulos y UI (escala 14/16/20/28) | **Candado tipográfico** |
+
+**C3 es el candado.** C1 y C2 quedan archivados. Índice: [proyectos/trabajamos-com/look-c-tipo/](proyectos/trabajamos-com/look-c-tipo/README.md).
 
 ---
 

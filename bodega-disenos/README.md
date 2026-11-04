@@ -10,6 +10,10 @@ bodega-disenos/
 ├── catalogo-skills.md        ← skills ocupadas (fuente + rol)
 └── proyectos/
     └── trabajamos-com/       ← primer lote (Fase 2 web)
+        ├── look-linkedin/    ← Look A
+        ├── look-elegante/    ← Look B
+        ├── look-colorido/    ← Look C (dirección elegida)
+        └── look-c-tipo/      ← C1 / C2 archivados · C3 Jakarta candado
 ```
 
 ## Cómo usar
@@ -20,9 +24,9 @@ bodega-disenos/
 
 ## Estado
 
-| Proyecto | Looks catalogados | Look firmado |
+| Proyecto | Looks catalogados | Dirección |
 | :--- | :--- | :--- |
-| [trabajamos.com](proyectos/trabajamos-com/README.md) | LinkedIn · Elegante · Colorido (+ historial 1–4b) | **Ninguno** (pendiente Vissiuss) |
+| [trabajamos.com](proyectos/trabajamos-com/README.md) | A LinkedIn · B Elegante · C Colorido + forks tipo C1/C2/C3 (+ historial 1–4b) | Look **C** elegido. Candado tipográfico **C3 Jakarta**. Firma visual del Arquitecto pendiente |
 
 ## Relación con otros repos
 
