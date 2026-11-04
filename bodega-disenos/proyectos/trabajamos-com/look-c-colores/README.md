@@ -20,7 +20,7 @@ El banner pasa de **estático → móvil (CSS)**. La animación es CSS (sin libr
 | Agente | Rama (`proyectos`) | Paleta | Ficha | Capturas |
 | :--- | :--- | :--- | :--- | :--- |
 | **Coral** | `cursor/look-c-color-coral-aa58` @ `47da9ba5` | coral `#e85d4c` + ink `#1c1412` + paper `#fff6f3` | [coral/](coral/README.md) | inicio, perfil, mobile |
-| **Lima** | `cursor/look-c-color-lima-aa58` | lime `#c6f135` + charcoal `#121417` | [lima/](lima/README.md) | pendiente |
+| **Lima** | `cursor/look-c-color-lima-aa58` @ `9616a138` | electric lime `#c6f135` + charcoal `#121417` + mist `#f3f6ee` | [lima/](lima/README.md) | inicio, perfil, mobile |
 | **Cobalto** | `cursor/look-c-color-cobalto-aa58` @ `a96a8164` | cobalt `#2f5bff` + apricot `#ffb085` + ink `#0e1320` + paper `#f4f6ff` | [cobalto/](cobalto/README.md) | inicio, perfil, mobile |
 
-Coral y Cobalto están archivados (tests 64/64, banner stripe drift con `translate3d` de un periodo y freeze en reduced-motion). Lima sigue **pendiente** (sin png en artefactos). No copiar código de producto aquí.
+Coral, Lima y Cobalto están **archivados** (tests 64/64). Coral y Cobalto usan stripe drift (`translate3d` de un periodo, freeze en reduced-motion). Lima usa `lima-drift` (`translate3d` de un periodo de 64px, brillo mist y blob en el hero, freeze en reduced-motion). No copiar código de producto aquí.

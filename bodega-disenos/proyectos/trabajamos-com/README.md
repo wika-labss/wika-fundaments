@@ -16,7 +16,7 @@ Pruebas locales: `proyectos/web/trabajamos-com/idea/pruebas-fase2.md`.
 | **C2 Editorial** | [look-c-tipo/c2-editorial/](look-c-tipo/c2-editorial/README.md) | `cursor/look-c-tipo-editorial-aa58` @ `e9a803dc` | Fork de tipo de C (archivado) |
 | **C3 Jakarta** | [look-c-tipo/c3-jakarta/](look-c-tipo/c3-jakarta/README.md) | `cursor/look-c-tipo-jakarta-aa58` @ `0d3578ce` | Fork de tipo de C — **candado tipográfico** |
 | **Coral** | [look-c-colores/coral/](look-c-colores/coral/README.md) | `cursor/look-c-color-coral-aa58` @ `47da9ba5` | taste (color) + redesign sobre C3; banner stripe drift. Capturas inicio / perfil / mobile. Tests 64/64 |
-| **Lima** | [look-c-colores/lima/](look-c-colores/lima/README.md) | `cursor/look-c-color-lima-aa58` | mismo set; lime `#c6f135` + charcoal `#121417`. Capturas pendientes |
+| **Lima** | [look-c-colores/lima/](look-c-colores/lima/README.md) | `cursor/look-c-color-lima-aa58` @ `9616a138` | taste + redesign sobre C3; electric lime `#c6f135` + charcoal `#121417` + mist `#f3f6ee`. Banner `lima-drift`. Capturas inicio / perfil / mobile. Tests 64/64 |
 | **Cobalto** | [look-c-colores/cobalto/](look-c-colores/cobalto/README.md) | `cursor/look-c-color-cobalto-aa58` @ `a96a8164` | mismo set; cobalt `#2f5bff` + apricot `#ffb085` + ink `#0e1320` + paper `#f4f6ff`. Capturas inicio / perfil / mobile. Tests 64/64 |
 
 Dirección de look elegida: **C**. Candado de tipo: **C3 Jakarta**. C1 y C2 son alternativas archivadas. Índice de tipo: [look-c-tipo/](look-c-tipo/README.md). Color + banner en curso: [look-c-colores/](look-c-colores/README.md).
