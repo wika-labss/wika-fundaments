@@ -21,6 +21,6 @@ El banner pasa de **estático → móvil (CSS)**. La animación es CSS (sin libr
 | :--- | :--- | :--- | :--- | :--- |
 | **Coral** | `cursor/look-c-color-coral-aa58` @ `47da9ba5` | coral `#e85d4c` + ink `#1c1412` + paper `#fff6f3` | [coral/](coral/README.md) | inicio, perfil, mobile |
 | **Lima** | `cursor/look-c-color-lima-aa58` | lime `#c6f135` + charcoal `#121417` | [lima/](lima/README.md) | pendiente |
-| **Cobalto** | `cursor/look-c-color-cobalto-aa58` | cobalt `#2f5bff` + apricot `#ffb085` | [cobalto/](cobalto/README.md) | pendiente |
+| **Cobalto** | `cursor/look-c-color-cobalto-aa58` @ `a96a8164` | cobalt `#2f5bff` + apricot `#ffb085` + ink `#0e1320` + paper `#f4f6ff` | [cobalto/](cobalto/README.md) | inicio, perfil, mobile |
 
-Coral está archivado (tests 64/64, banner stripe drift con `translate3d` y freeze en reduced-motion). Lima y Cobalto siguen **pendiente**: sus png no están listos para la bóveda. No copiar código de producto aquí.
+Coral y Cobalto están archivados (tests 64/64, banner stripe drift con `translate3d` de un periodo y freeze en reduced-motion). Lima sigue **pendiente** (sin png en artefactos). No copiar código de producto aquí.
