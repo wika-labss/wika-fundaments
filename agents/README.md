@@ -6,7 +6,7 @@ Cada agente IA tiene una ficha con inputs, outputs, prohibiciones y handoff. Nin
 
 **Ruta canónica de producto:** `proyectos/app/{proyecto}/`.
 
-Las skills Cursor (`SKILL.md`) no viven aquí todavía; cada ficha declara `future_skill` para el siguiente paso.
+Skill portable (un solo archivo, usable fuera de este repo): [`skills/wika-construccion-app/SKILL.md`](../skills/wika-construccion-app/SKILL.md). Orquesta el flujo completo y adopta un rol de esta tabla por turno. Las fichas de abajo siguen siendo el contrato; cada una declara `future_skill` por si más adelante se parten skills por agente.
 
 ---
 
