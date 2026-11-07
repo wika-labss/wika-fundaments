@@ -167,7 +167,7 @@ La demo en vivo (botones, tipografía, íconos, imágenes, pantallas) la constru
 | wika-refiner | `wika-refiner` |
 | wika-packager | `wika-packager` |
 
-Generación de archivos `SKILL.md` — fase T2; este documento es contrato previo.
+Skill portable ya publicada: [`skills/wika-construccion-app/SKILL.md`](../skills/wika-construccion-app/SKILL.md) (un archivo, todos los roles). Las skills por `agent_id` de la tabla siguen siendo el corte futuro si Studio necesita invocar un rol aislado.
 
 ---
 
