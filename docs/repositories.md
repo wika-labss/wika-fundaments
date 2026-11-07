@@ -72,6 +72,7 @@ Contiene las definiciones, reglas y conocimiento que permiten construir software
 - Standards
 - Definición de agentes IA
 - Documentación estratégica (reglas, auditorías, gobierno)
+- **Bóveda de diseños** (`bodega-disenos/`): catálogo de skills visuales y experimentos de look (notas + capturas), para reutilizar conocimiento — ver [`bodega-disenos/README.md`](../bodega-disenos/README.md)
 
 ### No debe contener
 
@@ -79,6 +80,7 @@ Contiene las definiciones, reglas y conocimiento que permiten construir software
 - Código de negocio
 - Infraestructura productiva
 - Productos finales
+- CSS/JS de producción de un sitio (eso vive en `proyectos/`)
 
 ---
 
