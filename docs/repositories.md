@@ -201,6 +201,27 @@ Sistema visual oficial de la plataforma.
 
 ---
 
+## web-design
+
+Flujo documental y de diseño para **páginas web** (landing, marketing, portfolios).
+
+### Responsabilidades
+
+- Plantillas web (01–04: problema, features, módulos, HTML)
+- Resolución de dirección visual (`MOD-DIR`, `standards/direction-matrix.yaml`)
+- Submodule [taste-skill](https://github.com/Leonxlnx/taste-skill) para fase de diseño (agent skills)
+- Workflows y estándares web (cuando se redacten)
+
+### No debe contener
+
+- Aplicaciones o sitios finales (viven en `applications/`)
+- Lógica de negocio
+- Reglas globales del SCOS (pertenecen a `wika-fundaments`)
+
+Repositorio: [`wika-labss/web-design`](https://github.com/wika-labss/web-design)
+
+---
+
 ## shared-packages
 
 Paquetes reutilizables compartidos por múltiples soluciones.
