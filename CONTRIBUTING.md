@@ -22,6 +22,16 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 
 Documentación WIKA Studio y esquemas en `docs/` y `schemas/` deben mantenerse alineados con [`docs/studio-readiness-checklist.md`](docs/studio-readiness-checklist.md).
 
+## Calidad de documentación (QA)
+
+El entorno de desarrollo provee `markdownlint-cli2` para verificar el Markdown.
+
+La configuración vive en `.markdownlint-cli2.jsonc`.
+
+```bash
+markdownlint-cli2 "**/*.md"
+```
+
 ## Convención de plantillas
 
 Las plantillas oficiales viven en `templates/` con numeración:
